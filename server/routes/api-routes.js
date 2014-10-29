@@ -15,59 +15,9 @@ module.exports = function(app) {
 		res.send("hello world")
 	});
 
-
-	// User API
-
-
-	// create user
-	app.post('/api/user', function(req, res) {
-		console.log(req.body);
-		var newUser = new User(req.body);
-		newUser.save(function (err, results) {
-			if (err) {
-				console.error(err);
-				//process.exit(1);
-				res.send("error");
-			} else {
-				console.log('Saved: ', results);
-				//process.exit(0);
-				res.send("success!");
-			}
-		});
-	});
-
-	// get user by slug
-	app.get('/api/user/:slug?', function(req, res) {
-		User.findOne({}, function(err, results) {
-			console.log(results);
-			res.send(results);
-		});
-	});
-
-	// change password
-	app.put('/api/user/', function(req, res) {
-		User.update(
-			{email: req.body.email}, 
-			{$set: { password: req.body.password}}, 
-			{upsert: true}, 
-			function(err, results) {
-				if (err) {
-					console.error(err);
-					//process.exit(1);
-					res.send("error");
-				} else {
-					console.log('Saved: ', results);
-					//process.exit(0);
-					res.send("success!");
-				}
-			});
-	});
-
-	// delete user
-	app.del('/api/user/:email?', function(req, res) {
-		User.remove({"email": req.params.email}, function(err, results) {
-			console.log(results);
-			res.send(results);
-		});
-	});
+	// User routes
+	app.post('/api/user'					, api.users.create);
+	app.get('/api/user/:slug?'				, api.users.getBySlug);
+	app.put('/api/user/'					, api.users.changePassword);
+	app.del('/api/user/:email?'				, api.users.deleteUser);
 }
