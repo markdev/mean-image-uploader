@@ -1,13 +1,18 @@
 // Declare variables
-var express = require('express');
-var app = express();
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var crypto = require('crypto');
-app.use(bodyParser());
+var express 		= require('express')
+  ,	bodyParser 		= require('body-parser')
+  ,	mongoose 		= require('mongoose')
+  ;
 
-// Mongoose connection
-mongoose.connect('mongodb://127.0.0.1/sunzora');
+var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+var app = express();
+var config = require('./server/config')[env];
+
+//initialize database
+require('./server/db')(config);
+
+// Configure express
+app.use(bodyParser());
 
 //init User model
 var UserSchema = require('./server/models/User').User
@@ -18,5 +23,5 @@ var UserSchema = require('./server/models/User').User
 require('./server/routes/api-routes')(app)
 //require('./server/routes/server-routes')(app);
 
-app.listen(3000);
-console.log("app is listening on port 3000");
+app.listen(config.port);
+console.log("app is listening on port " + config.port + "...");
