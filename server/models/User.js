@@ -3,17 +3,13 @@ var mongoose = require('mongoose')
   ;
 
 //define user schema
-var User = mongoose.model('User', {
-	  email: String
-	, password: String
-	, avatar: String
-	, sex: {
-		type: String,
-		enum: ['male', 'female', 'other']
-	}
-	, dob: Date
-	, createdOn: { 
-		type : Date, 
-		default: Date.now 
-	}
+var userSchema = mongoose.Schema({
+	  email: 		{ type: String }
+	, password: 	{ type: String }
+	, avatar: 		{ type: String }
+	, sex: 			{ type: String, enum: ['male', 'female', 'other']}
+	, dob: 			{ type: Date }
+	, createdOn: 	{ type : Date, default: Date.now }
 });
+
+var User = mongoose.model('User', userSchema);
