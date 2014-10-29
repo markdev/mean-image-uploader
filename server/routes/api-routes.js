@@ -4,8 +4,8 @@ var mongoose = require('mongoose')
   ;
 
 //init User model
-var UserSchema = require('../models/User').User
-  , User = mongoose.model('User')
+//var UserSchema = require('../models/User').User
+//  , User = mongoose.model('User')
 
 console.log(api.users);
 

@@ -49,5 +49,14 @@ exports.deleteUser = function(req, res) {
 	});
 }
 
+//create new user
+//get user by slug
+//change user password
+//request password reset
+//list all users
+//  - security breach, don't show passwords
+//update user data
+//upload avatar
 
+//populate default users
 
