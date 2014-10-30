@@ -1,6 +1,18 @@
 var User = require('mongoose').model('User')
 ;
 
+//list all users
+//  - security breach, don't show passwords
+exports.list = function(req, res, next) {
+	User.find({}, {'_id': 0, 'password_salt': 0, 'password_hash': 0}, function (err, users) {
+		if (err) {
+			res.send({ success: false, message: "Can't find users"});
+		} else {
+			res.send({ success: true, users: users });
+		}
+	});
+}
+
 exports.create = function(req, res, next) {
 	var userData = req.body;
 	if (userData.password !== userData.password2) {
@@ -57,13 +69,6 @@ exports.changePassword = function(req, res) {
 exports.requestPasswordReset = function(req, res) {
 	console.log("requestPasswordReset");
 	res.send("requestPasswordReset");
-}
-
-//list all users
-//  - security breach, don't show passwords
-exports.list = function(req, res) {
-	console.log("list");
-	res.send("list");
 }
 
 exports.deleteUser = function(req, res) {
