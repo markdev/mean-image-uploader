@@ -1,6 +1,7 @@
 // Declare variables
 var express 		= require('express')
   ,	bodyParser 		= require('body-parser')
+  , multer			= require('multer')
   // ,	mongoose 		= require('mongoose')
   ;
 
@@ -17,6 +18,9 @@ require('./server/db')(config);
 
 // Configure express
 app.use(bodyParser());
+app.use(multer({
+	dest: "./images/tmp"
+}));
 
 //configure server routes
 require('./server/routes/api-routes')(app)

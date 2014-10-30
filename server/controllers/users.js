@@ -1,4 +1,7 @@
 var User = require('mongoose').model('User')
+//  , bodyParser = require('body-parser')
+  , fs = require('fs')
+  , util = require('util')
 ;
 
 //list all users
@@ -82,7 +85,7 @@ exports.changePassword = function(req, res, next) {
 	});
 }
 
-exports.updateUser = function(req, res) {
+exports.updateUser = function(req, res, next) {
 	User.findOne({email: req.body.email}, function(err, user) {
 		if(!err) {
 			user.username = (req.body.username)? req.body.username : user.username;
@@ -103,6 +106,12 @@ exports.updateUser = function(req, res) {
 }
 
 
+exports.uploadAvatar = function(req, res, next) {
+	console.log(util.inspect(req.files));
+	res.send("Here it is " + req.files);
+
+}
+
 
 exports.deleteUser = function(req, res, next) {
 	User.findOne({_id: req.param('slug')}).remove(function() {
@@ -113,11 +122,6 @@ exports.deleteUser = function(req, res, next) {
 exports.requestPasswordReset = function(req, res) {
 	console.log("requestPasswordReset");
 	res.send("requestPasswordReset");
-}
-
-exports.uploadAvatar = function(req, res) {
-	console.log("uploadAvatar");
-	res.send("uploadAvatar");
 }
 
 /*

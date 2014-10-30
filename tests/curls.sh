@@ -18,13 +18,17 @@
 #echo -e "Testing GET -- /api/user/list"
 #sudo curl -i -X GET http://127.0.0.1:3000/api/user/list
 
-echo -e ""
-echo -e "Testing PUT -- /api/user"
-sudo curl -X PUT -d email=homey@clown.com -d password=foobar -d first_name=dude -d last_name=bro -d sex=other http://127.0.0.1:3000/api/user/
-
 #echo -e ""
-#echo -e "Testing POST -- /api/user/avatar"
-#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"email":"i@i.com", "password":"i", "sex":"female", "avatar":"aasdfgfdefg", "dob":"april71983"}' http://127.0.0.1:3000/api/user
+#echo -e "Testing PUT -- /api/user"
+#sudo curl -X PUT -d email=homey@clown.com -d password=foobar -d first_name=dude -d last_name=bro -d sex=other http://127.0.0.1:3000/api/user/
+
+echo -e ""
+echo -e "Testing POST -- /api/user/avatar"
+curl -F "userid=1" -F "filecomment=This is an image file" -F "image=@/Users/markkaravan/Desktop/hammer.png" http://127.0.0.1:3000/api/user/avatar
+#curl --upload-file hammer.png http://127.0.0.1:3000/api/user/avatar
+#curl -X POST http://127.0.0.1:3000/api/user/avatar -H "Content-type: multipart/form-data" -F file=@hammer.png
+
+#sudo curl -X PUT -F file=@~/Desktop/hammer.png http://127.0.0.1:3000/api/user/avatar
 
 #echo -e ""
 #echo -e "Testing PUT -- /api/user/addlogin"
