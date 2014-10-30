@@ -148,8 +148,6 @@ exports.deleteUser = function(req, res, next) {
 }
 
 exports.requestPasswordReset = function(req, res, next) {
-	//console.log(req.body.email);
-	//generate new password from user
 	var tempPassword = User.createRandomString();
 	User.findOne({email: req.body.email}, function(err, user) {
 		if (user !== null && !err) {
@@ -187,18 +185,8 @@ exports.requestPasswordReset = function(req, res, next) {
 			res.send({success: false, message: "Email address is not listed"});
 		}
 	})
-
-
-	//update user in database with hashed password
-	//mail user that password
 }
 
-/*
-exports.addLogin = function(req, res) {
-	console.log("addLogin");
-	res.send("addLogin");
-}
-*/
 
 //populate default users
 

@@ -38,3 +38,16 @@ userSchema.statics = {
 }
 
 var User = mongoose.model('User', userSchema);
+
+//user model methods
+exports.createDefaults = function() {
+	User.find({}).exec(function(err, users) {
+		if(users.length === 0) {
+			var password_salt, password_hash;
+			password_salt = User.createPasswordSalt();
+			password_hash = User.hashPassword(password_salt, 'admin');
+			User.create({firstName:'Admin', lastName:'Admin', username:'admin', password_salt: password_salt, password_hash: password_hash, roles: ['admin']});
+			console.log("created initial default user w/ username 'admin' and password 'admin'");
+		}
+	});
+};
