@@ -1,18 +1,18 @@
 #echo -e ""
 #echo -e "Testing POST -- /api/user"
-#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"email":"j@j.com", "password":"j", "password2":"j", "sex":"female", "avatar":"aasdfgfdefg", "dob":"april71983"}' http://127.0.0.1:3000/api/user
+#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"email":"homey@clown.com", "password":"homey", "password2":"homey", "sex":"female", "avatar":"aasdfgfdefg", "dob":"april71983"}' http://127.0.0.1:3000/api/user
 
 #echo -e ""
 #echo -e "Testing GET -- /api/user/545173647db42f924010dbc4"
 #sudo curl -i -X GET http://127.0.0.1:3000/api/user/545173647db42f924010dbc4
 
-#echo -e ""
-#echo -e "Testing PUT -- /api/user/password"
-#sudo curl -X PUT -d email=mark.karavan@gmail.com -d password=marco http://127.0.0.1:3000/api/user/
-
 echo -e ""
-echo -e "Testing DELETE -- /api/user/545173647db42f924010dbc4"
-sudo curl -X DELETE http://127.0.0.1:3000/api/user/545173647db42f924010dbc4
+echo -e "Testing PUT -- /api/user/password"
+sudo curl -X PUT -d email=homey@clown.com -d password=bar http://127.0.0.1:3000/api/user/password
+
+#echo -e ""
+#echo -e "Testing DELETE -- /api/user/545173647db42f924010dbc4"
+#sudo curl -X DELETE http://127.0.0.1:3000/api/user/545173647db42f924010dbc4
 
 #echo -e ""
 #echo -e "Testing GET -- /api/user/list"

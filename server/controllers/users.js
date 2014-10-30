@@ -48,7 +48,22 @@ exports.getBySlug = function(req, res, next) {
 	});
 }
 
-exports.changePassword = function(req, res) {
+exports.changePassword = function(req, res, next) {
+	User.findOne({email: req.body.email}, function(err, user) {
+		if(!err) {
+			user.password_hash = User.hashPassword(user.password_salt, req.body.password);
+			user.save(function(err) {
+				if (err) {
+					res.send({success: false, message: "Failed to update password"});
+				} else {
+					res.send({success: true, user: user});
+				}
+			})
+		}
+	});
+}
+
+/*
 	User.update(
 		{email: req.body.email}, 
 		{$set: { password: req.body.password}}, 
@@ -64,12 +79,7 @@ exports.changePassword = function(req, res) {
 				res.send("success!");
 			}
 		});
-}
-
-exports.requestPasswordReset = function(req, res) {
-	console.log("requestPasswordReset");
-	res.send("requestPasswordReset");
-}
+*/
 
 exports.deleteUser = function(req, res, next) {
 	User.findOne({_id: req.param('slug')}).remove(function() {
@@ -77,21 +87,27 @@ exports.deleteUser = function(req, res, next) {
 	});
 }
 
+exports.requestPasswordReset = function(req, res) {
+	console.log("requestPasswordReset");
+	res.send("requestPasswordReset");
+}
+
 exports.updateUser = function(req, res) {
 	console.log("updateUser");
 	res.send("updateUser");
 }
-
 
 exports.uploadAvatar = function(req, res) {
 	console.log("uploadAvatar");
 	res.send("uploadAvatar");
 }
 
+/*
 exports.addLogin = function(req, res) {
 	console.log("addLogin");
 	res.send("addLogin");
 }
+*/
 
 //populate default users
 
