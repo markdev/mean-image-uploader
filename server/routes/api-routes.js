@@ -23,5 +23,6 @@ module.exports = function(app) {
 	app.del('/api/user/:slug?'			, api.users.deleteUser);
 	app.put('/api/user'					, api.users.updateUser);
 	app.post('/api/user/avatar'			, api.users.uploadAvatar);
+	app.put('/api/user/resetpassword'	, api.users.requestPasswordReset);
 //	app.put('/api/user/addlogin'		, api.users.addLogin);
 }

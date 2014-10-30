@@ -1,8 +1,9 @@
 var User = require('mongoose').model('User')
-//  , bodyParser = require('body-parser')
   , fs = require('fs')
   , util = require('util')
   , lwip = require('lwip')
+  , nodemailer = require('nodemailer');
+
 ;
 
 //list all users
@@ -106,10 +107,8 @@ exports.updateUser = function(req, res, next) {
 	});
 }
 
-
+// lots of cleanup for this one
 exports.uploadAvatar = function(req, res, next) {
-//	console.log(util.inspect(req.files.image.name));
-//	res.send("Here it is " + req.files.image.name);
 	console.log(req.body.slug);
 	User.findOne({_id: req.body.slug}, function(err, user) {
 		if (!err) {
@@ -138,16 +137,7 @@ exports.uploadAvatar = function(req, res, next) {
 				}
 			})
 		}
-		//console.log(user);
-		//res.send(user);
 	});
-
-	// looks up the user
-	// if user has an avatar
-	//   delete the avatar file
-	// move image to dir and resize
-	// change user's avatar to file name
-
 }
 
 
@@ -157,9 +147,50 @@ exports.deleteUser = function(req, res, next) {
 	});
 }
 
-exports.requestPasswordReset = function(req, res) {
-	console.log("requestPasswordReset");
-	res.send("requestPasswordReset");
+exports.requestPasswordReset = function(req, res, next) {
+	//console.log(req.body.email);
+	//generate new password from user
+	var tempPassword = User.createRandomString();
+	User.findOne({email: req.body.email}, function(err, user) {
+		if (user !== null && !err) {
+			var transporter = nodemailer.createTransport({
+				service: 'Gmail',
+				auth: {
+					user: 'sunzora1@gmail.com',
+					pass: 'sunzora83'
+				}
+			});
+			var mailOptions = {
+				from: 'Sunzora <mark@sunzora.com>', 
+				to: req.body.email,
+				subject: 'Password Reset',
+				text: 'Your password is now ' + tempPassword,
+				html: '<b>Your password is now ' + tempPassword + '</b>'
+			};
+			transporter.sendMail(mailOptions, function(error, info){
+				if(error){
+					console.log(error);
+				}else{
+					console.log('Message sent: ' + info.response);
+				}
+			});						
+			user.password_hash = User.hashPassword(user.password_salt, tempPassword);
+			user.updated = new Date();
+			user.save(function(err) {
+				if (err) {
+					res.send({success: false, message: "Failed to update password"});
+				} else {
+					res.send({success: true, user: user});
+				}
+			})
+		} else {
+			res.send({success: false, message: "Email address is not listed"});
+		}
+	})
+
+
+	//update user in database with hashed password
+	//mail user that password
 }
 
 /*

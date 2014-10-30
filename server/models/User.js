@@ -28,6 +28,13 @@ userSchema.statics = {
 		var hmac = crypto.createHmac('sha1', salt);
 		return hmac.update(password).digest('hex');
 	}
+	, createRandomString: function() {
+		var text = "";
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		for( var i=0; i < 6; i++ ) {
+        	text += possible.charAt(Math.floor(Math.random() * possible.length)); }
+        return text;
+	}
 }
 
 var User = mongoose.model('User', userSchema);
