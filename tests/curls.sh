@@ -24,7 +24,7 @@
 
 echo -e ""
 echo -e "Testing POST -- /api/user/avatar"
-curl -F "userid=1" -F "filecomment=This is an image file" -F "image=@/Users/markkaravan/Desktop/hammer.png" http://127.0.0.1:3000/api/user/avatar
+curl -F "slug=545011cb9935a84a1412e93c" -F "filecomment=This is an image file" -F "image=@/Users/markkaravan/Desktop/hammer.png" http://127.0.0.1:3000/api/user/avatar
 #curl --upload-file hammer.png http://127.0.0.1:3000/api/user/avatar
 #curl -X POST http://127.0.0.1:3000/api/user/avatar -H "Content-type: multipart/form-data" -F file=@hammer.png
 

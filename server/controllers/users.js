@@ -2,6 +2,7 @@ var User = require('mongoose').model('User')
 //  , bodyParser = require('body-parser')
   , fs = require('fs')
   , util = require('util')
+  , lwip = require('lwip')
 ;
 
 //list all users
@@ -71,7 +72,7 @@ exports.getBySlug = function(req, res, next) {
 */
 exports.changePassword = function(req, res, next) {
 	User.findOne({email: req.body.email}, function(err, user) {
-		if(!err) {
+		if (!err) {
 			user.password_hash = User.hashPassword(user.password_salt, req.body.password);
 			user.updated = new Date();
 			user.save(function(err) {
@@ -87,7 +88,7 @@ exports.changePassword = function(req, res, next) {
 
 exports.updateUser = function(req, res, next) {
 	User.findOne({email: req.body.email}, function(err, user) {
-		if(!err) {
+		if (!err) {
 			user.username = (req.body.username)? req.body.username : user.username;
 			user.first_name = (req.body.first_name)? req.body.first_name : user.first_name;
 			user.last_name = (req.body.last_name)? req.body.last_name : user.last_name;
@@ -107,8 +108,45 @@ exports.updateUser = function(req, res, next) {
 
 
 exports.uploadAvatar = function(req, res, next) {
-	console.log(util.inspect(req.files));
-	res.send("Here it is " + req.files);
+//	console.log(util.inspect(req.files.image.name));
+//	res.send("Here it is " + req.files.image.name);
+	console.log(req.body.slug);
+	User.findOne({_id: req.body.slug}, function(err, user) {
+		if (!err) {
+			if (user.avatar !== null && user.avatar !== undefined) {
+				console.log("avatar is: " + user.avatar);
+				fs.unlink('images/uploads/avatars/' + user.avatar);
+			}
+			user.avatar = req.files.image.name;
+			fs.rename('images/tmp/' + req.files.image.name, 'images/uploads/avatars/' + req.files.image.name, function (err) {
+				console.log("Image has been moved");
+				lwip.open('images/uploads/avatars/' + req.files.image.name, function(err, image) {
+					if (err) throw err;
+					// lanczos
+					image.resize(50, 50, function(err, rzdImg) {
+						rzdImg.writeFile('images/uploads/avatars/' + req.files.image.name, function(err) {
+							if (err) throw err;
+						});
+					});
+				});
+			});
+			user.save(function(err) {
+				if (err) {
+					res.send({success: false, message: "Failed to update avatar"});
+				} else {
+					res.send({success: true, user: user});
+				}
+			})
+		}
+		//console.log(user);
+		//res.send(user);
+	});
+
+	// looks up the user
+	// if user has an avatar
+	//   delete the avatar file
+	// move image to dir and resize
+	// change user's avatar to file name
 
 }
 

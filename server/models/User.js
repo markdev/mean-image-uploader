@@ -13,7 +13,7 @@ var userSchema = mongoose.Schema({
 	, password_salt: 	{ type: String }
 	, password_hash: 	{ type: String }
 	, roles:  			{ type: [ String ], default: [] }
-	, avatar: 			{ type: String }
+	, avatar: 			{ type: String, default: null }
 	, sex: 				{ type: String, enum: ['male', 'female', 'other']}
 	, dob: 				{ type: Date, default: Date.now }
 	, logins: 			{ type: [ Date ], default: [] }
