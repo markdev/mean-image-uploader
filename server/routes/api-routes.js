@@ -16,8 +16,12 @@ module.exports = function(app) {
 	});
 
 	// User routes
-	app.post('/api/user'					, api.users.create);
-	app.get('/api/user/:slug?'				, api.users.getBySlug);
-	app.put('/api/user/'					, api.users.changePassword);
-	app.del('/api/user/:email?'				, api.users.deleteUser);
+	app.post('/api/user'				, api.users.create);
+	app.get('/api/user/:slug?'			, api.users.getBySlug);
+	app.put('/api/user/password'		, api.users.changePassword);
+	app.del('/api/user/:email?'			, api.users.deleteUser);
+	app.get('/api/user/list'			, api.users.list);
+	app.put('/api/user'					, api.users.updateUser);
+	app.post('/api/user/avatar'			, api.users.uploadAvatar);
+	app.put('/api/user/addlogin'		, api.users.addLogin);
 }
