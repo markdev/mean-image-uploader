@@ -48,21 +48,7 @@ exports.getBySlug = function(req, res, next) {
 	});
 }
 
-exports.changePassword = function(req, res, next) {
-	User.findOne({email: req.body.email}, function(err, user) {
-		if(!err) {
-			user.password_hash = User.hashPassword(user.password_salt, req.body.password);
-			user.save(function(err) {
-				if (err) {
-					res.send({success: false, message: "Failed to update password"});
-				} else {
-					res.send({success: true, user: user});
-				}
-			})
-		}
-	});
-}
-
+//consider using the User.update() approach
 /*
 	User.update(
 		{email: req.body.email}, 
@@ -80,6 +66,43 @@ exports.changePassword = function(req, res, next) {
 			}
 		});
 */
+exports.changePassword = function(req, res, next) {
+	User.findOne({email: req.body.email}, function(err, user) {
+		if(!err) {
+			user.password_hash = User.hashPassword(user.password_salt, req.body.password);
+			user.updated = new Date();
+			user.save(function(err) {
+				if (err) {
+					res.send({success: false, message: "Failed to update password"});
+				} else {
+					res.send({success: true, user: user});
+				}
+			})
+		}
+	});
+}
+
+exports.updateUser = function(req, res) {
+	User.findOne({email: req.body.email}, function(err, user) {
+		if(!err) {
+			user.username = (req.body.username)? req.body.username : user.username;
+			user.first_name = (req.body.first_name)? req.body.first_name : user.first_name;
+			user.last_name = (req.body.last_name)? req.body.last_name : user.last_name;
+			user.sex = (req.body.sex)? req.body.sex : user.sex;
+			user.dob = (req.body.dob)? req.body.dob : user.dob;
+			user.updated = new Date();
+			user.save(function(err) {
+				if (err) {
+					res.send({success: false, message: "Failed to update user"});
+				} else {
+					res.send({success: true, user: user});
+				}
+			})
+		}
+	});
+}
+
+
 
 exports.deleteUser = function(req, res, next) {
 	User.findOne({_id: req.param('slug')}).remove(function() {
@@ -90,11 +113,6 @@ exports.deleteUser = function(req, res, next) {
 exports.requestPasswordReset = function(req, res) {
 	console.log("requestPasswordReset");
 	res.send("requestPasswordReset");
-}
-
-exports.updateUser = function(req, res) {
-	console.log("updateUser");
-	res.send("updateUser");
 }
 
 exports.uploadAvatar = function(req, res) {

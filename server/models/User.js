@@ -7,8 +7,8 @@ var userSchema = mongoose.Schema({
 	  created: 			{ type : Date, default: Date.now }
 	, updated: 			{ type: Date, default: Date.now }
 	, username: 		{ type: String, default: null }
-	, first: 			{ type: String, default: null }
-	, last: 			{ type: String, default: null }
+	, first_name: 		{ type: String, default: null }
+	, last_name: 		{ type: String, default: null }
 	, email: 			{ type: String, index: {unique: true, dropDups: true}}
 	, password_salt: 	{ type: String }
 	, password_hash: 	{ type: String }

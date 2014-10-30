@@ -6,9 +6,9 @@
 #echo -e "Testing GET -- /api/user/545173647db42f924010dbc4"
 #sudo curl -i -X GET http://127.0.0.1:3000/api/user/545173647db42f924010dbc4
 
-echo -e ""
-echo -e "Testing PUT -- /api/user/password"
-sudo curl -X PUT -d email=homey@clown.com -d password=bar http://127.0.0.1:3000/api/user/password
+#echo -e ""
+#echo -e "Testing PUT -- /api/user/password"
+#sudo curl -X PUT -d email=homey@clown.com -d password=bar http://127.0.0.1:3000/api/user/password
 
 #echo -e ""
 #echo -e "Testing DELETE -- /api/user/545173647db42f924010dbc4"
@@ -18,9 +18,9 @@ sudo curl -X PUT -d email=homey@clown.com -d password=bar http://127.0.0.1:3000/
 #echo -e "Testing GET -- /api/user/list"
 #sudo curl -i -X GET http://127.0.0.1:3000/api/user/list
 
-#echo -e ""
-#echo -e "Testing PUT -- /api/user"
-#sudo curl -X PUT -d email=mark.karavan@gmail.com -d password=marco http://127.0.0.1:3000/api/user/
+echo -e ""
+echo -e "Testing PUT -- /api/user"
+sudo curl -X PUT -d email=homey@clown.com -d password=foobar -d first_name=dude -d last_name=bro -d sex=other http://127.0.0.1:3000/api/user/
 
 #echo -e ""
 #echo -e "Testing POST -- /api/user/avatar"
