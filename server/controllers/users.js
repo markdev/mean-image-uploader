@@ -71,10 +71,9 @@ exports.requestPasswordReset = function(req, res) {
 	res.send("requestPasswordReset");
 }
 
-exports.deleteUser = function(req, res) {
-	User.remove({"email": req.params.email}, function(err, results) {
-		console.log(results);
-		res.send(results);
+exports.deleteUser = function(req, res, next) {
+	User.findOne({_id: req.param('slug')}).remove(function() {
+		res.send({ success: true });
 	});
 }
 

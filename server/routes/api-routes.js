@@ -20,7 +20,7 @@ module.exports = function(app) {
 	app.get('/api/user/list'			, api.users.list);
 	app.get('/api/user/:slug?'			, api.users.getBySlug);
 	app.put('/api/user/password'		, api.users.changePassword);
-	app.del('/api/user/:email?'			, api.users.deleteUser);
+	app.del('/api/user/:slug?'			, api.users.deleteUser);
 	app.put('/api/user'					, api.users.updateUser);
 	app.post('/api/user/avatar'			, api.users.uploadAvatar);
 	app.put('/api/user/addlogin'		, api.users.addLogin);
