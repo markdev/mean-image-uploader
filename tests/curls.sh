@@ -30,6 +30,10 @@
 #echo -e "Testing PUT -- /api/user/addlogin"
 #sudo curl -X PUT -d email=mark.karavan@gmail.com -d password=marco http://127.0.0.1:3000/api/user/
 
+#echo -e ""
+#echo -e "Testing PUT -- /api/user/resetpassword"
+#sudo curl -X PUT -d email=mark.karavan@gmail.com http://127.0.0.1:3000/api/user/resetpassword
+
 echo -e ""
-echo -e "Testing PUT -- /api/user/resetpassword"
-sudo curl -X PUT -d email=mark.karavan@gmail.com http://127.0.0.1:3000/api/user/resetpassword
+echo -e "Testing POST -- /login"
+sudo curl -X POST -d username=admin -d password=admin http://127.0.0.1:3000/login

@@ -19,7 +19,14 @@ var userSchema = mongoose.Schema({
 	, logins: 			{ type: [ Date ], default: [] }
 });
 
-// add password salt/hash stuff
+
+userSchema.methods = {
+	authenticate: function(passwordToMatch) {
+		console.log("trying to authenticate username '" + this.username + "'");
+		return User.hashPassword(this.password_salt, passwordToMatch) === this.password_hash;
+	}
+};
+
 userSchema.statics = {
 	createPasswordSalt: function() {
 		return crypto.randomBytes(256).toString('base64');

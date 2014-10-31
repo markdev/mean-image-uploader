@@ -1,6 +1,12 @@
 // Declare variables
 var express 		= require('express')
+  , path			= require('path')
   ,	bodyParser 		= require('body-parser')
+  , cookieParser    = require('cookie-parser')
+  , expressSession  = require('express-session')
+  , mongoose        = require('mongoose')
+  , passport		= require('passport')
+  , LocalStrategy   = require('passport-local').Strategy
   , multer			= require('multer')
   // ,	mongoose 		= require('mongoose')
   ;
@@ -13,14 +19,66 @@ var config = require('./server/config')[env];
 require('./server/db')(config);
 
 //init User model
-//var UserSchema = require('./server/models/User').User
-//  , User = mongoose.model('User')
+var UserSchema = require('./server/models/User').User
+  , User = mongoose.model('User')
 
 // Configure express
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(expressSession({
+	// now add redis
+	secret: process.env.SESSION_SECRET || 'foobarbaz'
+  , resave: false
+  , saveUninitialized: false	
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+	if(user) {
+		done(null, user._id);
+	}
+});
+
+passport.deserializeUser(function(id, done) {
+	console.log("Deserializing User");
+	User.findOne({_id:id}).exec(function(err, user) {
+		if(user) {
+			// consider not putting in the whole user
+			return done(null, user);
+		} else {
+			return done(null, false);
+		}
+	})
+});
+
+passport.use(new LocalStrategy(
+	function(username, password, done) {
+		console.log("DEBUG 2");
+		User.findOne({username:username}).exec(function(err, user) {
+			console.log("DEBUG 3");
+			if (user && user.authenticate(password)) {
+				console.log("authenticated!");
+				return done(null, user);
+			} else {
+				return done(null, false);
+			}
+		});
+	}
+));
+
 app.use(multer({
 	dest: "./images/tmp"
 }));
+
+app.post('/login', passport.authenticate('local'), function(req, res) {
+	res.send("you have successfully logged in");
+});
+
+app.get('/logout', function(req, res) {
+	req.logout();
+	res.send("you have successfully logged out");
+});
 
 //configure server routes
 require('./server/routes/api-routes')(app)
@@ -28,39 +86,3 @@ require('./server/routes/api-routes')(app)
 
 app.listen(config.port);
 console.log("app is listening on port " + config.port + "...");
-
-
-
-/*
-var nodemailer = require('nodemailer');
-
-// create reusable transporter object using SMTP transport
-var transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: 'sunzora1@gmail.com',
-        pass: 'sunzora83'
-    }
-});
-
-// NB! No need to recreate the transporter object. You can use
-// the same transporter object for all e-mails
-
-// setup e-mail data with unicode symbols
-var mailOptions = {
-    from: 'Fred Foo ✔ <foo@blurdybloop.com>', // sender address
-    to: 'mark.karavan@gmail.com', // list of receivers
-    subject: 'Hello ✔', // Subject line
-    text: 'Hello world ✔', // plaintext body
-    html: '<b>Hello world ✔</b>' // html body
-};
-
-// send mail with defined transport object
-transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        console.log(error);
-    }else{
-        console.log('Message sent: ' + info.response);
-    }
-});
-*/
