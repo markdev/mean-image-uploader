@@ -1,0 +1,12 @@
+form(action="/api/users/login", method="post", name="login")
+	label Username
+	input(type="text" name="username")
+	br
+	label Password
+	input(type="passowrd" name="password")
+	br
+	input(type="submit")
+
+a(href="/logout") Log out
+
+p #{isAuthenticated}

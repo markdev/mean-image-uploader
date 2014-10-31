@@ -43,7 +43,8 @@ module.exports = function(app) {
 			}
 			req.logIn(user, function(err) {
 				if(err) {return next(err);}
-				res.send({success:true, user: user});
+				//res.send({success:true, user: user});
+				res.redirect('/login');
 			});
 		})(req, res, next);
 	});
@@ -52,6 +53,29 @@ module.exports = function(app) {
 	app.post('/api/users/logout', function(req, res) {
 		req.logout();
 		res.end();
+	});
+
+	app.get('/logout', function(req, res, next) {
+		req.logout();
+		res.redirect('/login');
+	});
+
+	app.get('/test', requireLogin, function(req, res, next) {
+		req.send("success");
+	});
+
+	app.get('/', function(req, res) {
+		res.render('test', {
+			isAuthenticated: req.isAuthenticated(),
+			user: req.user,
+			foo: "this is foo"
+		});
+	});
+
+	app.get('/login', function(req, res) {
+		res.render('login', {
+			isAuthenticated: req.isAuthenticated()
+		});
 	});
 
 	// User routes

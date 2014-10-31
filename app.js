@@ -73,11 +73,11 @@ passport.use(new LocalStrategy(
 app.use(multer({
 	dest: "./images/tmp"
 }));
-
+/*
 app.get('/', function(req, res) {
-	console.log("me?");
 	res.render('test');
 });
+*/
 
 //configure server routes
 require('./server/routes/api-routes')(app)
