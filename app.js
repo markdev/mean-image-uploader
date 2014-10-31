@@ -8,6 +8,7 @@ var express 		= require('express')
   , passport		= require('passport')
   , LocalStrategy   = require('passport-local').Strategy
   , multer			= require('multer')
+  , RedisStore      = require('connect-redis')(expressSession)
   // ,	mongoose 		= require('mongoose')
   ;
 
@@ -29,11 +30,15 @@ app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(expressSession({
-	// now add redis
+	store: new RedisStore({
+		host: config.redis.host,
+		port: config.redis.port
+	}),
 	secret: process.env.SESSION_SECRET || 'foobarbaz'
-  , resave: false
-  , saveUninitialized: false	
+//  , resave: false
+//  , saveUninitialized: false	
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
