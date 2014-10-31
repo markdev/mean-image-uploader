@@ -23,6 +23,9 @@ var UserSchema = require('./server/models/User').User
   , User = mongoose.model('User')
 
 // Configure express
+app.set('views', __dirname + '/server/views');
+app.set('view engine', 'jade');
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(expressSession({
@@ -71,13 +74,9 @@ app.use(multer({
 	dest: "./images/tmp"
 }));
 
-app.post('/login', passport.authenticate('local'), function(req, res) {
-	res.send("you have successfully logged in");
-});
-
-app.get('/logout', function(req, res) {
-	req.logout();
-	res.send("you have successfully logged out");
+app.get('/', function(req, res) {
+	console.log("me?");
+	res.render('test');
 });
 
 //configure server routes
