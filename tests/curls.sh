@@ -1,3 +1,4 @@
+############ User API
 #echo -e ""
 #echo -e "Testing POST -- /api/user"
 #sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"email":"mark.karavan@gmail.com", "password":"homey", "password2":"homey", "sex":"female", "avatar":"aasdfgfdefg", "dob":"april71983"}' http://127.0.0.1:3000/api/user
@@ -39,6 +40,7 @@
 #sudo curl -X POST -d username=admin -d password=admin http://127.0.0.1:3000/login
 
 
+#########  Contest API
 echo -e ""
 echo -e "Testing POST -- /api/contest"
 sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"foo": "bar"}' http://127.0.0.1:3000/api/contest
@@ -52,11 +54,11 @@ echo -e "Testing GET -- /api/contest/byId/:slug"
 sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byId/12345
 
 echo -e ""
-echo -e "Testing GET -- /api/contest/byName/:slug"
+echo -e "Testing GET -- /api/contest/byName/:str"
 sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byName/12345
 
 echo -e ""
-echo -e "Testing GET -- /api/contest/byTag/:slug"
+echo -e "Testing GET -- /api/contest/byTag/:tag"
 sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byTag/12345
 
 echo -e ""
@@ -74,3 +76,10 @@ sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byJudge/12345
 echo -e ""
 echo -e "Testing DELETE -- /api/contest/:slug"
 sudo curl -X DELETE http://127.0.0.1:3000/api/contest/12345
+
+
+
+######### Entry API
+echo -e ""
+echo -e "Testing POST -- /api/entry"
+sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"foo": "bar"}' http://127.0.0.1:3000/api/entry

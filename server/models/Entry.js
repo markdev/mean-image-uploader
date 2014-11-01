@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
   ;
 
 //define user schema
-var contestSchema = mongoose.Schema({
+var entrySchema = mongoose.Schema({
 	created: 			{ type : Date, default: Date.now }
 	/*
 	  created: 			{ type : Date, default: Date.now }
@@ -23,7 +23,7 @@ var contestSchema = mongoose.Schema({
 });
 
 
-contestSchema.methods = {
+entrySchema.methods = {
 	/*
 	authenticate: function(passwordToMatch) {
 		console.log("trying to authenticate username '" + this.username + "'");
@@ -32,7 +32,7 @@ contestSchema.methods = {
 	*/
 };
 
-contestSchema.statics = {
+entrySchema.statics = {
 	/*
 	createPasswordSalt: function() {
 		return crypto.randomBytes(256).toString('base64');
@@ -51,11 +51,11 @@ contestSchema.statics = {
 	*/
 }
 
-var Contest = mongoose.model('Contest', contestSchema);
+var Entry = mongoose.model('Entry', entrySchema);
 
 //user model methods
 exports.createDefaults = function() {
-	console.log("contest create defaults");
+	console.log("entry create defaults");
 	/*
 	User.find({}).exec(function(err, users) {
 		if(users.length === 0) {
