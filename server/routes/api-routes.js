@@ -87,4 +87,26 @@ module.exports = function(app) {
 	app.put('/api/user'					, api.users.updateUser);
 	app.post('/api/user/avatar'			, api.users.uploadAvatar);
 	app.put('/api/user/resetpassword'	, api.users.requestPasswordReset);
+
+	// Contest routes
+	// create contest
+	app.post('/api/contest'				, api.contests.create);
+	// edit contest
+	app.put('/api/contest'				, api.contests.edit);
+	// get contest by id
+	app.get('/api/contest/byId/:slug' 	, api.contests.getBySlug);
+	// get contests by name string
+	app.get('/api/contest/byName/:str' 	, api.contests.getByNameStr);
+	// get contests by tag
+	app.get('/api/contest/byTag/:tag'	, api.contests.getByTag);
+	// get contests I created
+	app.get('/api/contest/byCreator/:slug'	, api.contests.getByUser);
+	// get contests I'm competing in
+	app.get('/api/contest/byCompetitor/:slug'	, api.contests.getByCompetitor);
+	// get contests I'm judging
+	app.get('/api/contest/byJudge/:slug'	, api.contests.getByJudge);
+	// end contest
+	app.del('/api/contest'				, api.contests.endContest);
+
+
 }
