@@ -4,6 +4,9 @@ var mongoose = require('mongoose');
 var UserSchema = require('../models/User').User
   , User = mongoose.model('User')
 
+var ContestSchema = require('../models/Contest').User
+  , Contest = mongoose.model('Contest')
+
 exports.User = mongoose.model('User');
 exports.users = require('../controllers/users');
 
