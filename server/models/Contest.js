@@ -4,22 +4,16 @@ var mongoose = require('mongoose')
 
 //define user schema
 var contestSchema = mongoose.Schema({
-	created: 			{ type : Date, default: Date.now }
-	/*
 	  created: 			{ type : Date, default: Date.now }
-	, updated: 			{ type: Date, default: Date.now }
-	, username: 		{ type: String, default: null }
-	, first_name: 		{ type: String, default: null }
-	, last_name: 		{ type: String, default: null }
-	, email: 			{ type: String, index: {unique: true, dropDups: true}}
-	, password_salt: 	{ type: String }
-	, password_hash: 	{ type: String }
-	, roles:  			{ type: [ String ], default: [] }
-	, avatar: 			{ type: String, default: null }
-	, sex: 				{ type: String, enum: ['male', 'female', 'other']}
-	, dob: 				{ type: Date, default: Date.now }
-	, logins: 			{ type: [ Date ], default: [] }
-	*/
+//	, owner: 			{ type: Schema.ObjectId, ref: 'userSchema' }
+	, title: 			{ type: String }
+	, banner:  			{ type: String, default: null }
+	, rules: 			{ type: String }
+	, tags: 			{ type: [ String ] }
+	, deadline: 		{ type: Date }
+	, competition: 		{ type: String, enum: ['justMe', 'public'] }
+	, judging: 			{ type: String, enum: ['public'] }
+//	, entries: 			{ type: [ {type: Schema.ObjectId, ref: 'entrySchema', default: [] } ] }
 });
 
 
@@ -56,15 +50,16 @@ var Contest = mongoose.model('Contest', contestSchema);
 //user model methods
 exports.createDefaults = function() {
 	console.log("contest create defaults");
-	/*
-	User.find({}).exec(function(err, users) {
-		if(users.length === 0) {
-			var password_salt, password_hash;
-			password_salt = User.createPasswordSalt();
-			password_hash = User.hashPassword(password_salt, 'admin');
-			User.create({firstName:'Admin', lastName:'Admin', username:'admin', password_salt: password_salt, password_hash: password_hash, roles: ['admin']});
-			console.log("created initial default user w/ username 'admin' and password 'admin'");
+	Contest.find({}).exec(function(err, contests) {
+		if(contests.length === 0) {
+			Contest.create({
+				title: "Hot Guys",
+				rules: "Must be a hot guy, must be you",
+				tags: ['male', 'dudes', 'studs'],
+				competition: "public",
+				judging: "public"
+			});
+			console.log("created initial default contest 'Hot Guys'");
 		}
 	});
-	*/
 };
