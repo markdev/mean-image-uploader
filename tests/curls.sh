@@ -1,6 +1,6 @@
-#echo -e ""
-#echo -e "Testing POST -- /api/user"
-#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"email":"mark.karavan@gmail.com", "password":"homey", "password2":"homey", "sex":"female", "avatar":"aasdfgfdefg", "dob":"april71983"}' http://127.0.0.1:3000/api/user
+echo -e ""
+echo -e "Testing POST -- /api/user"
+sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"email":"mark.karavan@gmail.com", "password":"homey", "password2":"homey", "sex":"female", "avatar":"aasdfgfdefg", "dob":"april71983"}' http://127.0.0.1:3000/api/user
 
 #echo -e ""
 #echo -e "Testing GET -- /api/user/545173647db42f924010dbc4"
@@ -34,6 +34,6 @@
 #echo -e "Testing PUT -- /api/user/resetpassword"
 #sudo curl -X PUT -d email=mark.karavan@gmail.com http://127.0.0.1:3000/api/user/resetpassword
 
-echo -e ""
-echo -e "Testing POST -- /login"
-sudo curl -X POST -d username=admin -d password=admin http://127.0.0.1:3000/login
+#echo -e ""
+#echo -e "Testing POST -- /login"
+#sudo curl -X POST -d username=admin -d password=admin http://127.0.0.1:3000/login

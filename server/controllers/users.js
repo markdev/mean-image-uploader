@@ -3,12 +3,12 @@ var User = require('mongoose').model('User')
   , util = require('util')
   , lwip = require('lwip')
   , nodemailer = require('nodemailer');
-
-;
+  ;
 
 //list all users
 //  - security breach, don't show passwords
 exports.list = function(req, res, next) {
+	console.log("called: users.list");
 	User.find({}, {'_id': 0, 'password_salt': 0, 'password_hash': 0}, function (err, users) {
 		if (err) {
 			res.send({ success: false, message: "Can't find users"});
@@ -19,11 +19,14 @@ exports.list = function(req, res, next) {
 }
 
 exports.create = function(req, res, next) {
+	console.log("called: users.create");
 	var userData = req.body;
 	if (userData.password !== userData.password2) {
     	res.send({success: false, message: "Passwords do not match."});		
 	} else {
 		userData.password_salt = User.createPasswordSalt();
+		console.log("Salt: " + userData.password_salt);
+		console.log("Password: " + userData.password)
     	userData.password_hash = User.hashPassword(userData.password_salt, userData.password);
 		User.create(userData, function(err, user) {
 			if(err) {
@@ -32,18 +35,19 @@ exports.create = function(req, res, next) {
 				}
 				res.send({success: false, message: "Username is already in use."});	
 			}
-//			req.logIn(user, function(err) {
-//				if(err) {
-//					return next(err);
-//				} else {
+			req.logIn(user, function(err) {
+				if(err) {
+					return next(err);
+				} else {
 					res.send({ success: true, user: user });
-//				}
-//			});
+				}
+			});
 		});
 	}
 }
 
 exports.getBySlug = function(req, res, next) {
+	console.log("called: users.getBySlug");
 	User.findOne({"_id" : req.param('slug')}, function(err, user) {
 		if (err) {
 			res.send({ success: false, message: "No username with that id."});
@@ -53,25 +57,8 @@ exports.getBySlug = function(req, res, next) {
 	});
 }
 
-//consider using the User.update() approach
-/*
-	User.update(
-		{email: req.body.email}, 
-		{$set: { password: req.body.password}}, 
-		{upsert: true}, 
-		function(err, results) {
-			if (err) {
-				console.error(err);
-				//process.exit(1);
-				res.send("error");
-			} else {
-				console.log('Saved: ', results);
-				//process.exit(0);
-				res.send("success!");
-			}
-		});
-*/
 exports.changePassword = function(req, res, next) {
+	console.log("called: users.changePassword");
 	User.findOne({email: req.body.email}, function(err, user) {
 		if (!err) {
 			user.password_hash = User.hashPassword(user.password_salt, req.body.password);
@@ -88,6 +75,7 @@ exports.changePassword = function(req, res, next) {
 }
 
 exports.updateUser = function(req, res, next) {
+	console.log("called: users.updateUser");
 	User.findOne({email: req.body.email}, function(err, user) {
 		if (!err) {
 			user.username = (req.body.username)? req.body.username : user.username;
@@ -109,6 +97,7 @@ exports.updateUser = function(req, res, next) {
 
 // lots of cleanup for this one
 exports.uploadAvatar = function(req, res, next) {
+	console.log("called: users.uploadAvatar");
 	console.log(req.body.slug);
 	User.findOne({_id: req.body.slug}, function(err, user) {
 		if (!err) {
@@ -142,12 +131,14 @@ exports.uploadAvatar = function(req, res, next) {
 
 
 exports.deleteUser = function(req, res, next) {
+	console.log("called: users.deleteUser");
 	User.findOne({_id: req.param('slug')}).remove(function() {
 		res.send({ success: true });
 	});
 }
 
 exports.requestPasswordReset = function(req, res, next) {
+	console.log("called: users.requestPasswordReset");
 	var tempPassword = User.createRandomString();
 	User.findOne({email: req.body.email}, function(err, user) {
 		if (user !== null && !err) {

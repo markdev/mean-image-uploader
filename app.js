@@ -27,6 +27,7 @@ var UserSchema = require('./server/models/User').User
 app.set('views', __dirname + '/server/views');
 app.set('view engine', 'jade');
 
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(expressSession({
