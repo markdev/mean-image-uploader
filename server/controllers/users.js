@@ -60,7 +60,9 @@ exports.getBySlug = function(req, res, next) {
 exports.changePassword = function(req, res, next) {
 	console.log("called: users.changePassword");
 	User.findOne({email: req.body.email}, function(err, user) {
-		if (!err) {
+		if (err) {
+			//stuff
+		} else {
 			user.password_hash = User.hashPassword(user.password_salt, req.body.password);
 			user.updated = new Date();
 			user.save(function(err) {
@@ -77,7 +79,9 @@ exports.changePassword = function(req, res, next) {
 exports.updateUser = function(req, res, next) {
 	console.log("called: users.updateUser");
 	User.findOne({email: req.body.email}, function(err, user) {
-		if (!err) {
+		if (err) {
+			//stuff
+		} else {
 			user.username = (req.body.username)? req.body.username : user.username;
 			user.first_name = (req.body.first_name)? req.body.first_name : user.first_name;
 			user.last_name = (req.body.last_name)? req.body.last_name : user.last_name;
@@ -100,7 +104,9 @@ exports.uploadAvatar = function(req, res, next) {
 	console.log("called: users.uploadAvatar");
 	console.log(req.body.slug);
 	User.findOne({_id: req.body.slug}, function(err, user) {
-		if (!err) {
+		if (err) {
+			//stuff
+		} else {
 			if (user.avatar !== null && user.avatar !== undefined) {
 				console.log("avatar is: " + user.avatar);
 				fs.unlink('images/uploads/avatars/' + user.avatar);
