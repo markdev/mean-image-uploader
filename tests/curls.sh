@@ -1,6 +1,6 @@
-echo -e ""
-echo -e "Testing POST -- /api/user"
-sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"email":"mark.karavan@gmail.com", "password":"homey", "password2":"homey", "sex":"female", "avatar":"aasdfgfdefg", "dob":"april71983"}' http://127.0.0.1:3000/api/user
+#echo -e ""
+#echo -e "Testing POST -- /api/user"
+#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"email":"mark.karavan@gmail.com", "password":"homey", "password2":"homey", "sex":"female", "avatar":"aasdfgfdefg", "dob":"april71983"}' http://127.0.0.1:3000/api/user
 
 #echo -e ""
 #echo -e "Testing GET -- /api/user/545173647db42f924010dbc4"
@@ -37,3 +37,40 @@ sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"email":"mark.kara
 #echo -e ""
 #echo -e "Testing POST -- /login"
 #sudo curl -X POST -d username=admin -d password=admin http://127.0.0.1:3000/login
+
+
+echo -e ""
+echo -e "Testing POST -- /api/contest"
+sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"foo": "bar"}' http://127.0.0.1:3000/api/contest
+
+echo -e ""
+echo -e "Testing PUT -- /api/contest"
+sudo curl -X PUT -d foo=bar http://127.0.0.1:3000/api/contest
+
+echo -e ""
+echo -e "Testing GET -- /api/contest/byId/:slug"
+sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byId/12345
+
+echo -e ""
+echo -e "Testing GET -- /api/contest/byName/:slug"
+sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byName/12345
+
+echo -e ""
+echo -e "Testing GET -- /api/contest/byTag/:slug"
+sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byTag/12345
+
+echo -e ""
+echo -e "Testing GET -- /api/contest/byCreator/:slug"
+sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byCreator/12345
+
+echo -e ""
+echo -e "Testing GET -- /api/contest/byCompetitor/:slug"
+sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byCompetitor/12345
+
+echo -e ""
+echo -e "Testing GET -- /api/contest/byJudge/:slug"
+sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byJudge/12345
+
+echo -e ""
+echo -e "Testing DELETE -- /api/contest/:slug"
+sudo curl -X DELETE http://127.0.0.1:3000/api/contest/12345
