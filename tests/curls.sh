@@ -77,9 +77,17 @@ echo -e ""
 echo -e "Testing DELETE -- /api/contest/:slug"
 sudo curl -X DELETE http://127.0.0.1:3000/api/contest/12345
 
+echo -e ""
+echo -e "Testing PUT -- /api/contest/compete/:slug"
+sudo curl -X PUT http://127.0.0.1:3000/api/contest/compete/12345
+
+echo -e ""
+echo -e "Testing PUT -- /api/contest/judge/:slug"
+sudo curl -X PUT http://127.0.0.1:3000/api/contest/judge/12345
+
 
 
 ######### Entry API
-echo -e ""
-echo -e "Testing POST -- /api/entry"
-sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"foo": "bar"}' http://127.0.0.1:3000/api/entry
+#echo -e ""
+#echo -e "Testing POST -- /api/entry"
+#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"foo": "bar"}' http://127.0.0.1:3000/api/entry

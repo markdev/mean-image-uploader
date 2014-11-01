@@ -51,3 +51,12 @@ exports.endContest = function(req, res, next) {
 	res.send({ success: true, slug: req.param('slug') });
 }
 
+exports.compete = function(req, res, next) {
+	console.log("called: contests.compete");
+	res.send({ success: true, slug: req.param('slug') });
+}
+
+exports.judge = function(req, res, next) {
+	console.log("called: contests.judge");
+	res.send({ success: true, slug: req.param('slug') });
+}

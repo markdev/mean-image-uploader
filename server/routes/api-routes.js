@@ -98,8 +98,10 @@ module.exports = function(app) {
 	app.get('/api/contest/byCompetitor/:slug'	, api.contests.getByCompetitor);
 	app.get('/api/contest/byJudge/:slug'	, api.contests.getByJudge);
 	app.del('/api/contest/:slug'		, api.contests.endContest);
-	// compete in contest
-	// judge contest
+	app.put('/api/contest/compete/:slug'	, api.contests.compete);
+	app.put('/api/contest/judge/:slug'	, api.contests.judge);
+//]]
+
 
 	// Entry routes
 	// submit entry
