@@ -1,5 +1,5 @@
 var Contest = require('mongoose').model('Contest')
-  , Entry = require('mongoose').model('Entry')
+//  , Entry = require('mongoose').model('Entry')
   , mongoose = require('mongoose')
 //  , fs = require('fs')
 //  , util = require('util')
@@ -131,9 +131,26 @@ exports.judge = function(req, res, next) {
 }
 
 exports.addEntry = function(req, res, next) {
-	var entry1 = new Entry();
-	entry1.content = "lets try this"
+//	var entry1 = new Entry();
+//	entry1.content = "lets try this"
 	console.log("called: contests.addEntry");
+	Contest.findByIdAndUpdate(
+		req.body.contest,
+		{ $push: {"entries": {
+			  "_owner": mongoose.Types.ObjectId(req.body.user)
+			, "content": req.body.content // change this later
+		}}},
+		{safe: true, upsert: true},
+		function(err, contest) {
+			if (err) {
+				res.send({success: false, message: "Error inserting data"});
+			} else {
+				res.send({success: true});
+			}
+		}
+
+	)	
+/*
 	Contest.findOne({_id: req.body.contest}, function(err, contest) {
 		console.log(contest);
 		contest.entries.push(entry1);
@@ -141,5 +158,6 @@ exports.addEntry = function(req, res, next) {
 		entry1.save();
 		res.send("check shell");
 	});
+*/
 }
 

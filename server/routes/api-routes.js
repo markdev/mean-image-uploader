@@ -100,9 +100,8 @@ module.exports = function(app) {
 	app.del('/api/contest/:slug'		, api.contests.endContest);
 	app.post('/api/contest/compete'		, api.contests.compete);
 	app.post('/api/contest/judge'		, api.contests.judge);
+	app.post('/api/contest/entry'		, api.contests.addEntry);
 
-	// sign up to compete
-	// sign up to judge
 	// get new entry for this contest
 	// rate entry
 	// remove entry

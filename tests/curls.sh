@@ -69,9 +69,9 @@
 #echo -e "Testing GET -- /api/contest/byCompetitor/:slug"
 #sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byCompetitor/5454926dae212dd39c0b33ef
 
-echo -e ""
-echo -e "Testing GET -- /api/contest/byJudge/:slug"
-sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byJudge/5454926dae212dd39c0b33ef
+#echo -e ""
+#echo -e "Testing GET -- /api/contest/byJudge/:slug"
+#sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byJudge/5454926dae212dd39c0b33ef
 
 #echo -e ""
 #echo -e "Testing DELETE -- /api/contest/:slug"
@@ -119,3 +119,7 @@ sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byJudge/5454926dae212dd39c
 #echo -e ""
 #echo -e "Testing POST -- /api/contest/compete"
 #sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5455bff2abc74fa74376e379", "user":"5454926dae212dd39c0b33ef"}' http://127.0.0.1:3000/api/contest/compete
+
+echo -e ""
+echo -e "Testing POST -- /api/contest/entry"
+sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5455c48a7eef497c4898ef77", "user":"5454926dae212dd39c0b33ef", "content":"Hey Im a stud"}' http://127.0.0.1:3000/api/contest/entry
