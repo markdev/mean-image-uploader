@@ -1,4 +1,6 @@
 var Contest = require('mongoose').model('Contest')
+  , Entry = require('mongoose').model('Entry')
+  , mongoose = require('mongoose')
 //  , fs = require('fs')
 //  , util = require('util')
 //  , lwip = require('lwip')
@@ -60,17 +62,35 @@ exports.getByTag = function(req, res, next) {
 
 exports.getByUser = function(req, res, next) {
 	console.log("called: contests.getByUser");
-	res.send({ success: true, slug: req.param('slug') });
+	Contest.find({ tags: { $in: [req.param('slug')] }}, function(err, contests) {
+		if (err) {
+			res.send({ success: false, message: "No contests with that tag."});
+		} else {
+			res.send({ success: true, contests: contests });
+		}
+	});
 }
 
 exports.getByCompetitor = function(req, res, next) {
 	console.log("called: contests.getByCompetitor");
-	res.send({ success: true, slug: req.param('slug') });
+	Contest.find({ competitors: { $in: [mongoose.Types.ObjectId(req.param('slug'))] }}, function(err, contests) {
+		if (err) {
+			res.send({ success: false, message: "No contests with that tag."});
+		} else {
+			res.send({ success: true, contests: contests });
+		}
+	});
 }
 
 exports.getByJudge = function(req, res, next) {
 	console.log("called: contests.getByJudge");
-	res.send({ success: true, slug: req.param('slug') });
+	Contest.find({ judges: { $in: [mongoose.Types.ObjectId(req.param('slug'))] }}, function(err, contests) {
+		if (err) {
+			res.send({ success: false, message: "No contests with that tag."});
+		} else {
+			res.send({ success: true, contests: contests });
+		}
+	});
 }
 
 exports.endContest = function(req, res, next) {
@@ -80,10 +100,46 @@ exports.endContest = function(req, res, next) {
 
 exports.compete = function(req, res, next) {
 	console.log("called: contests.compete");
-	res.send({ success: true, slug: req.param('slug') });
+	Contest.findByIdAndUpdate(
+		req.body.contest,
+		{ $push: {"competitors": {"_id": mongoose.Types.ObjectId(req.body.user)}}},
+		{safe: true, upsert: true},
+		function(err, contest) {
+			if (err) {
+				res.send({success: false, message: "Error inserting data"});
+			} else {
+				res.send({success: true});
+			}
+		}
+	);
 }
 
 exports.judge = function(req, res, next) {
 	console.log("called: contests.judge");
-	res.send({ success: true, slug: req.param('slug') });
+	Contest.findByIdAndUpdate(
+		req.body.contest,
+		{ $push: {"judges": {"_id": mongoose.Types.ObjectId(req.body.user)}}},
+		{safe: true, upsert: true},
+		function(err, contest) {
+			if (err) {
+				res.send({success: false, message: "Error inserting data"});
+			} else {
+				res.send({success: true});
+			}
+		}
+	);
 }
+
+exports.addEntry = function(req, res, next) {
+	var entry1 = new Entry();
+	entry1.content = "lets try this"
+	console.log("called: contests.addEntry");
+	Contest.findOne({_id: req.body.contest}, function(err, contest) {
+		console.log(contest);
+		contest.entries.push(entry1);
+		contest.save();
+		entry1.save();
+		res.send("check shell");
+	});
+}
+

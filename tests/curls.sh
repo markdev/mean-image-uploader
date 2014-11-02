@@ -53,9 +53,9 @@
 #echo -e "Testing GET -- /api/contest/byId/:slug"
 #sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byId/545575c898c68776057d708f
 
-echo -e ""
-echo -e "Testing GET -- /api/contest/byName/:str"
-sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byName/hot
+#echo -e ""
+#echo -e "Testing GET -- /api/contest/byName/:str"
+#sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byName/hot
 
 #echo -e ""
 #echo -e "Testing GET -- /api/contest/byTag/:tag"
@@ -67,11 +67,11 @@ sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byName/hot
 
 #echo -e ""
 #echo -e "Testing GET -- /api/contest/byCompetitor/:slug"
-#sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byCompetitor/12345
+#sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byCompetitor/5454926dae212dd39c0b33ef
 
-#echo -e ""
-#echo -e "Testing GET -- /api/contest/byJudge/:slug"
-#sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byJudge/12345
+echo -e ""
+echo -e "Testing GET -- /api/contest/byJudge/:slug"
+sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byJudge/5454926dae212dd39c0b33ef
 
 #echo -e ""
 #echo -e "Testing DELETE -- /api/contest/:slug"
@@ -89,5 +89,33 @@ sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byName/hot
 
 ######### Entry API
 #echo -e ""
-#echo -e "Testing POST -- /api/entry"
-#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"foo": "bar"}' http://127.0.0.1:3000/api/entry
+#echo -e "Testing POST -- /api/contest/addEntry"
+#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5455957c9b845bbf24643a35", "content":"Insert image here"}' http://127.0.0.1:3000/api/contest/addEntry
+
+#echo -e ""
+#echo -e "Testing POST -- /api/contest/compete"
+#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5455c48a7eef497c4898ef77", "user":"5454926dae212dd39c0b33ef"}' http://127.0.0.1:3000/api/contest/compete
+
+#echo -e ""
+#echo -e "Testing POST -- /api/contest/judge"
+#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5455c48a7eef497c4898ef77", "user":"5454926dae212dd39c0b33ef"}' http://127.0.0.1:3000/api/contest/judge
+
+#echo -e ""
+#echo -e "Testing POST -- /api/contest/compete"
+#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5455c48a7eef497c4898ef77", "user":"54547f9399cbfb99897492a8"}' http://127.0.0.1:3000/api/contest/compete
+
+#echo -e ""
+#echo -e "Testing POST -- /api/contest/judge"
+#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5455c48a7eef497c4898ef77", "user":"54547f9399cbfb99897492a8"}' http://127.0.0.1:3000/api/contest/judge
+
+#echo -e ""
+#echo -e "Testing POST -- /api/contest/compete"
+#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5455c48a7eef497c4898ef77", "user":"545421741ff444be36883c5d"}' http://127.0.0.1:3000/api/contest/compete
+
+#echo -e ""
+#echo -e "Testing POST -- /api/contest/judge"
+#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5455c48a7eef497c4898ef77", "user":"545421741ff444be36883c5d"}' http://127.0.0.1:3000/api/contest/judge
+
+#echo -e ""
+#echo -e "Testing POST -- /api/contest/compete"
+#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5455bff2abc74fa74376e379", "user":"5454926dae212dd39c0b33ef"}' http://127.0.0.1:3000/api/contest/compete
