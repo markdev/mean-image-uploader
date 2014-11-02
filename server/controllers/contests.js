@@ -25,8 +25,14 @@ exports.edit = function(req, res, next) {
 }
 
 exports.getBySlug = function(req, res, next) {
-	console.log("called: contests.getBySlug");
-	res.send({ success: true, slug: req.param('slug') });
+	console.log("called: contest.getBySlug");
+	Contest.findOne({"_id" : req.param('slug')}, function(err, contest) {
+		if (err) {
+			res.send({ success: false, message: "No contest with that id."});
+		} else {
+			res.send({ success: true, contest: contest });
+		}
+	});
 }
 
 exports.getByNameStr = function(req, res, next) {
@@ -36,7 +42,13 @@ exports.getByNameStr = function(req, res, next) {
 
 exports.getByTag = function(req, res, next) {
 	console.log("called: contests.getByTag");
-	res.send({ success: true, tag: req.param('tag') });
+	Contest.find({ tags: { $in: [req.param('tag')] }}, function(err, contests) {
+		if (err) {
+			res.send({ success: false, message: "No contests with that tag."});
+		} else {
+			res.send({ success: true, contests: contests });
+		}
+	});
 }
 
 exports.getByUser = function(req, res, next) {

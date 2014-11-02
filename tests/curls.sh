@@ -41,9 +41,9 @@
 
 
 #########  Contest API
-echo -e ""
-echo -e "Testing POST -- /api/contest"
-sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"hot guys", "tags":["hot", "studs", "dudes"]}' http://127.0.0.1:3000/api/contest
+#echo -e ""
+#echo -e "Testing POST -- /api/contest"
+#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"hot dudes", "tags":["men", "sexy", "dudes"]}' http://127.0.0.1:3000/api/contest
 
 #echo -e ""
 #echo -e "Testing PUT -- /api/contest"
@@ -51,15 +51,15 @@ sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"hot guys"
 
 #echo -e ""
 #echo -e "Testing GET -- /api/contest/byId/:slug"
-#sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byId/12345
+#sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byId/545575c898c68776057d708f
 
 #echo -e ""
 #echo -e "Testing GET -- /api/contest/byName/:str"
 #sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byName/12345
 
-#echo -e ""
-#echo -e "Testing GET -- /api/contest/byTag/:tag"
-#sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byTag/12345
+echo -e ""
+echo -e "Testing GET -- /api/contest/byTag/:tag"
+sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byTag/dudes
 
 #echo -e ""
 #echo -e "Testing GET -- /api/contest/byCreator/:slug"
