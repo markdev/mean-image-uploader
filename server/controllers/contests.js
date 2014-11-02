@@ -8,7 +8,15 @@ var Contest = require('mongoose').model('Contest')
 
 exports.create = function(req, res, next) {
 	console.log("called: contests.create");
-	res.send({ success: true });
+	var userData = req.body;
+	//userData.owner = req.user._id
+	Contest.create(userData, function(err, contest) {
+		if (err) {
+			res.send({success: false, error: err});
+		} else {
+			res.send({success: true, contest: contest});
+		}
+	});
 }
 
 exports.edit = function(req, res, next) {

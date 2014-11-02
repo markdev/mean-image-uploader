@@ -1,19 +1,20 @@
 var mongoose = require('mongoose')
+  , Schema = mongoose.Schema
 //  , crypto = require('crypto')
   ;
 
 //define user schema
 var contestSchema = mongoose.Schema({
 	  created: 			{ type : Date, default: Date.now }
-//	, owner: 			{ type: Schema.ObjectId, ref: 'userSchema' }
-	, title: 			{ type: String }
+	, owner: 			{ type: Schema.ObjectId, ref: 'userSchema' }
+	, title: 			{ type: String, required: true }
 	, banner:  			{ type: String, default: null }
 	, rules: 			{ type: String }
 	, tags: 			{ type: [ String ] }
 	, deadline: 		{ type: Date }
 	, competition: 		{ type: String, enum: ['justMe', 'public'] }
 	, judging: 			{ type: String, enum: ['public'] }
-//	, entries: 			{ type: [ {type: Schema.ObjectId, ref: 'entrySchema', default: [] } ] }
+	, entries: 			{ type: [ {type: Schema.ObjectId, ref: 'entrySchema', default: [] } ] }
 });
 
 

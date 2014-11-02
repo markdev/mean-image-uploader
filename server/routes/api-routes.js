@@ -100,7 +100,6 @@ module.exports = function(app) {
 	app.del('/api/contest/:slug'		, api.contests.endContest);
 	app.put('/api/contest/compete/:slug'	, api.contests.compete);
 	app.put('/api/contest/judge/:slug'	, api.contests.judge);
-//]]
 
 
 	// Entry routes
