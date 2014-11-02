@@ -37,7 +37,14 @@ exports.getBySlug = function(req, res, next) {
 
 exports.getByNameStr = function(req, res, next) {
 	console.log("called: contests.getByNameStr");
-	res.send({ success: true, str: req.param('str') });
+	var re = new RegExp(req.param('str'), 'i');
+	Contest.find({title: {$regex: re}}, function(err, contests) {
+		if (err) {
+			res.send({ success: false, message: "No contests with that tag."});
+		} else {
+			res.send({ success: true, contests: contests });
+		}
+	});
 }
 
 exports.getByTag = function(req, res, next) {

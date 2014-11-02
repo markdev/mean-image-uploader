@@ -53,13 +53,13 @@
 #echo -e "Testing GET -- /api/contest/byId/:slug"
 #sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byId/545575c898c68776057d708f
 
-#echo -e ""
-#echo -e "Testing GET -- /api/contest/byName/:str"
-#sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byName/12345
-
 echo -e ""
-echo -e "Testing GET -- /api/contest/byTag/:tag"
-sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byTag/dudes
+echo -e "Testing GET -- /api/contest/byName/:str"
+sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byName/hot
+
+#echo -e ""
+#echo -e "Testing GET -- /api/contest/byTag/:tag"
+#sudo curl -i -X GET http://127.0.0.1:3000/api/contest/byTag/dudes
 
 #echo -e ""
 #echo -e "Testing GET -- /api/contest/byCreator/:slug"
