@@ -101,6 +101,7 @@ module.exports = function(app) {
 	app.post('/api/contest/compete'		, api.contests.compete);
 	app.post('/api/contest/judge'		, api.contests.judge);
 	app.post('/api/contest/entry'		, api.contests.addEntry);
+	app.post('/api/contest/rating' 		, api.contests.addRating);
 
 	// get new entry for this contest
 	// rate entry

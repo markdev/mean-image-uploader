@@ -131,8 +131,6 @@ exports.judge = function(req, res, next) {
 }
 
 exports.addEntry = function(req, res, next) {
-//	var entry1 = new Entry();
-//	entry1.content = "lets try this"
 	console.log("called: contests.addEntry");
 	Contest.findByIdAndUpdate(
 		req.body.contest,
@@ -148,16 +146,46 @@ exports.addEntry = function(req, res, next) {
 				res.send({success: true});
 			}
 		}
-
 	)	
-/*
-	Contest.findOne({_id: req.body.contest}, function(err, contest) {
-		console.log(contest);
-		contest.entries.push(entry1);
-		contest.save();
-		entry1.save();
-		res.send("check shell");
-	});
-*/
 }
+
+exports.addRating = function(req, res, next) {
+	console.log("called: contests.addRating");
+	Contest.findOne({"_id" : req.body.contest}, function(err, contest) {
+		//res.send("addRating");
+		var entry = contest.entries.id(req.body.entry);
+		//console.log(rating);
+		//res.send(entry.entry.ratings);
+		entry.entry.ratings.push({ rating: {score: 9} });
+		//entry.ratings.push({ rating: {score: 9} });
+		/*
+		contest.entries.findByIdAndUpdate(
+			req.body.entry,
+			{ $push: {"ratings": {
+				  "_owner": mongoose.Types.ObjectId(req.body.user)
+				, "score": req.body.score
+			}}},
+			{safe: true, upsert: true},
+			function(err, contest) {
+				if (err) {
+					res.send({success: false, message: "Error inserting data"});
+				} else {
+					res.send({success: true});
+				}
+			}
+		);
+*/
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
 

@@ -120,6 +120,10 @@
 #echo -e "Testing POST -- /api/contest/compete"
 #sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5455bff2abc74fa74376e379", "user":"5454926dae212dd39c0b33ef"}' http://127.0.0.1:3000/api/contest/compete
 
+#echo -e ""
+#echo -e "Testing POST -- /api/contest/entry"
+#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5455c48a7eef497c4898ef77", "user":"5454926dae212dd39c0b33ef", "content":"Hey Im a stud"}' http://127.0.0.1:3000/api/contest/entry
+
 echo -e ""
-echo -e "Testing POST -- /api/contest/entry"
-sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5455c48a7eef497c4898ef77", "user":"5454926dae212dd39c0b33ef", "content":"Hey Im a stud"}' http://127.0.0.1:3000/api/contest/entry
+echo -e "Testing POST -- /api/contest/addRating"
+sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5455c48a7eef497c4898ef77", "entry":"5455e6f5883c18136433b308", "user":"5454926dae212dd39c0b33ef", "score":5}' http://127.0.0.1:3000/api/contest/rating
