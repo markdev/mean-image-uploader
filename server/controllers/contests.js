@@ -157,6 +157,8 @@ exports.addRating = function(req, res, next) {
 		//console.log(rating);
 		//res.send(entry.entry.ratings);
 		entry.entry.ratings.push({ rating: {score: 9} });
+		entry.entry.ratings.save();
+		res.send(entry.entry.ratings);
 		//entry.ratings.push({ rating: {score: 9} });
 		/*
 		contest.entries.findByIdAndUpdate(

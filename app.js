@@ -3,6 +3,7 @@ var express 		= require('express')
   , path			= require('path')
   ,	bodyParser 		= require('body-parser')
   , cookieParser    = require('cookie-parser')
+  , serveStatic     = require('serve-static')
   , expressSession  = require('express-session')
   , mongoose        = require('mongoose')
   , passport		= require('passport')
@@ -42,6 +43,8 @@ app.use(expressSession({
 
 app.use(passport.initialize());
 app.use(passport.session());
+//allow the angular ui-views to be written in Jade
+app.use(serveStatic(__dirname + '/public'));
 
 passport.serializeUser(function(user, done) {
 	if(user) {
@@ -87,7 +90,7 @@ app.get('/', function(req, res) {
 
 //configure server routes
 require('./server/routes/api-routes')(app)
-//require('./server/routes/server-routes')(app); // TODO: set this up later
+require('./server/routes/server-routes')(app); // TODO: set this up later
 
 app.listen(config.port);
 console.log("app is listening on port " + config.port + "...");
