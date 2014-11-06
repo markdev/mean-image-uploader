@@ -130,26 +130,7 @@ exports.judge = function(req, res, next) {
 		}
 	);
 }
-/*
-exports.addEntry = function(req, res, next) {
-	console.log("called: contests.addEntry");
-	Contest.findByIdAndUpdate(
-		req.body.contest,
-		{ $push: {"entries": {
-			//  "_owner": mongoose.Types.ObjectId(req.body.user)
-			 "content": req.body.content // change this later
-		}}},
-		{safe: true, upsert: true},
-		function(err, contest) {
-			if (err) {
-				res.send({success: false, message: "Error inserting data"});
-			} else {
-				res.send({success: true});
-			}
-		}
-	)	
-}
-*/
+
 exports.addEntry = function(req, res, next) {
 	console.log("called: contests.addEntry");
 	var entryData = {};
@@ -175,7 +156,6 @@ exports.addEntry = function(req, res, next) {
 	});
 }
 
-
 exports.addRating = function(req, res, next) {
 	console.log("called: contests.addRating");
 	Entry.findByIdAndUpdate(
@@ -194,97 +174,4 @@ exports.addRating = function(req, res, next) {
 		}		
 	);
 }
-
-	/*
-	Contest.findByIdAndUpdate(
-		req.body.contest,
-		{ $push: {"entries[0].ratings": {
-			"score": req.body.score
-		}}},
-		{safe: true, upsert: true},
-		function(err, contest) {
-			if (err) {
-				res.send({success: false, message: "Error inserting data"});
-			} else {
-				res.send({success: true});
-			}
-		}
-	)
-	*/
-
-
-/*
-exports.addEntry = function(req, res, next) {
-	console.log("called: contests.addEntry");
-	Contest.findByIdAndUpdate(
-		req.body.contest,
-		{ $push: {"entries": {
-			  "_owner": mongoose.Types.ObjectId(req.body.user)
-			, "content": req.body.content // change this later
-		}}},
-		{safe: true, upsert: true},
-		function(err, contest) {
-			if (err) {
-				res.send({success: false, message: "Error inserting data"});
-			} else {
-				res.send({success: true});
-			}
-		}
-	)	
-}
-*/
-
-/*
-exports.addEntry = function(req, res, next) {
-	console.log("called: contests.addEntry");
-	Contest.findOne({"_id" : req.body.contest}, function(err, contest) {
-		contest.entries.push({content: req.body.content});
-		Contest.save()
-		res.send(contest.entries);
-	});	
-}
-*/
-/*
-exports.addRating = function(req, res, next) {
-	console.log("called: contests.addRating");
-	Contest.findOne({"_id" : req.body.contest}, function(err, contest) {
-		//res.send("addRating");
-		var entry = contest.entries.id(req.body.entry);
-		//console.log(rating);
-		//res.send(entry.entry.ratings);
-		entry.entry.ratings.push({ rating: {score: 9} });
-		entry.entry.ratings.save();
-		res.send(entry.entry.ratings);
-		//entry.ratings.push({ rating: {score: 9} });
-		*/
-		/*
-		contest.entries.findByIdAndUpdate(
-			req.body.entry,
-			{ $push: {"ratings": {
-				  "_owner": mongoose.Types.ObjectId(req.body.user)
-				, "score": req.body.score
-			}}},
-			{safe: true, upsert: true},
-			function(err, contest) {
-				if (err) {
-					res.send({success: false, message: "Error inserting data"});
-				} else {
-					res.send({success: true});
-				}
-			}
-		);
-*/
-//	});
-//}
-
-
-
-
-
-
-
-
-
-
-
 
