@@ -64,14 +64,6 @@ module.exports = function(app) {
 		req.send("success");
 	});
 
-	app.get('/', function(req, res) {
-		res.render('test', {
-			isAuthenticated: req.isAuthenticated(),
-			user: req.user,
-			foo: "this is foo"
-		});
-	});
-
 	app.get('/login', function(req, res) {
 		res.render('login', {
 			isAuthenticated: req.isAuthenticated()
