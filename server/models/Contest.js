@@ -4,14 +4,6 @@ var mongoose = require('mongoose')
 //  , crypto = require('crypto')
   ;
 
-//define user schema
-/*
-var ratingSchema = mongoose.Schema({
-	  _owner: 		{ type: Schema.ObjectId, ref: 'userSchema' }
-	, created: 		{ type : Date, default: Date.now }
-	, score: 		{ type: Number }	
-});
-*/
 
 var entrySchema = mongoose.Schema({
 	  _owner: 			{ type: Schema.ObjectId, ref: 'userSchema' }
@@ -38,28 +30,6 @@ var contestSchema = mongoose.Schema({
 	, judges: 			[ { type: ObjectId, ref: 'User'} ]
 	, entries: 			[ { type: ObjectId, ref: 'Entry'} ]
 });
-//	, entries: 			{ type: [ {type: Schema.Types.ObjectId, ref: Entry, default: [] } ] }
-/*
-	, entries: 			[ { entry: {
-							  _owner: 		{ type: Schema.ObjectId, ref: 'userSchema' }
-							, created: 		{ type: Date, default: Date.now }
-							, content: 		{ type: String, default: null }
-							, ratings: 	[ { rating: {
-								  _owner: 		{ type: Schema.ObjectId, ref: 'userSchema' }
-								, created: 		{ type : Date, default: Date.now }
-								, score: 		{ type: Number }
-							} } ]
-						} } ]
-*/
-
-
-/*
-var entrySchema = mongoose.Schema({
-	  _owner: 			{ type: Schema.ObjectId, ref: 'userSchema' }
-	, created: 			{ type : Date, default: Date.now }
-	, content:	 		{ type: String, default: null }
-});
-*/
 
 
 contestSchema.methods = {
@@ -92,7 +62,6 @@ contestSchema.statics = {
 
 var Contest = mongoose.model('Contest', contestSchema);
 var Entry = mongoose.model('Entry', entrySchema);
-//var Rating = mongoose.model('Rating', ratingSchema);
 
 //user model methods
 exports.createDefaults = function() {

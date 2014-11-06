@@ -110,6 +110,8 @@ module.exports = function(app) {
 	// get entries by contest
 	// report entry // develop later
 
-
-
+  // catch all other requests and send 404
+	app.all('/api/*', function(req, res) {
+		res.send(404);
+	});
 }
