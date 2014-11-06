@@ -90,7 +90,7 @@
 ######### Entry API
 #echo -e ""
 #echo -e "Testing POST -- /api/contest/addEntry"
-#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5455957c9b845bbf24643a35", "content":"Insert image here"}' http://127.0.0.1:3000/api/contest/addEntry
+#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5457e99b0a7a4c87f70889d6", "content":"Insert image here"}' http://127.0.0.1:3000/api/contest/entry
 
 #echo -e ""
 #echo -e "Testing POST -- /api/contest/compete"
@@ -122,8 +122,8 @@
 
 #echo -e ""
 #echo -e "Testing POST -- /api/contest/entry"
-#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5455c48a7eef497c4898ef77", "user":"5454926dae212dd39c0b33ef", "content":"Hey Im a stud"}' http://127.0.0.1:3000/api/contest/entry
+#sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "545aac8db2fe35ef02baf359", "user":"5454926dae212dd39c0b33ef", "content":"Hey Im a stud"}' http://127.0.0.1:3000/api/contest/entry
 
 echo -e ""
 echo -e "Testing POST -- /api/contest/addRating"
-sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "5455c48a7eef497c4898ef77", "entry":"5455e6f5883c18136433b308", "user":"5454926dae212dd39c0b33ef", "score":5}' http://127.0.0.1:3000/api/contest/rating
+sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"contest": "545aac8db2fe35ef02baf359", "entry":"5457f1bdbe50b396ff6a70ef", "user":"5454926dae212dd39c0b33ef", "score":5}' http://127.0.0.1:3000/api/contest/rating

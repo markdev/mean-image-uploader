@@ -5,6 +5,25 @@ var mongoose = require('mongoose')
   ;
 
 //define user schema
+/*
+var ratingSchema = mongoose.Schema({
+	  _owner: 		{ type: Schema.ObjectId, ref: 'userSchema' }
+	, created: 		{ type : Date, default: Date.now }
+	, score: 		{ type: Number }	
+});
+*/
+
+var entrySchema = mongoose.Schema({
+	  _owner: 			{ type: Schema.ObjectId, ref: 'userSchema' }
+	, created: 			{ type: Date, default: Date.now }
+	, content: 			{ type: String, default: null }
+	, ratings: 			[ {
+		  _owner: 		{ type: Schema.ObjectId, ref: 'User' }
+		, created: 		{ type : Date, default: Date.now }
+		, score: 		{ type: Number }	
+		} ]
+});
+
 var contestSchema = mongoose.Schema({
 	  _owner: 			{ type: Schema.ObjectId, ref: 'userSchema' }
 	, created: 			{ type : Date, default: Date.now }
@@ -17,7 +36,10 @@ var contestSchema = mongoose.Schema({
 	, judging: 			{ type: String, enum: ['public'] }
 	, competitors: 		[ { type: ObjectId, ref: 'User'} ]
 	, judges: 			[ { type: ObjectId, ref: 'User'} ]
+	, entries: 			[ { type: ObjectId, ref: 'Entry'} ]
+});
 //	, entries: 			{ type: [ {type: Schema.Types.ObjectId, ref: Entry, default: [] } ] }
+/*
 	, entries: 			[ { entry: {
 							  _owner: 		{ type: Schema.ObjectId, ref: 'userSchema' }
 							, created: 		{ type: Date, default: Date.now }
@@ -28,7 +50,8 @@ var contestSchema = mongoose.Schema({
 								, score: 		{ type: Number }
 							} } ]
 						} } ]
-});
+*/
+
 
 /*
 var entrySchema = mongoose.Schema({
@@ -68,7 +91,8 @@ contestSchema.statics = {
 }
 
 var Contest = mongoose.model('Contest', contestSchema);
-//var Entry = mongoose.model('Entry', entrySchema);
+var Entry = mongoose.model('Entry', entrySchema);
+//var Rating = mongoose.model('Rating', ratingSchema);
 
 //user model methods
 exports.createDefaults = function() {
