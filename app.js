@@ -43,6 +43,7 @@ app.use(expressSession({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 //allow the angular ui-views to be written in Jade
 app.use(serveStatic(__dirname + '/public'));
 

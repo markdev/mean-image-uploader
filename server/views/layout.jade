@@ -18,8 +18,11 @@ html(lang="en", ng-app="webapp")
 
     body
         //- ui-view
-        div 
-            {{ 'World' | greet }}
+        div(ng-controller="MainController") 
+            {{ val }}
+            button(ng-click="inc()") Click Me
+            h2(ng-show="even") even
+            h2(ng-hide="even") odd
 
         //- set current user if it exists. else set to null.
         if !!currentUser
