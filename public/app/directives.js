@@ -1,19 +1,10 @@
-/*
-  SIMPLE DIRECTIVES GO HERE 
-*/
+'use strict'
 
+console.log('angular directives loaded');
 
-
-angular.module('Yote')
+angular
+  .module('app')
   
-  /* this is a sample directive
-  *  to use, simply add enter to any html element
-  *  i.e. 
-  *     - Jade 
-  *         button(enter) jade button
-  *     - HTML
-  *         <button enter> html button </button>
-  */
   .directive("enter", function() {
     return function(scope, element, attrs) {
         element.bind("mouseenter", function() {
@@ -23,7 +14,7 @@ angular.module('Yote')
     };
   })
 
-
+/*
   .directive("ytRow", function(){
     return {
       restrict: 'E'
@@ -31,7 +22,7 @@ angular.module('Yote')
       , template: '<div yt-row ng-transclude> </div>'
     };
   })
-
+*/
 
 // end of the file
 ;

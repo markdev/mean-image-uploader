@@ -1,14 +1,10 @@
-/*
-  FILTERS GO HERE 
-*/
+'use strict'
 
+console.log('angular filters loaded');
 
-angular.module('Yote')
+angular
+  .module('app')
 
-  /* this is a sample filter
-  *  to use, simply add |reverse to the bound model
-  *  i.e. {{ message | reverse }}
-  */
   .filter('reverse', function() {
     return function(text) {
       // avoid an exception being thrown during dirty checking before the state is defined
