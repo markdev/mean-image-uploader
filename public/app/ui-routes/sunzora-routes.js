@@ -6,7 +6,8 @@ angular
 	.config(function($routeProvider, $locationProvider, $stateProvider, $urlRouterProvider){
 		console.log('loaded default router');
 		
-		$locationProvider.html5Mode(true);
+		//seems to get rid of the "#" in the url
+		//$locationProvider.html5Mode(true);
 
 		// add a route to 404 page here
 		$urlRouterProvider.otherwise('/');
@@ -14,15 +15,21 @@ angular
 		$stateProvider
 
 			.state('root', {
-				abstract: true,
+				//abstract: true,
 				url: '/',
 				templateUrl: '/views/default'
 			})
 
 			.state('root.home', {
-				url: '',
-				templateUrl: '/views/addon',
-				controller: 'SunzoraCtrl'
+				url: '/addon',
+				templateUrl: '/views/addon'
+				//controller: 'SunzoraCtrl'
+			})
+
+			.state('login', {
+				url: '/login',
+				templateUrl: '/views/login'
+				//controller: 'SunzoraCtrl'
 			})
 
 
