@@ -4,37 +4,38 @@ html(lang="en", ng-app="app")
         title Sunzora 
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(charset="utf-8")
+        //- link(href="/favicon.ico", rel="shortcut icon", type="image/x-icon")
+        //- styles
+
         //- javascripts
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
         script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.js")
         script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-route.js")
-        //- script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-touch.js")
+        script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-touch.js")
         script(src="/lib/angular-ui-router.min.js")
+        
         //- root angular dependencies
-        //- script(src="/app/app.js")
-        //- script(src="/app/directives.js")
-        //- script(src="/app/filters.js")
-        script(src="/app/test.js")
+        script(src="/app/app.js")
+        script(src="/app/directives.js")
+        script(src="/app/filters.js")
 
 
     body
-        div(class="container" ng-app="app")
-            header(ng-include="'templates/nav.html'")
-            ui-view
-            footer(ng-include="'templates/footer.html'")
+        ui-view
 
         //- set current user if it exists. else set to null.
         if !!currentUser
-          script.
-            window.currentUser = !{JSON.stringify(currentUser)}
-            console.log("CURRENT USER");
-            console.log(currentUser);
+            script.
+                window.currentUser = !{JSON.stringify(currentUser)}
+                console.log("CURRENT USER");
+                console.log(currentUser);
         else
-          script.
-            window.currentUser = {}
+            script.
+                window.currentUser = {}
 
         //- reference the custom angular dependencies
-        //- include ng-modules
-        //- include ng-services
-        //- include ng-controllers
-        //- include ng-directives
-        //- include ng-routes
+        include ng-modules
+        include ng-services
+        include ng-controllers
+        include ng-directives
+        include ng-routes
