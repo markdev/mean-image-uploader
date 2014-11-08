@@ -1,5 +1,5 @@
 doctype
-html(lang="en", ng-app="webapp")
+html(lang="en", ng-app="app")
     head
         title Sunzora 
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
@@ -8,7 +8,7 @@ html(lang="en", ng-app="webapp")
         script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.js")
         script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-route.js")
         //- script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-touch.js")
-        //- script(src="/lib/angular-ui-router.min.js")
+        script(src="/lib/angular-ui-router.min.js")
         //- root angular dependencies
         //- script(src="/app/app.js")
         //- script(src="/app/directives.js")
@@ -17,12 +17,10 @@ html(lang="en", ng-app="webapp")
 
 
     body
-        //- ui-view
-        div(ng-controller="MainController") 
-            {{ val }}
-            button(ng-click="inc()") Click Me
-            h2(ng-show="even") even
-            h2(ng-hide="even") odd
+        div(class="container" ng-app="app")
+            header(ng-include="'templates/nav.html'")
+            ui-view
+            footer(ng-include="'templates/footer.html'")
 
         //- set current user if it exists. else set to null.
         if !!currentUser
