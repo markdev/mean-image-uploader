@@ -26,8 +26,8 @@ html(lang="en", ng-app="app")
         if !!currentUser
           script.
             window.currentUser = !{JSON.stringify(currentUser)}
-            // console.log("CURRENT USER");
-            // console.log(currentUser);
+            console.log("CURRENT USER");
+            console.log(currentUser);
         else
           script.
             window.currentUser = {}
