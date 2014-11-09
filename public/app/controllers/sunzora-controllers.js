@@ -4,15 +4,19 @@ angular
 	.module('app')
 
 	.controller('SunzoraCtrl', ['$scope', '$stateParams', '$state', '$location', 'SunzoraFactory', function($scope, $stateParams, $state, $location, SunzoraFactory){
-		console.log('SunzoraCtrl loaded...');
-		/*
-		if (!jQuery.isEmptyObject(SunzoraFactory.getCurrentUser())) {
-			console.log("There is a user");
-			// nothing happens
-		} else {
-			console.log("There is no user");
-			// redirect to login
-         	//window.location( "#/login" );
+		console.log('SunzoraCtrl loaded...');	
+	}])
+
+	.controller('LoginCtrl', ['$scope', 'SunzoraFactory', function($scope, SunzoraFactory) {
+		$scope.username = "admin";
+		$scope.password = "admin";
+		$scope.submit = function() {
+			var postData = {};
+			postData.username = $scope.username;
+			postData.password = $scope.password;
+			SunzoraFactory.submit(postData);
 		}
-		*/
+		$scope.logout = function() {
+			SunzoraFactory.logout();
+		}
 	}])
