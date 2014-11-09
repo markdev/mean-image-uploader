@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,IAAK;EACJ,gBAAgB,EAAE,IAAI;EACtB,OAAG;IACF,KAAK,EAAE,IAAI",
-"sources": ["../../../../../../public/sass/sunzora-proto.scss"],
-"names": [],
-"file": "sunzora-proto.css"
-}

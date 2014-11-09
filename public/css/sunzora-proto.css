@@ -1,6 +1,52 @@
+/* clear your css here */
+html, body, ul, ol {
+  margin: 0;
+  padding: 0; }
+
 body {
-  background-color: #00f; }
-  body h1 {
-    color: #f00; }
+  background-color: #EEE; }
+
+header.main {
+  height: 7em;
+  width: 100%;
+  background-color: #FFA834; }
+
+footer.main {
+  position: fixed;
+  bottom: 0;
+  height: 7em;
+  width: 100%;
+  background-color: #FFA834; }
+  footer.main nav {
+    display: table;
+    margin: 0 auto; }
+    footer.main nav ul {
+      list-style-type: none; }
+      footer.main nav ul li.navitem {
+        width: 6em;
+        height: 6em;
+        float: left;
+        margin: .25em 1em;
+        cursor: pointer; }
+        footer.main nav ul li.navitem#create {
+          background-image: url("/img/icons/createwhite.png"); }
+          footer.main nav ul li.navitem#create:hover {
+            background-image: url("/img/icons/creategray.png"); }
+        footer.main nav ul li.navitem#messages {
+          background-image: url("/img/icons/messagewhite.png"); }
+          footer.main nav ul li.navitem#messages:hover {
+            background-image: url("/img/icons/messagegray.png"); }
+        footer.main nav ul li.navitem#judge {
+          background-image: url("/img/icons/judgewhite.png"); }
+          footer.main nav ul li.navitem#judge:hover {
+            background-image: url("/img/icons/judgegrey.png"); }
+        footer.main nav ul li.navitem#compete {
+          background-image: url("/img/icons/competewhite.png"); }
+          footer.main nav ul li.navitem#compete:hover {
+            background-image: url("/img/icons/competegrey.png"); }
+        footer.main nav ul li.navitem#settings {
+          background-image: url("/img/icons/settingswhite.png"); }
+          footer.main nav ul li.navitem#settings:hover {
+            background-image: url("/img/icons/settingsgray.png"); }
 
 /*# sourceMappingURL=sunzora-proto.css.map */

@@ -1,5 +1,17 @@
-h1 this be the default view
-
-a(ui-sref="login") Login
+header(class="main")
 
 ui-view
+
+footer(class="main")
+	nav
+		ul
+			li(class="navitem" id="create")
+				a(ui-sref="")
+			li(class="navitem" id="messages")
+				a(ui-sref="")
+			li(class="navitem" id="judge")
+				a(ui-sref="")
+			li(class="navitem" id="compete")
+				a(ui-sref="")
+			li(class="navitem" id="settings")
+				a(ui-sref="")

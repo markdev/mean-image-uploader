@@ -1,6 +1,71 @@
+$bodyBackground: #EEE;
+$sunzoraOrange: #FFA834;
+
+/* clear your css here */
+html, body, ul, ol {
+	margin: 0;
+	padding: 0;
+}
+
+
 body {
-	background-color: #00f;
-	h1 {
-		color: #f00;
+	background-color: $bodyBackground;
+}
+
+header.main {
+	height: 7em;
+	width: 100%;
+	background-color: $sunzoraOrange;
+}
+
+footer.main {
+	position: fixed;
+	bottom: 0;
+	height: 7em;
+	width: 100%;
+	background-color: $sunzoraOrange;
+	nav {
+		display: table;
+		margin: 0 auto;
+		ul {
+			list-style-type: none;
+			li.navitem {
+				width: 6em;
+				height: 6em;
+				float: left;
+				margin: .25em 1em;
+				cursor: pointer;
+				&#create { 
+					background-image: url("/img/icons/createwhite.png"); 
+					&:hover { 
+						background-image: url("/img/icons/creategray.png"); 
+					}
+				}
+				&#messages { 
+					background-image: url("/img/icons/messagewhite.png"); 
+					&:hover { 
+						background-image: url("/img/icons/messagegray.png"); 
+					}
+				}
+				&#judge { 
+					background-image: url("/img/icons/judgewhite.png"); 
+					&:hover { 
+						background-image: url("/img/icons/judgegrey.png"); 
+					}
+				}
+				&#compete { 
+					background-image: url("/img/icons/competewhite.png"); 
+					&:hover { 
+						background-image: url("/img/icons/competegrey.png"); 
+					}
+				}
+				&#settings { 
+					background-image: url("/img/icons/settingswhite.png"); 
+					&:hover { 
+						background-image: url("/img/icons/settingsgray.png"); 
+					}
+				}
+			}
+		}
 	}
 }
