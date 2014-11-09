@@ -7,7 +7,7 @@ angular
 		console.log('loaded default router');
 		
 		//seems to get rid of the "#" in the url
-		//$locationProvider.html5Mode(true);
+		$locationProvider.html5Mode(true);
 
 		// add a route to 404 page here
 		$urlRouterProvider.otherwise('/');
