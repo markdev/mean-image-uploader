@@ -1,7 +1,7 @@
 console.log("loaded: sunzora routes");
 
 angular
-	.module('app')
+	.module('yote')
 
 	.config(function($routeProvider, $locationProvider, $stateProvider, $urlRouterProvider){
 		console.log('loaded default router');

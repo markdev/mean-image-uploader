@@ -4,7 +4,7 @@ console.log("loaded: sunzora module");
 // Original model only used this for CSS and the custom player
 
 angular
-	.module('app')
+	.module('yote')
 
 	.config( ['$routeProvider', function($routeProvider) {
 		console.log("configuring angular module");

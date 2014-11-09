@@ -3,7 +3,7 @@
 console.log('angular filters loaded');
 
 angular
-  .module('app')
+  .module('yote')
 
   .filter('reverse', function() {
     return function(text) {

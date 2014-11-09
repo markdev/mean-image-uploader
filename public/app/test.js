@@ -1,6 +1,6 @@
 // declare a module
 angular
-	.module('app', [
+	.module('yote', [
 		'ui.router'
 	])
 	.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {

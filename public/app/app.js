@@ -3,7 +3,7 @@
 console.log('angular application loaded');
 
 angular
-	.module('app', [
+	.module('yote', [
 		// add in custom dependencies here
 		'ngRoute'
 		, 'ngTouch'

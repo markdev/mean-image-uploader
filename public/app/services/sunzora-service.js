@@ -4,7 +4,7 @@ console.log("loaded: sunzora services");
 // this will probably be useful for authentication:
 // http://stackoverflow.com/questions/22537311/angular-ui-router-login-authentication
 angular
-	.module('app')
+	.module('yote')
 
 	.factory('SunzoraFactory', ['$http', '$q', function($http, $q) {
 

@@ -1,7 +1,7 @@
 console.log("loaded: sunzora controllers");
 
 angular
-	.module('app')
+	.module('yote')
 
 	.controller('SunzoraCtrl', ['$scope', '$stateParams', '$state', '$location', 'SunzoraFactory', function($scope, $stateParams, $state, $location, SunzoraFactory){
 		console.log('SunzoraCtrl loaded...');	

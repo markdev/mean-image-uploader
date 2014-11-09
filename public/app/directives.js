@@ -3,7 +3,7 @@
 console.log('angular directives loaded');
 
 angular
-  .module('app')
+  .module('yote')
   
   .directive("enter", function() {
     return function(scope, element, attrs) {
