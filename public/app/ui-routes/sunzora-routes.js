@@ -32,6 +32,71 @@ angular
 				//controller: 'SunzoraCtrl'
 			})
 
+			//////////////
+			.state('create', {
+				abstract: true,
+				url: '/create',
+				templateUrl: '/views/default'
+				//controller: 'SunzoraCtrl'
+			})
+
+			.state('create.home', {
+				url: '',
+				templateUrl: '/views/create'
+			})
+
+			//////////////
+			.state('messages', {
+				abstract: true,
+				url: '/messages',
+				templateUrl: '/views/default'
+				//controller: 'SunzoraCtrl'
+			})
+
+			.state('messages.home', {
+				url: '',
+				templateUrl: '/views/messages'
+			})
+
+			//////////////
+			.state('judge', {
+				abstract: true,
+				url: '/judge',
+				templateUrl: '/views/default'
+				//controller: 'SunzoraCtrl'
+			})
+
+			.state('judge.home', {
+				url: '',
+				templateUrl: '/views/judge'
+			})
+
+			//////////////
+			.state('compete', {
+				abstract: true,
+				url: '/compete',
+				templateUrl: '/views/default'
+				//controller: 'SunzoraCtrl'
+			})
+
+			.state('compete.home', {
+				url: '',
+				templateUrl: '/views/compete'
+			})
+
+			//////////////
+			.state('settings', {
+				abstract: true,
+				url: '/settings',
+				templateUrl: '/views/default'
+				//controller: 'SunzoraCtrl'
+			})
+
+			.state('settings.home', {
+				url: '',
+				templateUrl: '/views/settings'
+			})
+
 
 	// end state config
 	})
