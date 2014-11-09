@@ -10,6 +10,25 @@ header.main {
   height: 7em;
   width: 100%;
   background-color: #FFA834; }
+  header.main nav {
+    display: table;
+    margin: 0 auto;
+    padding-top: 1em;
+    width: 39em; }
+    header.main nav a.title {
+      display: block;
+      float: left;
+      width: 21em;
+      height: 4.5em;
+      background-size: 100% 100%;
+      background-image: url("/img/icons/sunzorawhite.png"); }
+    header.main nav a.search {
+      display: block;
+      float: right;
+      width: 5em;
+      height: 5em;
+      background-size: 100% 100%;
+      background-image: url("/img/icons/searchwhite.png"); }
 
 footer.main {
   position: fixed;
@@ -27,7 +46,8 @@ footer.main {
         height: 6em;
         float: left;
         margin: .25em 1em;
-        cursor: pointer; }
+        cursor: pointer;
+        background-size: 100% 100%; }
         footer.main nav ul li.navitem#create {
           background-image: url("/img/icons/createwhite.png"); }
           footer.main nav ul li.navitem#create:hover {
@@ -39,11 +59,11 @@ footer.main {
         footer.main nav ul li.navitem#judge {
           background-image: url("/img/icons/judgewhite.png"); }
           footer.main nav ul li.navitem#judge:hover {
-            background-image: url("/img/icons/judgegrey.png"); }
+            background-image: url("/img/icons/judgegray.png"); }
         footer.main nav ul li.navitem#compete {
           background-image: url("/img/icons/competewhite.png"); }
           footer.main nav ul li.navitem#compete:hover {
-            background-image: url("/img/icons/competegrey.png"); }
+            background-image: url("/img/icons/competegray.png"); }
         footer.main nav ul li.navitem#settings {
           background-image: url("/img/icons/settingswhite.png"); }
           footer.main nav ul li.navitem#settings:hover {

@@ -16,6 +16,28 @@ header.main {
 	height: 7em;
 	width: 100%;
 	background-color: $sunzoraOrange;
+	nav {
+		display: table;
+		margin: 0 auto;
+		padding-top: 1em;
+		width: 39em;
+		a.title {
+			display: block;
+			float: left;
+			width: 21em;
+			height: 4.5em;
+			background-size: 100% 100%;
+			background-image: url("/img/icons/sunzorawhite.png");
+		}
+		a.search {
+			display: block;
+			float: right;
+			width: 5em;
+			height: 5em;
+			background-size: 100% 100%;
+			background-image: url("/img/icons/searchwhite.png");
+		}
+	}
 }
 
 footer.main {
@@ -35,6 +57,7 @@ footer.main {
 				float: left;
 				margin: .25em 1em;
 				cursor: pointer;
+				background-size: 100% 100%;
 				&#create { 
 					background-image: url("/img/icons/createwhite.png"); 
 					&:hover { 
@@ -50,13 +73,13 @@ footer.main {
 				&#judge { 
 					background-image: url("/img/icons/judgewhite.png"); 
 					&:hover { 
-						background-image: url("/img/icons/judgegrey.png"); 
+						background-image: url("/img/icons/judgegray.png"); 
 					}
 				}
 				&#compete { 
 					background-image: url("/img/icons/competewhite.png"); 
 					&:hover { 
-						background-image: url("/img/icons/competegrey.png"); 
+						background-image: url("/img/icons/competegray.png"); 
 					}
 				}
 				&#settings { 
