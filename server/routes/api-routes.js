@@ -63,13 +63,13 @@ module.exports = function(app) {
 	app.get('/test', requireLogin, function(req, res, next) {
 		req.send("success");
 	});
-/*
+
 	app.get('/login', function(req, res) {
 		res.render('login', {
 			isAuthenticated: req.isAuthenticated()
 		});
 	});
-*/
+
 	// User routes
 	app.post('/api/user'				, api.users.create);
 	app.get('/api/user/list'			, api.users.list);

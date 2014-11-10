@@ -16,14 +16,20 @@ angular
 
 			.state('root', {
 				//abstract: true,
-				url: '/',
-				templateUrl: '/views/default'
+				  url: '/'
+				, templateUrl: '/views/default'
+				/*
+				onEnter: function() {
+					console.log("I WORK DAMMIT");
+					$state.go('loginPage');
+				}
+				*/
 			})
 
 			.state('root.home', {
 				url: '/addon',
-				templateUrl: '/views/addon'
-				//controller: 'SunzoraCtrl'
+				templateUrl: '/views/addon',
+				controller: 'SunzoraCtrl',
 			})
 
 			.state('login', {
@@ -36,8 +42,8 @@ angular
 			.state('create', {
 				abstract: true,
 				url: '/create',
-				templateUrl: '/views/default'
-				//controller: 'SunzoraCtrl'
+				templateUrl: '/views/default',
+				controller: 'SunzoraCtrl'
 			})
 
 			.state('create.home', {
@@ -95,6 +101,12 @@ angular
 			.state('settings.home', {
 				url: '',
 				templateUrl: '/views/settings'
+			})
+
+			//////////////
+			.state('loginPage', {
+				url: '/login',
+				templateUrl: '/views/login'
 			})
 
 

@@ -28,11 +28,16 @@ module.exports = function(app) {
 				, roles: req.user.roles
 			}
 		}
-		// console.log("CURRENT USER");
-		// console.log(currentUser);
-		res.render('layout', {
-			currentUser: currentUser
-		});
+		if (Object.keys(currentUser).length === 0) {
+			console.log("THERE IS NO USER");
+			res.redirect('login');
+		} else {
+			console.log("CURRENT USER");
+			console.log(currentUser);
+			res.render('layout', {
+				currentUser: currentUser
+			});
+		}
 	});
 
 }

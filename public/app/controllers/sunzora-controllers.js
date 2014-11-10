@@ -4,7 +4,7 @@ angular
 	.module('yote')
 
 	.controller('SunzoraCtrl', ['$scope', '$stateParams', '$state', '$location', 'SunzoraFactory', function($scope, $stateParams, $state, $location, SunzoraFactory){
-		console.log('SunzoraCtrl loaded...');	
+		console.log('SunzoraCtrl loaded...');
 	}])
 
 	.controller('UserLoginCtrl', ['$scope', '$stateParams', '$state', '$rootScope', 'SunzoraFactory', 'UserFactory', function($scope, $stateParams, $state, $rootScope, SunzoraFactory, UserFactory) {
