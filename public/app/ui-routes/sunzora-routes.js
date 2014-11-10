@@ -38,6 +38,12 @@ angular
 				//controller: 'SunzoraCtrl'
 			})
 
+			.state('logout', {
+				url: '/logout',
+				//templateUrl: '/views/login'
+				controller: 'UserLogoutCtrl'
+			})
+
 			//////////////
 			.state('create', {
 				abstract: true,

@@ -1,18 +1,47 @@
-form(name="login" ng-submit="loginUser" ng-controller="UserLoginCtrl")
-	table
-		tr
-			td
-				label Username:
-			td
-				input(type="text" ng-model="username")
-		tr
-			td
-				label Password:
-			td
-				input(type="password" ng-model="password")
-		tr
-			td
-				button(ng-click="loginAction()") Submit
-		tr
-			td
-				button(ng-click="logout()") Log Out
+doctype
+html(lang="en", ng-app="yote")
+    head
+        title Sunzora 
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(charset="utf-8")
+        //- link(href="/favicon.ico", rel="shortcut icon", type="image/x-icon")
+
+        //- styles
+        link(rel="stylesheet", href="/css/sunzora-proto.css")
+
+        //- javascripts
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+        script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.js")
+        script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-route.js")
+        script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-touch.js")
+        script(src="/lib/angular-ui-router.min.js")
+        
+        //- root angular dependencies
+        script(src="/app/app.js")
+        script(src="/app/directives.js")
+        script(src="/app/filters.js")
+
+
+    body
+    	div(class="loginPage")
+    		header
+
+    			
+		form(name="login" ng-submit="loginUser" ng-controller="UserLoginCtrl")
+			table
+				tr
+					td
+						label Username:
+					td
+						input(type="text" ng-model="username")
+				tr
+					td
+						label Password:
+					td
+						input(type="password" ng-model="password")
+				tr
+					td
+						button(ng-click="loginAction()") Submit
+				tr
+					td
+						button(ng-click="logout()") Log Out

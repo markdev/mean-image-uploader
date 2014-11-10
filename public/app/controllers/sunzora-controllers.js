@@ -7,6 +7,25 @@ angular
 		console.log('SunzoraCtrl loaded...');
 	}])
 
+	.controller('UserLogoutCtrl', ['$scope', '$stateParams', '$state', '$location', 'SunzoraFactory', 'UserFactory', function($scope, $stateParams, $state, $location, SunzoraFactory, UserFactory){
+		$scope.logout = function() {
+			console.log("logging out");
+			UserFactory.logout()
+				.then(function(data) {
+					console.log(data);
+					console.log("now redirect");
+				})
+
+		}
+	}])
+/*
+	.controller('UserLoginCtrl', ['$scope', '$stateParams', '$state', '$location', 'SunzoraFactory', function($scope, $stateParams, $state, $location, SunzoraFactory){
+		$scope.loginAction = function() {
+			console.log("Logging in");
+		};
+	}])
+*/
+
 	.controller('UserLoginCtrl', ['$scope', '$stateParams', '$state', '$rootScope', 'SunzoraFactory', 'UserFactory', function($scope, $stateParams, $state, $rootScope, SunzoraFactory, UserFactory) {
 		$scope.username = "admin";
 		$scope.password = "admin";

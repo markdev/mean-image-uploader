@@ -1,6 +1,10 @@
 header(class="main")
-	nav
+	nav(ng-controller="UserLogoutCtrl")
 		a(class="title")
+		div(class="welcomeUser")
+			span Hello, {{currentUser.username}}!
+			br
+			a(href="/logout" ng-click="logout()") Log out
 		a(class="search")
 
 ui-view

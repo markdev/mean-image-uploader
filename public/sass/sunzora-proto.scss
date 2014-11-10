@@ -1,15 +1,52 @@
 $bodyBackground: #EEE;
 $sunzoraOrange: #FFA834;
+$headline: #FFF;
 
 /* clear your css here */
-html, body, ul, ol {
+html, body, ul, ol, header, h2, h1 {
 	margin: 0;
 	padding: 0;
 }
 
 body {
 	background-color: $bodyBackground;
+	font-family: "Comic Sans MS", Arial;
 }
+
+
+/* Login Page */
+div.loginPage {
+	header {
+		width: 100%;
+		height: 15em;
+		background-color: $sunzoraOrange;
+		padding-top: 3em;
+		h2, img {
+			display: block;
+			text-align: center;
+			color: $headline;
+			margin: 0 auto;
+			font-size: 4em;
+		}
+	}
+	section.body {
+		width: 100%;
+		div.loginForm {
+			width: 20em;
+			display: block;
+			text-align: center;
+			margin: 0 auto;
+			label {
+				font-size: 1.6em;
+			}
+			input {
+				width: 15em;
+				height: 2em;
+			}
+		}
+	}
+}
+
 
 header.main {
 	height: 7em;
@@ -27,6 +64,16 @@ header.main {
 			height: 4.5em;
 			background-size: 100% 100%;
 			background-image: url("/img/icons/sunzorawhite.png");
+		}
+		div.welcomeUser {
+			display: block;
+			float: left;
+			width: 12em;
+			height: 4.5em;
+			text-align: center;
+			padding-top: 1em;
+			vertical-align: middle;
+			color: #fff;
 		}
 		a.search {
 			display: block;
