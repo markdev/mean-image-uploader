@@ -14,17 +14,29 @@ angular
 				.then(function(data) {
 					console.log(data);
 					console.log("now redirect");
+					$state.go('login')
 				})
 
 		}
 	}])
-/*
-	.controller('UserLoginCtrl', ['$scope', '$stateParams', '$state', '$location', 'SunzoraFactory', function($scope, $stateParams, $state, $location, SunzoraFactory){
-		$scope.loginAction = function() {
-			console.log("Logging in");
-		};
+
+	.controller('UserSignupCtrl', ['$scope', '$stateParams', '$state', '$location', 'SunzoraFactory', 'UserFactory', function($scope, $stateParams, $state, $location, SunzoraFactory, UserFactory){
+		$scope.email = 'mark.karavan@gmail.com';
+		$scope.password = 'mark';
+		$scope.password2 = 'mark';
+		$scope.signup = function() {
+			var postData = {};
+			postData.email = $scope.email;
+			postData.password = $scope.password;
+			postData.password2 = $scope.password2;
+			console.log(postData);
+			UserFactory.signup(postData)
+				.then(function(data) {
+					console.log(data)
+				})
+
+		}
 	}])
-*/
 
 	.controller('UserLoginCtrl', ['$scope', '$stateParams', '$state', '$rootScope', 'SunzoraFactory', 'UserFactory', function($scope, $stateParams, $state, $rootScope, SunzoraFactory, UserFactory) {
 		$scope.username = "admin";

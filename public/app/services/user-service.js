@@ -35,6 +35,15 @@ angular
 				return deferred.promise;
 		}
 
+		UserFactory.signup = function(postData) {
+			console.log("Signing up a new user");
+			var deferred = $q.defer();
+			$http.post("/api/user", postData)
+				.success(function(data){
+					console.log(data);
+				})
+		}
+
 		UserFactory.logout = function() {
 			console.log("Logging out the user");
 			var deferred = $q.defer();

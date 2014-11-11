@@ -21,6 +21,7 @@ exports.list = function(req, res, next) {
 exports.create = function(req, res, next) {
 	console.log("called: users.create");
 	var userData = req.body;
+	console.log(userData);
 	if (userData.password !== userData.password2) {
     	res.send({success: false, message: "Passwords do not match."});		
 	} else {
