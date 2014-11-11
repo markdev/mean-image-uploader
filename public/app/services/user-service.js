@@ -12,7 +12,7 @@ angular
 		var UserFactory = {};
 
 		UserFactory.login = function(postData) {
-			console.log("Submit username and password to login");
+			console.log("Submit email and password to login");
 			var deferred = $q.defer();
 
 			$http.post(urlBase + "/login", postData)

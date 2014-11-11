@@ -21,14 +21,12 @@ angular
 		}
 
 		SunzoraFactory.submit = function(postData) {
-			console.log("Submit username and password to login");
+			console.log("Submit email and password to login");
 			var deferred = $q.defer();
 			$http.post(urlBase, postData)
 				.success(function(data){
 					console.log(data);
 				})
-			//console.log(username);
-			//console.log(password);
 		}
 
 		SunzoraFactory.logout = function() {

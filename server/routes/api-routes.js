@@ -32,7 +32,8 @@ module.exports = function(app) {
 	// user login
 	app.post('/api/users/login', function(req, res, next) {
 		console.log("DEBUG 1");
-		req.body.username = req.body.username.toLowerCase();
+		req.body.email = req.body.email.toLowerCase();
+console.log(req.body);
 		passport.authenticate('local', function(err, user) {
 			console.log("DEBUG 4");
 			if(err) {

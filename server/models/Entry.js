@@ -1,3 +1,5 @@
+//TODO: delete this whole thing soon
+
 var mongoose = require('mongoose')
 //  , crypto = require('crypto')
   ;

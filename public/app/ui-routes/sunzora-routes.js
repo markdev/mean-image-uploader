@@ -44,10 +44,9 @@ angular
 				controller: 'UserLogoutCtrl'
 			})
 
-			// why the hell does THIS work???
 			.state('signup', {
 				url: '/signup',
-				templateUrl: '/views/signupview'
+				templateUrl: '/views/signupview',
 				controller: 'UserLogoutCtrl'
 			})
 

@@ -2,7 +2,7 @@ header(class="main")
 	nav(ng-controller="UserLogoutCtrl")
 		a(class="title")
 		div(class="welcomeUser")
-			span Hello, {{currentUser.username}}!
+			span Hello, {{currentUser.email}}!
 			br
 			a(href="/logout" ng-click="logout()") Log out
 		a(class="search")

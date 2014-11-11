@@ -32,9 +32,9 @@ exports.create = function(req, res, next) {
 		User.create(userData, function(err, user) {
 			if(err) {
 				if(err.toString().indexOf('E11000') > -1) {
-					err = new Error('Duplicate Username');
+					err = new Error('Duplicate Email');
 				}
-				res.send({success: false, message: "Username is already in use."});	
+				res.send({success: false, message: "Email is already in use."});	
 			}
 			req.logIn(user, function(err) {
 				if(err) {
@@ -51,7 +51,7 @@ exports.getBySlug = function(req, res, next) {
 	console.log("called: users.getBySlug");
 	User.findOne({"_id" : req.param('slug')}, function(err, user) {
 		if (err) {
-			res.send({ success: false, message: "No username with that id."});
+			res.send({ success: false, message: "No email with that id."});
 		} else {
 			res.send({ success: true, user: user });
 		}
@@ -83,7 +83,7 @@ exports.updateUser = function(req, res, next) {
 		if (err) {
 			//stuff
 		} else {
-			user.username = (req.body.username)? req.body.username : user.username;
+		//	user.email = (req.body.email)? req.body.email : user.email;
 			user.first_name = (req.body.first_name)? req.body.first_name : user.first_name;
 			user.last_name = (req.body.last_name)? req.body.last_name : user.last_name;
 			user.sex = (req.body.sex)? req.body.sex : user.sex;

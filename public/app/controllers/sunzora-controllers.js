@@ -39,11 +39,11 @@ angular
 	}])
 
 	.controller('UserLoginCtrl', ['$scope', '$stateParams', '$state', '$rootScope', 'SunzoraFactory', 'UserFactory', function($scope, $stateParams, $state, $rootScope, SunzoraFactory, UserFactory) {
-		$scope.username = "admin";
-		$scope.password = "admin";
+		$scope.email = "mark.karavan@gmail.com";
+		$scope.password = "mark";
 		$scope.loginAction = function() {
 			var postData = {};
-			postData.username = $scope.username;
+			postData.email = $scope.email;
 			postData.password = $scope.password;
 			UserFactory.login(postData)
 				.then(function(data) {
@@ -54,7 +54,9 @@ angular
 					}
 				})
 		};
+	/*
 		$scope.logout = function() {
 			UserFactory.logout();
 		};
+	*/
 	}])

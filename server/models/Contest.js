@@ -33,12 +33,7 @@ var contestSchema = mongoose.Schema({
 
 
 contestSchema.methods = {
-	/*
-	authenticate: function(passwordToMatch) {
-		console.log("trying to authenticate username '" + this.username + "'");
-		return User.hashPassword(this.password_salt, passwordToMatch) === this.password_hash;
-	}
-	*/
+
 };
 
 contestSchema.statics = {

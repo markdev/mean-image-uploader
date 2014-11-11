@@ -22,7 +22,7 @@ var userSchema = mongoose.Schema({
 
 userSchema.methods = {
 	authenticate: function(passwordToMatch) {
-		console.log("trying to authenticate username '" + this.username + "'");
+		console.log("trying to authenticate email '" + this.email + "'");
 		return User.hashPassword(this.password_salt, passwordToMatch) === this.password_hash;
 	}
 };
@@ -52,9 +52,9 @@ exports.createDefaults = function() {
 		if(users.length === 0) {
 			var password_salt, password_hash;
 			password_salt = User.createPasswordSalt();
-			password_hash = User.hashPassword(password_salt, 'admin');
-			User.create({firstName:'Admin', lastName:'Admin', username:'admin', password_salt: password_salt, password_hash: password_hash, roles: ['admin']});
-			console.log("created initial default user w/ username 'admin' and password 'admin'");
+			password_hash = User.hashPassword(password_salt, 'mark');
+			User.create({firstName:'Mark', lastName:'Karavan', username:'admin', email: 'mark.karavan@gmail.com', password_salt: password_salt, password_hash: password_hash, roles: ['admin']});
+			console.log("created initial default user w/ email 'mark.karavan@gmail.com' and password 'mark'");
 		}
 	});
 };

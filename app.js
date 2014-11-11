@@ -65,15 +65,20 @@ passport.deserializeUser(function(id, done) {
 	})
 });
 
-passport.use(new LocalStrategy(
+passport.use(new LocalStrategy({
+		usernameField: 'email',
+		passwordField: 'password'
+	},
 	function(username, password, done) {
 		console.log("DEBUG 2");
-		User.findOne({username:username}).exec(function(err, user) {
+		console.log("Email: " + username);
+		User.findOne({email:username}).exec(function(err, user) {
 			console.log("DEBUG 3");
 			if (user && user.authenticate(password)) {
 				console.log("authenticated!");
 				return done(null, user);
 			} else {
+				console.log("not found");
 				return done(null, false);
 			}
 		});

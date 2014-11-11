@@ -24,7 +24,7 @@ module.exports = function(app) {
 				_id: req.user._id
 				, firstName: req.user.firstName
 				, lastName: req.user.lastName
-				, username: req.user.username
+				, email: req.user.email
 				, roles: req.user.roles
 			}
 		}
