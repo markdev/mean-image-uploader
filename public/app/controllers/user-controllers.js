@@ -60,14 +60,17 @@ angular
 		$scope.currentPassword = "";
 		$scope.newPassword = "";
 		$scope.confirmPassword = "";
-		$scope.email = currentUser.email;
 		$scope.submit = function() {
 			var postData = {};
 			postData.email = currentUser.email;
 			postData.password = $scope.newPassword;
 			UserFactory.changePassword(postData)
 				.then(function(data) {
-					console.log(data);
+					if (data.success) {
+						$state.go('root.home');
+					} else {
+						console.log("fail");
+					}
 				});
 		}
 	}])
