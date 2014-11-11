@@ -112,32 +112,32 @@ angular
 
 			.state('settings.home', {
 				url: '',
-				templateUrl: '/views/settings'
+				templateUrl: '/views/settings/main'
 			})
 
 			.state('settings.updateAccount', {
 				url: '/account',
-				templateUrl: '/views/settingsAccount'
+				templateUrl: '/views/settings/account'
 			})
 
 			.state('settings.changePassword', {
 				url: '/password',
-				templateUrl: '/views/settingsPassword'
+				templateUrl: '/views/settings/changePassword'
 			})
 
 			.state('settings.viewAwards', {
 				url: '/awards',
-				templateUrl: '/views/settingsAwards'
+				templateUrl: '/views/settings/awards'
 			})
 
 			.state('settings.terms', {
 				url: '/terms',
-				templateUrl: '/views/settingsTerms'
+				templateUrl: '/views/settings/terms'
 			})
 
 			.state('settings.contact', {
 				url: '/contact',
-				templateUrl: '/views/settingsContact'
+				templateUrl: '/views/settings/contact'
 			})
 
 			//////////////

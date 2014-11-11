@@ -53,6 +53,15 @@ angular
 				})
 		}
 
+		UserFactory.changePassword = function(postData) {
+			console.log("changing password");
+			var deferred = $q.defer();
+			$http.put("/api/user/password", postData)
+				.success(function(data){
+					console.log(data)
+				})
+		}
+
 		return UserFactory;
 	}])
 	;

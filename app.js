@@ -37,7 +37,7 @@ app.use(expressSession({
 		port: config.redis.port
 	}),
 	secret: process.env.SESSION_SECRET || 'foobarbaz'
-//  , resave: false
+//  , resave: false //
 //  , saveUninitialized: false	
 }));
 

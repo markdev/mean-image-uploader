@@ -75,7 +75,7 @@ console.log(req.body);
 			isAuthenticated: req.isAuthenticated()
 		});
 	});
-
+//
 	// User routes
 	app.post('/api/user'				, api.users.create);
 	app.get('/api/user/list'			, api.users.list);
