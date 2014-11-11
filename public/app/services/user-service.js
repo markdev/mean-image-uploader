@@ -1,4 +1,4 @@
-console.log("loaded: sunzora services");
+console.log("loaded: user services");
 
 'use strict'
 // this will probably be useful for authentication:
