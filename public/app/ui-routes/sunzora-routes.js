@@ -115,6 +115,31 @@ angular
 				templateUrl: '/views/settings'
 			})
 
+			.state('settings.updateAccount', {
+				url: '/account',
+				templateUrl: '/views/settingsAccount'
+			})
+
+			.state('settings.changePassword', {
+				url: '/password',
+				templateUrl: '/views/settingsPassword'
+			})
+
+			.state('settings.viewAwards', {
+				url: '/awards',
+				templateUrl: '/views/settingsAwards'
+			})
+
+			.state('settings.terms', {
+				url: '/terms',
+				templateUrl: '/views/settingsTerms'
+			})
+
+			.state('settings.contact', {
+				url: '/contact',
+				templateUrl: '/views/settingsContact'
+			})
+
 			//////////////
 			.state('loginPage', {
 				url: '/login',
