@@ -2,11 +2,15 @@ header(class="main")
 	nav(ng-controller="UserLogoutCtrl")
 		a(class="title")
 		div(class="welcomeUser")
-			span Hello, {{currentUser.email}}!
-			br
-			a(href="/logout" ng-click="logout()") Log out
+			table
+				tr
+					td
+						img(ng-src="http://127.0.0.1:3000/api/user/avatar/{{currentUser._id}}")
+					td
+						span Hello, {{currentUser.email}}!
+						br
+						a(href="/logout" ng-click="logout()") Log out
 		a(class="search")
-
 section(class="mainBody")
 	ui-view
 

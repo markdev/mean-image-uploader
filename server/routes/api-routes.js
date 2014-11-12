@@ -78,6 +78,7 @@ module.exports = function(app) {
 	// User routes
 	app.post('/api/user'				, api.users.create);
 	app.get('/api/user/list'			, api.users.list);
+	app.get('/api/user/avatar/:id?'		, api.users.getAvatar);
 	app.get('/api/user/:slug?'			, api.users.getBySlug);
 	app.put('/api/user/password'		, requireLogin(), api.users.changePassword);
 	app.del('/api/user/:slug?'			, api.users.deleteUser);

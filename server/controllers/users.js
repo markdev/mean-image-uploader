@@ -100,28 +100,38 @@ exports.updateUser = function(req, res, next) {
 	});
 }
 
+exports.getAvatar = function(req, res, next) {
+	User.findOne({_id: req.param('id')}, function(err, user) {
+		if (err || user.avatar == null) {
+			res.sendfile('public/img/avatars/blankAvatar.png');
+		} else {
+			res.sendfile('public/img/avatars/' + user.avatar);
+		}
+	})
+}
+
 // lots of cleanup for this one
 exports.uploadAvatar = function(req, res, next) {
+	var destPath = 'public/img/avatars/';
 	console.log("called: users.uploadAvatar");
-	console.log(req.files.file);
-	//User.findOne({_id: req.body.slug}, function(err, user) {
-	User.findOne({email: req.body.email}, function(err, user) {
+	User.findOne({_id: req.body.id}, function(err, user) {
 		if (err) {
 			//stuff
 		} else {
 			if (user.avatar !== null && user.avatar !== undefined) {
 				console.log("avatar is: " + user.avatar);
-				fs.unlink('images/uploads/avatars/' + user.avatar);
+				fs.unlink(destPath + user.avatar);
 			}
 			//user.avatar = req.files.image.name;
 			user.avatar = req.files.file.name;
-			fs.rename('images/tmp/' + req.files.file.name, 'images/uploads/avatars/' + req.files.file.name, function (err) {
+//console.log(user.avatar);
+			fs.rename('images/tmp/' + user.avatar, destPath + user.avatar, function (err) {
 				console.log("Image has been moved");
-				lwip.open('images/uploads/avatars/' + req.files.file.name, function(err, image) {
+				lwip.open(destPath + user.avatar, function(err, image) {
 					if (err) throw err;
 					// lanczos
 					image.resize(50, 50, function(err, rzdImg) {
-						rzdImg.writeFile('images/uploads/avatars/' + req.files.file.name, function(err) {
+						rzdImg.writeFile(destPath + user.avatar, function(err) {
 							if (err) throw err;
 						});
 					});
