@@ -33,7 +33,6 @@ module.exports = function(app) {
 	app.post('/api/users/login', function(req, res, next) {
 		console.log("DEBUG 1");
 		req.body.email = req.body.email.toLowerCase();
-console.log(req.body);
 		passport.authenticate('local', function(err, user) {
 			console.log("DEBUG 4");
 			if(err) {
@@ -75,7 +74,7 @@ console.log(req.body);
 			isAuthenticated: req.isAuthenticated()
 		});
 	});
-//
+	
 	// User routes
 	app.post('/api/user'				, api.users.create);
 	app.get('/api/user/list'			, api.users.list);

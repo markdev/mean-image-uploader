@@ -54,9 +54,4 @@ angular
 					}
 				})
 		};
-	/*
-		$scope.logout = function() {
-			UserFactory.logout();
-		};
-	*/
 	}])

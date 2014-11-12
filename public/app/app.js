@@ -5,9 +5,10 @@ console.log('angular application loaded');
 angular
 	.module('yote', [
 		// add in custom dependencies here
-		'ngRoute'
+		  'ngRoute'
 		, 'ngTouch'
 		, 'ui.router'
+		, 'angularFileUpload'
 	])
 	.run(function($rootScope) {
 		$rootScope.currentUser = window.currentUser;

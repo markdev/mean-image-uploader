@@ -1,1 +1,25 @@
-h1 Account (new)
+a(ui-sref="settings.home") Back
+hr
+
+h1 Update Account Settings
+//table.formTable(ng-controller="UserAccountSettingsCtrl")
+table.formTable(ng-controller="UserAvatarUploadCtrl")
+	tr
+		td
+			label First Name
+		td
+			input(type="text" ng-model="firstName")
+	tr
+		td
+			label Last Name
+		td
+			input(type="text" ng-model="lastName")
+	tr
+		td
+			label Avatar
+		td
+			//input(type="file" name="avatar" accept="image/*" onchange="angular.element(this).scope().filesChanged(this)")
+			input(type="file" ng-file-select="onFileSelect($files)")
+	tr
+		td(colspan="2")
+			button(ng-click="update()") Update Account

@@ -103,8 +103,9 @@ exports.updateUser = function(req, res, next) {
 // lots of cleanup for this one
 exports.uploadAvatar = function(req, res, next) {
 	console.log("called: users.uploadAvatar");
-	console.log(req.body.slug);
-	User.findOne({_id: req.body.slug}, function(err, user) {
+	console.log(req.files.file);
+	//User.findOne({_id: req.body.slug}, function(err, user) {
+	User.findOne({email: req.body.email}, function(err, user) {
 		if (err) {
 			//stuff
 		} else {
@@ -112,14 +113,15 @@ exports.uploadAvatar = function(req, res, next) {
 				console.log("avatar is: " + user.avatar);
 				fs.unlink('images/uploads/avatars/' + user.avatar);
 			}
-			user.avatar = req.files.image.name;
-			fs.rename('images/tmp/' + req.files.image.name, 'images/uploads/avatars/' + req.files.image.name, function (err) {
+			//user.avatar = req.files.image.name;
+			user.avatar = req.files.file.name;
+			fs.rename('images/tmp/' + req.files.file.name, 'images/uploads/avatars/' + req.files.file.name, function (err) {
 				console.log("Image has been moved");
-				lwip.open('images/uploads/avatars/' + req.files.image.name, function(err, image) {
+				lwip.open('images/uploads/avatars/' + req.files.file.name, function(err, image) {
 					if (err) throw err;
 					// lanczos
 					image.resize(50, 50, function(err, rzdImg) {
-						rzdImg.writeFile('images/uploads/avatars/' + req.files.image.name, function(err) {
+						rzdImg.writeFile('images/uploads/avatars/' + req.files.file.name, function(err) {
 							if (err) throw err;
 						});
 					});

@@ -74,3 +74,45 @@ angular
 				});
 		}
 	}])
+
+	.controller('UserAccountSettingsCtrl', ['$scope', '$stateParams', '$state', '$rootScope', 'UserFactory', function($scope, $stateParams, $state, $rootScope, UserFactory) {  
+		$scope.firstName = "";
+		$scope.lastName = "";
+		$scope.update = function(files) {
+			console.log(files);
+			var fd = new FormData();
+			//Take the first selected file
+			fd.append("file", files[0]);
+			console.log('updating user');
+		};
+	}])
+
+	.controller('UserAvatarUploadCtrl', ['$scope', '$upload', '$stateParams', '$state', '$rootScope', 'UserFactory', function($scope, $upload, $stateParams, $state, $rootScope, UserFactory) {  
+		$scope.onFileSelect = function($files) {
+			for (var i = 0; i < $files.length; i++) {
+				var file = $files[i];
+				console.log(file);
+				$scope.upload = $upload.upload({
+					method: 'POST',
+					url: '/api/user/avatar',
+					data: { email: 'mark.karavan@gmail.com' },
+					file: file
+				}).progress(function(evt) {
+					console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+				}).success(function(data, status, headers, config) {
+        			console.log(data);
+      			});
+			}
+		};
+
+		$scope.update = function() {
+			console.log("updating");
+		};
+		/*
+		$scope.filesChanged = function(elm) {
+			$scope.files = elm.files;
+			$scope.$apply();
+			console.log($scope); 
+		}
+		*/
+	}])
