@@ -33,7 +33,7 @@ module.exports = function(app) {
 	app.post('/api/user/login'			, api.users.login);
 	app.post('/api/user/logout'			, api.users.logout); 
 	app.post('/api/user'				, api.users.create);
-	app.get('/api/user/list'			, api.users.list);
+	//app.get('/api/user/list'			, api.users.list); // security hazard
 	app.get('/api/user/avatar/:id?'		, api.users.getAvatar);
 	app.get('/api/user/:slug?'			, api.users.getBySlug);
 	app.put('/api/user/password'		, requireLogin(), api.users.changePassword);
@@ -43,7 +43,7 @@ module.exports = function(app) {
 	app.put('/api/user/resetpassword'	, api.users.requestPasswordReset);
 
 	// Contest routes
-	app.post('/api/contest'				, api.contests.create);
+	app.post('/api/contest'				, requireLogin(),	 api.contests.create); // about to test require login
 	app.put('/api/contest'				, api.contests.edit);
 	app.get('/api/contest/byId/:slug' 	, api.contests.getBySlug);
 	app.get('/api/contest/byName/:str' 	, api.contests.getByNameStr);
