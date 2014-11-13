@@ -28,56 +28,10 @@ module.exports = function(app) {
 	/****************************
 	/*  DEFAULT USER API ROUTES
 	/****************************/
-
-	// user login
-	app.post('/api/users/login', function(req, res, next) {
-		console.log("DEBUG 1");
-		req.body.email = req.body.email.toLowerCase();
-		passport.authenticate('local', function(err, user) {
-			console.log("DEBUG 4");
-			if(err) {
-				res.send({success:false, message: "Error authenticating user."});
-			}
-			if(!user) {
-				res.send({success:false, message: "Matching user not found."});
-			}
-			req.logIn(user, function(err) {
-				if(err) {return next(err);}
-				res.send({success:true, user: user});
-				//res.redirect('/login');
-			});
-		})(req, res, next);
-	});
-
-	// user logout
-	app.post('/api/users/logout', function(req, res) {
-		req.logout();
-		res.end();
-	});
-/*
-	app.get('/logout', function(req, res, next) {
-		console.log("LOGGED OUT");
-		req.logout();
-		res.redirect('/login');
-	});
-*/
-
-/*
-	app.get('/login', function(req, res) {
-		res.render('login', {
-			isAuthenticated: req.isAuthenticated()
-		});
-	});
-
-
-	app.get('/signup', function(req, res) {
-		console.log("SIGNUP");
-		res.render('signup', {
-			isAuthenticated: req.isAuthenticated()
-		});
-	});
-*/	
+	
 	// User routes
+	app.post('/api/user/login'			, api.users.login);
+	app.post('/api/user/logout'			, api.users.logout); 
 	app.post('/api/user'				, api.users.create);
 	app.get('/api/user/list'			, api.users.list);
 	app.get('/api/user/avatar/:id?'		, api.users.getAvatar);

@@ -9,11 +9,10 @@ angular
 
 	.controller('UserLogoutCtrl', ['$scope', '$stateParams', '$state', '$location', 'SunzoraFactory', 'UserFactory', function($scope, $stateParams, $state, $location, SunzoraFactory, UserFactory){
 		$scope.logout = function() {
-			console.log("logging out");
+			//console.log("logging out");
 			UserFactory.logout()
 				.then(function(data) {
-					console.log(data);
-					console.log("now redirect");
+					//console.log(data);
 					$state.go('login')
 				})
 
@@ -29,15 +28,16 @@ angular
 			postData.email = $scope.email;
 			postData.password = $scope.password;
 			postData.password2 = $scope.password2;
-			console.log(postData);
+			//console.log(postData);
 			UserFactory.signup(postData)
 				.then(function(data) {
-					console.log("test");
-					console.log(data);
+					//console.log(data);
 					if (data.success) {
-						console.log("test2");
+						//console.log(data);
 						$rootScope.currentUser = data.user;
 						$state.go('root.home');
+					} else {
+						console.log("fail");
 					}
 				})
 		}
@@ -52,12 +52,13 @@ angular
 			postData.password = $scope.password;
 			UserFactory.login(postData)
 				.then(function(data) {
-					console.log("test");
-					console.log(data);
+					//console.log(data);
 					if (data.success) {
-						console.log("test2");
+						//console.log(data);
 						$rootScope.currentUser = data.user;
 						$state.go('root.home');
+					} else {
+						console.log("fail");
 					}
 				})
 		}

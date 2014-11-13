@@ -8,7 +8,7 @@ angular
 
 	.factory('UserFactory', ['$http', '$q', function($http, $q) {
 
-		var urlBase = "/api/users";
+		var urlBase = "/api/user";
 		var UserFactory = {};
 
 		UserFactory.login = function(postData) {
@@ -49,7 +49,7 @@ angular
 		UserFactory.logout = function() {
 			console.log("Logging out the user");
 			var deferred = $q.defer();
-			$http.post("/api/users/logout")
+			$http.post("/api/user/logout")
 				.success(function(user){
 					console.log(user);
 					deferred.resolve(user);

@@ -2,7 +2,8 @@ var User = require('mongoose').model('User')
   , fs = require('fs')
   , util = require('util')
   , lwip = require('lwip')
-  , nodemailer = require('nodemailer'); 
+  , nodemailer = require('nodemailer')
+  , passport = require('passport')
   ;
 
 var avatarDestination = 'public/img/avatars/';
@@ -18,6 +19,30 @@ exports.list = function(req, res, next) {
 			res.send({ success: true, users: users });
 		}
 	});
+}
+
+exports.login = function(req, res, next) {
+	console.log("DEBUG 1");
+	req.body.email = req.body.email.toLowerCase();
+	passport.authenticate('local', function(err, user) {
+		console.log("DEBUG 4");
+		if(err) {
+			res.send({success:false, message: "Error authenticating user."});
+		}
+		if(!user) {
+			res.send({success:false, message: "Matching user not found."});
+		}
+		req.logIn(user, function(err) {
+			if(err) {return next(err);}
+			res.send({success:true, user: user});
+			//res.redirect('/login');
+		});
+	})(req, res, next);
+}
+
+exports.logout = function(req, res, next) {
+	req.logout();
+	res.end();
 }
 
 exports.create = function(req, res, next) {
