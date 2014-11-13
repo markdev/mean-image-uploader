@@ -18,10 +18,14 @@ angular
 				  abstract: true
 				, url: '/'
 				, templateUrl: '/views/default'
+				, controller: function($scope){
+					$scope.title = 'home';
+				}
 			})
 
 			.state('root.home', {
 				  url: ''
+				, parent: 'root' // any problems here?
 				, templateUrl: '/views/home/main'
 				, controller: 'SunzoraHomepageCtrl'
 			})
@@ -46,10 +50,13 @@ angular
 
 			//////////////
 			.state('create', {
-				abstract: true,
-				url: '/create',
-				templateUrl: '/views/default',
-				controller: 'SunzoraCtrl'
+				  abstract: true
+				, url: '/create'
+				, templateUrl: '/views/default'
+				//, controller: 'SunzoraCtrl'
+				, controller: function($scope) {
+					$scope.title = 'create';
+				}
 			})
 
 			.state('create.home', {
@@ -59,10 +66,12 @@ angular
 
 			//////////////
 			.state('messages', {
-				abstract: true,
-				url: '/messages',
-				templateUrl: '/views/default'
-				//controller: 'SunzoraCtrl'
+				  abstract: true
+				, url: '/messages'
+				, templateUrl: '/views/default'
+				, controller: function($scope) {
+					$scope.title = 'messages';
+				}
 			})
 
 			.state('messages.home', {
@@ -72,10 +81,12 @@ angular
 
 			//////////////
 			.state('judge', {
-				abstract: true,
-				url: '/judge',
-				templateUrl: '/views/default'
-				//controller: 'SunzoraCtrl'
+				  abstract: true
+				, url: '/judge'
+				, templateUrl: '/views/default'
+				, controller: function($scope) {
+					$scope.title = 'judge';
+				}
 			})
 
 			.state('judge.home', {
@@ -85,10 +96,12 @@ angular
 
 			//////////////
 			.state('compete', {
-				abstract: true,
-				url: '/compete',
-				templateUrl: '/views/default'
-				//controller: 'SunzoraCtrl'
+				  abstract: true
+				, url: '/compete'
+				, templateUrl: '/views/default'
+				, controller: function($scope) {
+					$scope.title = 'compete';
+				}
 			})
 
 			.state('compete.home', {
@@ -98,10 +111,12 @@ angular
 
 			//////////////
 			.state('settings', {
-				abstract: true,
-				url: '/settings',
-				templateUrl: '/views/default'
-				//controller: 'SunzoraCtrl'
+				  abstract: true
+				, url: '/settings'
+				, templateUrl: '/views/default'
+				, controller: function($scope) {
+					$scope.title = 'settings';
+				}
 			})
 
 			.state('settings.home', {

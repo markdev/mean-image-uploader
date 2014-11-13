@@ -11,6 +11,7 @@ angular
 		var urlBase = "/api/users/login"
 		var SunzoraFactory = {};
 
+		/*
 		SunzoraFactory.test = function() {
 			return "this came from the sunzora factory";
 		}
@@ -37,6 +38,7 @@ angular
 					console.log(data);
 				})
 		}
+		*/
 
 		return SunzoraFactory;
 	}])

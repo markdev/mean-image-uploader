@@ -138,10 +138,16 @@ footer.main {
 					&:hover { 
 						background-image: url("/img/icons/creategray.png"); 
 					}
+					&.active {
+						background-image: url("/img/icons/creategray.png"); 
+					}
 				}
 				&#messages { 
 					background-image: url("/img/icons/messagewhite.png"); 
 					&:hover { 
+						background-image: url("/img/icons/messagegray.png"); 
+					}
+					&.active {
 						background-image: url("/img/icons/messagegray.png"); 
 					}
 				}
@@ -150,16 +156,25 @@ footer.main {
 					&:hover { 
 						background-image: url("/img/icons/judgegray.png"); 
 					}
+					&.active {
+						background-image: url("/img/icons/judgegray.png"); 
+					}
 				}
 				&#compete { 
 					background-image: url("/img/icons/competewhite.png"); 
 					&:hover { 
 						background-image: url("/img/icons/competegray.png"); 
 					}
+					&.active {
+						background-image: url("/img/icons/competegray.png"); 
+					}
 				}
 				&#settings { 
 					background-image: url("/img/icons/settingswhite.png"); 
 					&:hover { 
+						background-image: url("/img/icons/settingsgray.png"); 
+					}
+					&.active {
 						background-image: url("/img/icons/settingsgray.png"); 
 					}
 				}

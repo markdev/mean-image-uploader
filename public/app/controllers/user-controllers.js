@@ -95,6 +95,7 @@ angular
 	}])
 
 	.controller('UserAvatarUploadCtrl', ['$scope', '$upload', '$stateParams', '$state', '$rootScope', 'UserFactory', function($scope, $upload, $stateParams, $state, $rootScope, UserFactory) {  
+		$scope.foo = "This is foo";
 		$scope.onFileSelect = function($files) {
 			for (var i = 0; i < $files.length; i++) {
 				var file = $files[i];

@@ -62,7 +62,7 @@ angular
 			var deferred = $q.defer();
 			$http.put("/api/user/password", postData)
 				.success(function(user){
-					//console.log(user)
+					console.log(user)
 					deferred.resolve(user);
 				});
 			return deferred.promise;

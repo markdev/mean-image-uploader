@@ -107,21 +107,31 @@ footer.main {
           background-image: url("/img/icons/createwhite.png"); }
           footer.main nav ul li.navitem#create:hover {
             background-image: url("/img/icons/creategray.png"); }
+          footer.main nav ul li.navitem#create.active {
+            background-image: url("/img/icons/creategray.png"); }
         footer.main nav ul li.navitem#messages {
           background-image: url("/img/icons/messagewhite.png"); }
           footer.main nav ul li.navitem#messages:hover {
+            background-image: url("/img/icons/messagegray.png"); }
+          footer.main nav ul li.navitem#messages.active {
             background-image: url("/img/icons/messagegray.png"); }
         footer.main nav ul li.navitem#judge {
           background-image: url("/img/icons/judgewhite.png"); }
           footer.main nav ul li.navitem#judge:hover {
             background-image: url("/img/icons/judgegray.png"); }
+          footer.main nav ul li.navitem#judge.active {
+            background-image: url("/img/icons/judgegray.png"); }
         footer.main nav ul li.navitem#compete {
           background-image: url("/img/icons/competewhite.png"); }
           footer.main nav ul li.navitem#compete:hover {
             background-image: url("/img/icons/competegray.png"); }
+          footer.main nav ul li.navitem#compete.active {
+            background-image: url("/img/icons/competegray.png"); }
         footer.main nav ul li.navitem#settings {
           background-image: url("/img/icons/settingswhite.png"); }
           footer.main nav ul li.navitem#settings:hover {
+            background-image: url("/img/icons/settingsgray.png"); }
+          footer.main nav ul li.navitem#settings.active {
             background-image: url("/img/icons/settingsgray.png"); }
 
 /*# sourceMappingURL=sunzora-proto.css.map */

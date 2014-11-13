@@ -5,7 +5,7 @@ header(class="main")
 			table
 				tr
 					td
-						//img(ng-src="http://127.0.0.1:3000/api/user/avatar/{{currentUser._id}}")
+						img(ng-src="http://127.0.0.1:3000/api/user/avatar/{{currentUser._id}}")
 					td
 						span Hello, {{currentUser.email}}!
 						br
@@ -17,13 +17,13 @@ section(class="mainBody")
 footer(class="main")
 	nav
 		ul
-			li(class="navitem" id="create")
+			li(class="navitem" ng-class='{ "active" : title == "create"}' id="create")
 				a(ui-sref="create.home")
-			li(class="navitem" id="messages")
+			li(class="navitem" ng-class='{ "active" : title == "messages"}' id="messages")
 				a(ui-sref="messages.home")
-			li(class="navitem" id="judge")
+			li(class="navitem" ng-class='{ "active" : title == "judge"}' id="judge")
 				a(ui-sref="judge.home")
-			li(class="navitem" id="compete")
+			li(class="navitem" ng-class='{ "active" : title == "compete"}' id="compete")
 				a(ui-sref="compete.home")
-			li(class="navitem" id="settings")
+			li(class="navitem" ng-class='{ "active" : title == "settings"}' id="settings")
 				a(ui-sref="settings.home")

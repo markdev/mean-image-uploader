@@ -13,7 +13,15 @@ angular
 			$state.go('login');
 		}
 	}])
-	
+
+	.controller('SunzoraTestCtrl', ['$scope', '$rootScope', '$stateParams', '$state', '$location', 'SunzoraFactory', function($scope, $rootScope, $stateParams, $state, $location, SunzoraFactory){
+		$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+			$scope.menuName = $state.current.name.split(".")[0];
+			console.log($scope.menuName);
+			//console.log($state.current.name);
+		})
+	}])
+
 /*
 	.controller('UserLogoutCtrl', ['$scope', '$stateParams', '$state', '$location', 'SunzoraFactory', 'UserFactory', function($scope, $stateParams, $state, $location, SunzoraFactory, UserFactory){
 		$scope.logout = function() {
