@@ -7,6 +7,14 @@ angular
 		console.log('SunzoraCtrl loaded...');
 	}])
 
+	.controller('SunzoraHomepageCtrl', ['$scope', '$stateParams', '$state', '$location', 'SunzoraFactory', function($scope, $stateParams, $state, $location, SunzoraFactory){
+		console.log('SunzoraHomepageCtrl loaded...');
+		if (jQuery.isEmptyObject(currentUser)) {
+			$state.go('login');
+		}
+	}])
+	
+/*
 	.controller('UserLogoutCtrl', ['$scope', '$stateParams', '$state', '$location', 'SunzoraFactory', 'UserFactory', function($scope, $stateParams, $state, $location, SunzoraFactory, UserFactory){
 		$scope.logout = function() {
 			console.log("logging out");
@@ -19,6 +27,7 @@ angular
 
 		}
 	}])
+*/
 
 	.controller('UserSignupCtrl', ['$scope', '$stateParams', '$state', '$location', 'SunzoraFactory', 'UserFactory', function($scope, $stateParams, $state, $location, SunzoraFactory, UserFactory){
 		$scope.email = 'mark.karavan@gmail.com';
@@ -37,7 +46,7 @@ angular
 
 		}
 	}])
-
+/*
 	.controller('UserLoginCtrl', ['$scope', '$stateParams', '$state', '$rootScope', 'SunzoraFactory', 'UserFactory', function($scope, $stateParams, $state, $rootScope, SunzoraFactory, UserFactory) {
 		$scope.email = "mark.karavan@gmail.com";
 		$scope.password = "mark";
@@ -55,3 +64,4 @@ angular
 				})
 		};
 	}])
+*/

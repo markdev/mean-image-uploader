@@ -15,27 +15,21 @@ angular
 		$stateProvider
 
 			.state('root', {
-				//abstract: true,
-				  url: '/'
+				  abstract: true
+				, url: '/'
 				, templateUrl: '/views/default'
-				/*
-				onEnter: function() {
-					console.log("I WORK DAMMIT");
-					$state.go('loginPage');
-				}
-				*/
 			})
 
 			.state('root.home', {
-				url: '/addon',
-				templateUrl: '/views/addon',
-				controller: 'SunzoraCtrl',
+				  url: ''
+				, templateUrl: '/views/home/main'
+				, controller: 'SunzoraHomepageCtrl'
 			})
 
 			.state('login', {
-				url: '/login',
-				templateUrl: '/views/login'
-				//controller: 'SunzoraCtrl'
+				  url: '/login'
+				, templateUrl: '/views/login'
+				//controller: 'UserLoginCtrl'
 			})
 
 			.state('logout', {

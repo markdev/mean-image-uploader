@@ -48,9 +48,11 @@ angular
 			console.log("Logging out the user");
 			var deferred = $q.defer();
 			$http.post("/api/users/logout")
-				.success(function(data){
-					console.log(data);
+				.success(function(user){
+					console.log(user);
+					deferred.resolve(user);
 				})
+			return deferred.promise;
 		}
 
 		UserFactory.changePassword = function(postData) {

@@ -47,10 +47,12 @@ angular
 			postData.password = $scope.password;
 			UserFactory.login(postData)
 				.then(function(data) {
+					console.log("test");
 					console.log(data);
 					if (data.success) {
+						console.log("test2");
 						$rootScope.currentUser = data.user;
-						$state.go('root')
+						$state.go('root.home');
 					}
 				})
 		}

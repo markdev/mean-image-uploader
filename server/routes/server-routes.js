@@ -17,6 +17,22 @@ module.exports = function(app) {
 
 	//render layout
 	app.get('*', function(req, res) {
+		var currentUser = {};
+		if(req.user) {
+			currentUser = {
+				_id: req.user._id
+				, firstName: req.user.firstName
+				, lastName: req.user.lastName
+				, email: req.user.email
+				, roles: req.user.roles
+			}
+		}
+		res.render('layout', {
+			currentUser: currentUser
+		});
+	});
+	/*
+	app.get('*', function(req, res) {
 		//scrub sensitive fields from user object before returning
 		var currentUser = {};
 		if(req.user) {
@@ -39,5 +55,6 @@ module.exports = function(app) {
 			});
 		}
 	});
+	*/
 
 }

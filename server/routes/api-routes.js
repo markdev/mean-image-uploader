@@ -61,12 +61,13 @@ module.exports = function(app) {
 		res.redirect('/login');
 	});
 
-
+/*
 	app.get('/login', function(req, res) {
 		res.render('login', {
 			isAuthenticated: req.isAuthenticated()
 		});
 	});
+*/
 
 	app.get('/signup', function(req, res) {
 		console.log("SIGNUP");
