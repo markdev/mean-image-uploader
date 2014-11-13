@@ -54,7 +54,6 @@ angular
 				.then(function(data) {
 					//console.log(data);
 					if (data.success) {
-						//console.log(data);
 						$rootScope.currentUser = data.user;
 						$state.go('root.home');
 					} else {

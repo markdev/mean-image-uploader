@@ -7,9 +7,10 @@ angular
 		console.log('SunzoraCtrl loaded...');
 	}])
 
-	.controller('SunzoraHomepageCtrl', ['$scope', '$stateParams', '$state', '$location', 'SunzoraFactory', function($scope, $stateParams, $state, $location, SunzoraFactory){
+	.controller('SunzoraHomepageCtrl', ['$scope', '$stateParams', '$rootScope', '$state', '$location', 'SunzoraFactory', function($scope, $stateParams, $rootScope, $state, $location, SunzoraFactory){
 		console.log('SunzoraHomepageCtrl loaded...');
-		if (jQuery.isEmptyObject(currentUser)) {
+		if (jQuery.isEmptyObject($rootScope.currentUser)) {
+			console.log("It went back to SunzoraHomepageCtrl");
 			$state.go('login');
 		}
 	}])
