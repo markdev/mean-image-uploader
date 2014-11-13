@@ -54,12 +54,13 @@ module.exports = function(app) {
 		req.logout();
 		res.end();
 	});
-
+/*
 	app.get('/logout', function(req, res, next) {
 		console.log("LOGGED OUT");
 		req.logout();
 		res.redirect('/login');
 	});
+*/
 
 /*
 	app.get('/login', function(req, res) {

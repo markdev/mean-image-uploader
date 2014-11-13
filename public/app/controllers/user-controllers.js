@@ -20,7 +20,7 @@ angular
 		}
 	}])
 
-	.controller('UserSignupCtrl', ['$scope', '$stateParams', '$state', '$location', 'SunzoraFactory', 'UserFactory', function($scope, $stateParams, $state, $location, SunzoraFactory, UserFactory){
+	.controller('UserSignupCtrl', ['$scope', '$stateParams', '$state',  '$rootScope', '$location', 'SunzoraFactory', 'UserFactory', function($scope, $stateParams, $state, $rootScope, $location, SunzoraFactory, UserFactory){
 		$scope.email = 'mark.karavan@gmail.com';
 		$scope.password = 'mark';
 		$scope.password2 = 'mark';
@@ -32,9 +32,14 @@ angular
 			console.log(postData);
 			UserFactory.signup(postData)
 				.then(function(data) {
-					console.log(data)
+					console.log("test");
+					console.log(data);
+					if (data.success) {
+						console.log("test2");
+						$rootScope.currentUser = data.user;
+						$state.go('root.home');
+					}
 				})
-
 		}
 	}])
 
