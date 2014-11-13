@@ -68,7 +68,7 @@ module.exports = function(app) {
 			isAuthenticated: req.isAuthenticated()
 		});
 	});
-*/
+
 
 	app.get('/signup', function(req, res) {
 		console.log("SIGNUP");
@@ -76,7 +76,7 @@ module.exports = function(app) {
 			isAuthenticated: req.isAuthenticated()
 		});
 	});
-	
+*/	
 	// User routes
 	app.post('/api/user'				, api.users.create);
 	app.get('/api/user/list'			, api.users.list);

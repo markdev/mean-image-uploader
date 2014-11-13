@@ -2,8 +2,10 @@ var User = require('mongoose').model('User')
   , fs = require('fs')
   , util = require('util')
   , lwip = require('lwip')
-  , nodemailer = require('nodemailer');
+  , nodemailer = require('nodemailer'); 
   ;
+
+var avatarDestination = 'public/img/avatars/';
 
 //list all users
 //  - security breach, don't show passwords
@@ -103,16 +105,15 @@ exports.updateUser = function(req, res, next) {
 exports.getAvatar = function(req, res, next) {
 	User.findOne({_id: req.param('id')}, function(err, user) {
 		if (err || user.avatar == null) {
-			res.sendfile('public/img/avatars/blankAvatar.png');
+			res.sendfile(avatarDestination + 'blankAvatar.png');
 		} else {
-			res.sendfile('public/img/avatars/' + user.avatar);
+			res.sendfile(avatarDestination + user.avatar);
 		}
 	})
 }
 
 // lots of cleanup for this one
 exports.uploadAvatar = function(req, res, next) {
-	var destPath = 'public/img/avatars/';
 	console.log("called: users.uploadAvatar");
 	User.findOne({_id: req.body.id}, function(err, user) {
 		if (err) {
@@ -120,18 +121,16 @@ exports.uploadAvatar = function(req, res, next) {
 		} else {
 			if (user.avatar !== null && user.avatar !== undefined) {
 				console.log("avatar is: " + user.avatar);
-				fs.unlink(destPath + user.avatar);
+				fs.unlink(avatarDestination + user.avatar);
 			}
-			//user.avatar = req.files.image.name;
 			user.avatar = req.files.file.name;
-//console.log(user.avatar);
-			fs.rename('images/tmp/' + user.avatar, destPath + user.avatar, function (err) {
+			fs.rename('images/tmp/' + user.avatar, avatarDestination + user.avatar, function (err) {
 				console.log("Image has been moved");
-				lwip.open(destPath + user.avatar, function(err, image) {
+				lwip.open(avatarDestination + user.avatar, function(err, image) {
 					if (err) throw err;
 					// lanczos
 					image.resize(50, 50, function(err, rzdImg) {
-						rzdImg.writeFile(destPath + user.avatar, function(err) {
+						rzdImg.writeFile(avatarDestination + user.avatar, function(err) {
 							if (err) throw err;
 						});
 					});

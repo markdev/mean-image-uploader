@@ -61,7 +61,7 @@ angular
 
 			.state('create.home', {
 				url: '',
-				templateUrl: '/views/create'
+				templateUrl: '/views/create/main'
 			})
 
 			//////////////
@@ -76,7 +76,7 @@ angular
 
 			.state('messages.home', {
 				url: '',
-				templateUrl: '/views/messages'
+				templateUrl: '/views/messages/main'
 			})
 
 			//////////////
@@ -91,7 +91,7 @@ angular
 
 			.state('judge.home', {
 				url: '',
-				templateUrl: '/views/judge'
+				templateUrl: '/views/judge/main'
 			})
 
 			//////////////
@@ -106,7 +106,7 @@ angular
 
 			.state('compete.home', {
 				url: '',
-				templateUrl: '/views/compete'
+				templateUrl: '/views/compete/main'
 			})
 
 			//////////////
