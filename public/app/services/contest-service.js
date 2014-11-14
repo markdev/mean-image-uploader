@@ -43,7 +43,16 @@ angular
 			return deferred.promise;			
 		}
 
-		ContestFactory.getContestsByOwner
+		ContestFactory.uploadBanner = function(id) {
+			console.log("uploading banner");
+			var deferred = $q.defer();
+			$http.post(urlBase + "/banner")
+				.success(function(response) {
+					console.log("SUCCESS!")
+					deferred.resolve(response)
+				})
+			return deferred.promise;			
+		}
 
 		return ContestFactory;
 	}])

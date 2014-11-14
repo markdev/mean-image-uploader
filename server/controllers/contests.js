@@ -167,6 +167,11 @@ exports.addEntry = function(req, res, next) {
 	});
 }
 
+exports.uploadBanner = function(req, res, next) {
+	console.log("called: users.uploadBanner");
+	res.send("called uploadBanner api");
+}
+
 exports.addRating = function(req, res, next) {
 	console.log("called: contests.addRating");
 	Entry.findByIdAndUpdate(

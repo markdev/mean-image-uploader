@@ -53,9 +53,27 @@ angular
 				$scope.contest = response.contest;
 				$scope.contest.tags = response.contest.tags.join(", ");
 			})
-		$scope.onFileSelect = function() {
-			console.log("nice banner");
-		}
+		$scope.onFileSelect = function($files) {
+			ContestFactory.uploadBanner()
+				.then(function(response) {
+					console.log(response);
+				})
+			/*
+			for (var i = 0; i < $files.length; i++) {
+				var file = $files[i];
+				$scope.upload = $upload.upload({
+					method: 'POST',
+					url: '/api/user/avatar',
+					data: { id: currentUser._id },
+					file: file
+				}).progress(function(evt) {
+					console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+				}).success(function(data, status, headers, config) {
+        			console.log(data);
+      			});
+			}
+			*/
+		};
 		$scope.update = function() {
 			console.log("updating");
 		}
