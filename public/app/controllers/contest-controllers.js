@@ -18,5 +18,13 @@ angular
 			});
 			postData.rules = $scope.rules;
 			ContestFactory.create(postData)
+				.then(function(data) {
+					//console.log(data);
+					if (data.success) {
+						$state.go('create.home');
+					} else {
+						console.log("fail");
+					}					
+				})
 		};
 	}])
