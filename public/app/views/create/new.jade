@@ -7,4 +7,29 @@ table.formTable(ng-controller="ContestCreateNewCtrl")
 			label Title:
 		td
 			input(type="text" ng-model="title")
+	tr
+		td
+			label Tags:
+		td
+			input(type="text" ng-model="tags")
+	tr
+		td
+			label Banner:
+		td
+			input(type="file" ng-file-select="onFileSelect($files)")
+	tr
+		td
+			label Rules:
+		td
+			textarea(ng-model="rules")
+	tr
+		td
+			label Deadline:
+		td
+			input(type="text" ng-model="deadline")
+	tr
+		td(colspan="2")
+			button(ng-click="create()") Create Contest
+
+
 

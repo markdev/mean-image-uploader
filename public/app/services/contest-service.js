@@ -10,8 +10,15 @@ angular
 		var urlBase = "/api/contest";
 		var ContestFactory = {};
 
-		ContestFactory.test = function() {
-			return "ContestFactory test";
+		ContestFactory.create = function(postData) {
+			console.log("Creating a new contest");
+			var deferred = $q.defer(postData);
+			$http.post(urlBase, postData)
+				.success(function(contest) {
+					console.log("SUCCESS!")
+					deferred.resolve(contest)
+				})
+			return deferred.promise;
 		}
 
 		return ContestFactory;
