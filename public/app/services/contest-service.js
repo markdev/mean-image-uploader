@@ -32,6 +32,19 @@ angular
 			return deferred.promise;			
 		}
 
+		ContestFactory.getContestById = function(id) {
+			console.log("Getting contest by id");
+			var deferred = $q.defer();
+			$http.get(urlBase + "/byId/" + id)
+				.success(function(response) {
+					console.log("SUCCESS!")
+					deferred.resolve(response)
+				})
+			return deferred.promise;			
+		}
+
+		ContestFactory.getContestsByOwner
+
 		return ContestFactory;
 	}])
 	;

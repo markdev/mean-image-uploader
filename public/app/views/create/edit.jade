@@ -1,0 +1,48 @@
+include includes/backButton
+
+div(ng-controller="ContestEditCtrl")
+	h1.title Edit contest: {{ contest.title }}
+	table.formTable
+		tr
+			td
+				label Title:
+			td
+				input(type="text" ng-model="contest.title")
+		tr
+			td
+				label Judges:
+			td
+				span {{ contest.judges.length }}
+		tr
+			td
+				label Entries:
+			td
+				span {{ contest.entries.length }}
+		tr
+			td
+				label Rules:
+			td
+				p {{ contest.rules }}
+		tr
+			td
+				label Tags:
+			td
+				input(type="text" ng-model="contest.tags")
+		tr
+			td
+				label Banner:
+			td
+				input(type="file" ng-file-select="onFileSelect($files)")
+		tr
+			td
+				label Deadline:
+			td
+				p {{ contest.deadline }}
+		tr
+			td
+				label Message:
+			td
+				p Make a text area field that you can use to message participants
+		tr
+			td(colspan="2")
+				button(ng-click="update()") Update Contest

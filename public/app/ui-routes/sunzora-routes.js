@@ -60,13 +60,18 @@ angular
 			})
 
 			.state('create.home', {
-				url: '',
-				templateUrl: '/views/create/list'
+				  url: ''
+				, templateUrl: '/views/create/list'
 			})
 
 			.state('create.new', {
-				url: '/new',
-				templateUrl: '/views/create/new'
+				  url: '/new'
+				, templateUrl: '/views/create/new'
+			})
+
+			.state('create.edit', {
+				  url: '/edit/:id'
+				, templateUrl: '/views/create/edit'
 			})
 
 			//////////////

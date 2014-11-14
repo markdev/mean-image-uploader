@@ -29,8 +29,8 @@ angular
 		};
 	}])
 
-	.controller('ContestGetContestsByOwner', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
-		console.log('ContestGetContestsByOwner loaded...');
+	.controller('ContestListCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
+		console.log('ContestListCtrl loaded...');
 		$scope.contests = [];
 		ContestFactory.getContestsByOwner()
 			.then(function(contests) {
@@ -42,4 +42,21 @@ angular
 					console.log("fail");
 				}		
 			})
+	}])
+
+	.controller('ContestEditCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
+		console.log('ContestEditCtrl loaded...');
+		$scope.id = $stateParams.id;
+		ContestFactory.getContestById($scope.id)
+			.then(function(response) {
+				console.log(response);
+				$scope.contest = response.contest;
+				$scope.contest.tags = response.contest.tags.join(", ");
+			})
+		$scope.onFileSelect = function() {
+			console.log("nice banner");
+		}
+		$scope.update = function() {
+			console.log("updating");
+		}
 	}])
