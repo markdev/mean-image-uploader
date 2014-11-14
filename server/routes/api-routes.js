@@ -45,6 +45,7 @@ module.exports = function(app) {
 	// Contest routes
 	app.post('/api/contest'				, requireLogin(),	 api.contests.create); // about to test require login
 	app.put('/api/contest'				, api.contests.edit);
+	app.get('/api/contest/byOwner/:id'	, api.contests.getByOwner);
 	app.get('/api/contest/byId/:slug' 	, api.contests.getBySlug);
 	app.get('/api/contest/byName/:str' 	, api.contests.getByNameStr);
 	app.get('/api/contest/byTag/:tag'	, api.contests.getByTag);

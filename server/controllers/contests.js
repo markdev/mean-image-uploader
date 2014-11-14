@@ -38,6 +38,17 @@ exports.getBySlug = function(req, res, next) {
 	});
 }
 
+exports.getByOwner = function(req, res, next) {
+	console.log("called: contest.getByOwner");
+	Contest.find({"_owner" : req.param('id')}, function(err, contests) {
+		if (err) {
+			res.send({ success: false, message: "No contest with that owner."});
+		} else {
+			res.send({ success: true, contests: contests });
+		}
+	});
+}
+
 exports.getByNameStr = function(req, res, next) {
 	console.log("called: contests.getByNameStr");
 	var re = new RegExp(req.param('str'), 'i');

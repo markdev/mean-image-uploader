@@ -2,3 +2,7 @@ a(ui-sref="create.new") Create new contest
 hr
 
 h1 Here are my contests
+div(ng-controller="ContestGetContestsByOwner")
+	ul(ng-repeat="contest in contests")
+		li
+			span {{contest.title}}

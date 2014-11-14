@@ -28,3 +28,18 @@ angular
 				})
 		};
 	}])
+
+	.controller('ContestGetContestsByOwner', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
+		console.log('ContestGetContestsByOwner loaded...');
+		$scope.contests = [];
+		ContestFactory.getContestsByOwner()
+			.then(function(contests) {
+				//console.log(data);
+				if (contests.success) {
+					console.log(contests);
+					$scope.contests = contests.contests;
+				} else {
+					console.log("fail");
+				}		
+			})
+	}])
