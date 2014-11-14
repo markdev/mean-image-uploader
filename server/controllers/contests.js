@@ -169,6 +169,7 @@ exports.addEntry = function(req, res, next) {
 
 exports.uploadBanner = function(req, res, next) {
 	console.log("called: users.uploadBanner");
+	console.log(req.files);
 	res.send("called uploadBanner api");
 }
 

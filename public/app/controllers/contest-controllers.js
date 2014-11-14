@@ -44,7 +44,7 @@ angular
 			})
 	}])
 
-	.controller('ContestEditCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
+	.controller('ContestEditCtrl', ['$scope', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $upload, $stateParams, $state, $location, ContestFactory){
 		console.log('ContestEditCtrl loaded...');
 		$scope.id = $stateParams.id;
 		ContestFactory.getContestById($scope.id)
@@ -58,13 +58,12 @@ angular
 				.then(function(response) {
 					console.log(response);
 				})
-			/*
 			for (var i = 0; i < $files.length; i++) {
 				var file = $files[i];
 				$scope.upload = $upload.upload({
 					method: 'POST',
-					url: '/api/user/avatar',
-					data: { id: currentUser._id },
+					url: '/api/contest/banner',
+					data: { id: $scope.contest._id },
 					file: file
 				}).progress(function(evt) {
 					console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
@@ -72,7 +71,6 @@ angular
         			console.log(data);
       			});
 			}
-			*/
 		};
 		$scope.update = function() {
 			console.log("updating");
