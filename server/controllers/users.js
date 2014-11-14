@@ -129,7 +129,7 @@ exports.updateUser = function(req, res, next) {
 
 exports.getAvatar = function(req, res, next) {
 	User.findOne({_id: req.param('id')}, function(err, user) {
-		if (err || user.avatar == null) {
+		if (err || user == null || user.avatar == null) {
 			res.sendfile(avatarDestination + 'blankAvatar.png');
 		} else {
 			res.sendfile(avatarDestination + user.avatar);

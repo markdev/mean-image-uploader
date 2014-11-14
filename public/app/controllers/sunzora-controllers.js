@@ -10,7 +10,6 @@ angular
 	.controller('SunzoraHomepageCtrl', ['$scope', '$stateParams', '$rootScope', '$state', '$location', 'SunzoraFactory', function($scope, $stateParams, $rootScope, $state, $location, SunzoraFactory){
 		console.log('SunzoraHomepageCtrl loaded...');
 		if (jQuery.isEmptyObject($rootScope.currentUser)) {
-			console.log("It went back to SunzoraHomepageCtrl");
 			$state.go('login');
 		}
 	}])

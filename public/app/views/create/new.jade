@@ -1,0 +1,10 @@
+include includes/backButton
+
+h1 Create New Contest
+table.formTable(ng-controller="ContestCreateNewCtrl")
+	tr
+		td
+			label Title:
+		td
+			input(type="text" ng-model="title")
+

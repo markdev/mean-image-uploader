@@ -61,7 +61,12 @@ angular
 
 			.state('create.home', {
 				url: '',
-				templateUrl: '/views/create/main'
+				templateUrl: '/views/create/list'
+			})
+
+			.state('create.new', {
+				url: '/new',
+				templateUrl: '/views/create/new'
 			})
 
 			//////////////
