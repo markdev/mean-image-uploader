@@ -46,13 +46,21 @@ exports.edit = function(req, res, next) { // TODO this doesn't do anything usefu
 
 exports.deleteContest = function(req, res, next) {
 	console.log("called: contests.deleteContest");
-	Contest.remove({'_id': req.param('id')}, function(err) {
-		if (err) {
-			res.send({ success: false, message: "No contest with that id."});
-		} else {
-			res.send({ success: true });
-		}		
-	});
+	Contest.findOne({_id: req.param('id')}, function(err, contest) {
+		//delete the banner
+		if (contest.banner !== null) {
+			console.log("deleting banner: " + contest.banner);
+			fs.unlink(bannerDestination + contest.banner);
+		}
+		//now delete the document from mongo
+		Contest.remove({'_id': req.param('id')}, function(err) {
+			if (err) {
+				res.send({ success: false, message: "No contest with that id."});
+			} else {
+				res.send({ success: true });
+			}		
+		});
+	})
 }
 
 exports.getBanner = function(req, res, next) {
