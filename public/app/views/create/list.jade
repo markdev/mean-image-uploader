@@ -7,6 +7,5 @@ nav.bigLinks(ng-controller="ContestListCtrl")
 		li
 			div.menuItem
 				a(ui-sref="create.edit({id: '{{contest._id}}' })")
-					//img(ng-src="/api/user/avatar/{{currentUser._id}}")
 					img(ng-src="/api/contest/banner/{{contest._id}}") 
 					span {{ contest.title }}

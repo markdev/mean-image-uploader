@@ -33,6 +33,8 @@ div(ng-controller="ContestEditCtrl")
 				label Banner:
 			td
 				input(type="file" ng-file-select="onFileSelect($files)")
+				//img(ng-src="/api/contest/banner/{{contest._id}}") 
+				img(ng-src="{{ path }}")
 		tr
 			td
 				label Deadline:

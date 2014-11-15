@@ -44,14 +44,18 @@ angular
 			})
 	}])
 
-	.controller('ContestEditCtrl', ['$scope', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $upload, $stateParams, $state, $location, ContestFactory){
+	.controller('ContestEditCtrl', ['$scope', '$timeout', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $timeout, $upload, $stateParams, $state, $location, ContestFactory){
 		console.log('ContestEditCtrl loaded...');
 		$scope.id = $stateParams.id;
+		var path = 'http://127.0.0.1:3000';
 		ContestFactory.getContestById($scope.id)
 			.then(function(response) {
 				console.log(response);
 				$scope.contest = response.contest;
 				$scope.contest.tags = response.contest.tags.join(", ");
+				$timeout(function () {
+					$scope.path = path + '/api/contest/banner/' + $scope.contest._id;
+				}, 1000);
 			})
 		$scope.onFileSelect = function($files) {
 			for (var i = 0; i < $files.length; i++) {
