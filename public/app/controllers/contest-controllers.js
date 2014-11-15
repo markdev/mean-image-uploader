@@ -47,10 +47,13 @@ angular
 			};
 		getContests();
 		$scope.deleteContest = function(_id) {
-			ContestFactory.deleteContest(_id)
-				.then(function(contests) {
-					getContests();
-				})
+			var del = confirm("Are you sure you want to delete this contest?")
+			if (del == true) {
+				ContestFactory.deleteContest(_id)
+					.then(function(contests) {
+						getContests();
+					})				
+			}
 		}
 	}])
 
