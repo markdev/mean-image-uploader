@@ -8,7 +8,6 @@ angular
 		$scope.title = "Cat Pics";
 		$scope.tags = "Felines, Cats, Kitties";
 		$scope.rules = "Must be a cute kitty";
-		$scope.deadline = new Date();
 		$scope.months = [ {name: "Jan"}, {name: "Feb"}, {name: "Mar"}, {name: "Apr"}, {name: "May"}, {name: "Jun"}, {name: "Jul"}, {name: "Aug"}, {name: "Sep"}, {name: "Oct"}, {name: "Nov"}, {name: "Dec"} ];
 		$scope.myMonth = $scope.months[0];
 		$scope.days = [ {name: "1"}, {name: "2"}, {name: "3"}, {name: "4"}, {name: "5"}, {name: "6"}, {name: "7"}, {name: "8"}, {name: "9"}, {name: "10"}, {name: "11"}, {name: "12"}, {name: "13"}, {name: "14"}, {name: "15"}, {name: "16"}, {name: "17"}, {name: "18"}, {name: "19"}, {name: "20"}, {name: "21"}, {name: "22"}, {name: "23"}, {name: "24"}, {name: "25"}, {name: "26"}, {name: "27"}, {name: "28"}, {name: "29"}, {name: "30"}, {name: "31"} ];
@@ -20,15 +19,12 @@ angular
 		$scope.minutes = [ {name: "00"}, {name: "05"}, {name: "10"}, {name: "15"}, {name: "20"}, {name: "25"}, {name: "30"}, {name: "35"}, {name: "40"}, {name: "45"},{name: "50"},{name: "55"} ];
 		$scope.myMinute = $scope.minutes[0];
 		$scope.create = function() {
-			//Sat Nov 15 2014 03:57:34 GMT-0500 (EST)
 			var deadline = 'Sat ';
 			deadline += $scope.myMonth.name + ' ';
 			deadline += $scope.myDay.name + ' ';
 			deadline += $scope.myYear.name + ' ';
 			deadline += $scope.myHour.name + ':';
 			deadline += $scope.myMinute.name + ':00 GMT-0500 (EST)';
-			//console.log(deadline);
-			
 			var postData = {};
 			postData.title = $scope.title;
 			postData.deadline = deadline;
@@ -39,7 +35,6 @@ angular
 			postData.rules = $scope.rules;
 			ContestFactory.create(postData)
 				.then(function(data) {
-					//console.log(data);
 					if (data.success) {
 						$state.go('create.home');
 					} else {
@@ -79,15 +74,18 @@ angular
 	.controller('ContestEditCtrl', ['$scope', '$timeout', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $timeout, $upload, $stateParams, $state, $location, ContestFactory){
 		console.log('ContestEditCtrl loaded...');
 		$scope.id = $stateParams.id;
+		var imageUpdate = function() {
+			$timeout(function () {
+				$scope.path = path + '/api/contest/banner/' + $scope.contest._id;
+			}, 1000);
+		};
 		var path = 'http://127.0.0.1:3000'; // TODO change this obv
 		ContestFactory.getContestById($scope.id)
 			.then(function(response) {
 				console.log(response);
 				$scope.contest = response.contest;
 				$scope.contest.tags = response.contest.tags.join(", ");
-				$timeout(function () {
-					$scope.path = path + '/api/contest/banner/' + $scope.contest._id;
-				}, 1000);
+				imageUpdate();
 			})
 		$scope.onFileSelect = function($files) {
 			for (var i = 0; i < $files.length; i++) {
@@ -102,6 +100,7 @@ angular
 					console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
 				}).success(function(data, status, headers, config) {
         			console.log(data);
+        			imageUpdate();
       			});
 			}
 		};
