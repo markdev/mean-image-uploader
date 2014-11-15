@@ -54,12 +54,9 @@ angular
 				$scope.contest.tags = response.contest.tags.join(", ");
 			})
 		$scope.onFileSelect = function($files) {
-			ContestFactory.uploadBanner()
-				.then(function(response) {
-					console.log(response);
-				})
 			for (var i = 0; i < $files.length; i++) {
 				var file = $files[i];
+				console.log(file);
 				$scope.upload = $upload.upload({
 					method: 'POST',
 					url: '/api/contest/banner',
