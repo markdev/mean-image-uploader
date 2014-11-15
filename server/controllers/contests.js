@@ -23,9 +23,36 @@ exports.create = function(req, res, next) {
 	});
 }
 
-exports.edit = function(req, res, next) {
+exports.edit = function(req, res, next) { // TODO this doesn't do anything useful yet
 	console.log("called: contests.edit");
-	res.send({ success: true });
+	var contestData = req.body;
+	console.log(contestData);
+	Contest.findByIdAndUpdate(
+		contestData._id,
+		{$set: {
+			"title": contestData.title,
+			"tags": contestData.tags
+		}},
+		{safe: true, upsert: true},
+		function(err, contest) {
+			if (err) {
+				res.send({success: false, message: "Error inserting score"});
+			} else {
+				res.send({success: true, contest: contest});
+			}
+		}	
+	)
+}
+
+exports.deleteContest = function(req, res, next) {
+	console.log("called: contests.deleteContest");
+	Contest.remove({'_id': req.param('id')}, function(err) {
+		if (err) {
+			res.send({ success: false, message: "No contest with that id."});
+		} else {
+			res.send({ success: true });
+		}		
+	});
 }
 
 exports.getBanner = function(req, res, next) {

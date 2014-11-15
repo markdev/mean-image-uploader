@@ -18,7 +18,7 @@ var entrySchema = mongoose.Schema({
 
 var contestSchema = mongoose.Schema({
 	  _owner: 			{ type: Schema.ObjectId, ref: 'userSchema', required: true }
-	, created: 			{ type : Date, default: Date.now }
+	, created: 			{ type: Date, default: Date.now }
 	, title: 			{ type: String, required: true }
 	, banner:  			{ type: String, default: null }
 	, rules: 			{ type: String }

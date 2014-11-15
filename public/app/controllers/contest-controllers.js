@@ -43,12 +43,18 @@ angular
 					console.log("fail");
 				}		
 			})
+		$scope.deleteContest = function(_id) {
+			ContestFactory.deleteContest(_id)
+				.then(function(contests) {
+					console.log(contests);
+				})
+		}
 	}])
 
 	.controller('ContestEditCtrl', ['$scope', '$timeout', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $timeout, $upload, $stateParams, $state, $location, ContestFactory){
 		console.log('ContestEditCtrl loaded...');
 		$scope.id = $stateParams.id;
-		var path = 'http://127.0.0.1:3000';
+		var path = 'http://127.0.0.1:3000'; // TODO change this obv
 		ContestFactory.getContestById($scope.id)
 			.then(function(response) {
 				console.log(response);
@@ -75,6 +81,16 @@ angular
 			}
 		};
 		$scope.update = function() {
-			console.log("updating");
+			var postData = {};
+			postData._id = $scope.id;
+			postData.title = $scope.contest.title;
+			postData.tags = [];
+			$.each($scope.contest.tags.split(','), function() {
+    			postData.tags.push($.trim(this).toLowerCase());
+			});
+			ContestFactory.edit(postData)
+				.then(function(response) {
+					console.log(response);
+				})
 		}
 	}])

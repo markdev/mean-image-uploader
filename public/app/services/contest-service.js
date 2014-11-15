@@ -21,6 +21,28 @@ angular
 			return deferred.promise;
 		}
 
+		ContestFactory.edit = function(postData) {
+			console.log("Edit contest");
+			var deferred = $q.defer(postData);
+			$http.put(urlBase, postData)
+				.success(function(contest) {
+					console.log("SUCCESS!")
+					deferred.resolve(contest)
+				})
+			return deferred.promise;
+		}
+
+		ContestFactory.deleteContest = function(_id) {
+			console.log("Deleting contest");
+			var deferred = $q.defer();
+			$http.delete(urlBase + "/" + _id)
+				.success(function(contest) {
+					console.log("SUCCESS!")
+					deferred.resolve(contest)
+				})
+			return deferred.promise;
+		}
+
 		ContestFactory.getContestsByOwner = function() {
 			console.log("Getting contests by owner");
 			var deferred = $q.defer();
