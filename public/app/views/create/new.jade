@@ -14,11 +14,6 @@ table.formTable(ng-controller="ContestCreateNewCtrl")
 			input(type="text" ng-model="tags")
 	tr
 		td
-			label Banner:
-		td
-			input(type="file" ng-file-select="onFileSelect($files)")
-	tr
-		td
 			label Rules:
 		td
 			textarea(ng-model="rules")
@@ -26,7 +21,13 @@ table.formTable(ng-controller="ContestCreateNewCtrl")
 		td
 			label Deadline:
 		td
-			input(type="text" ng-model="deadline")
+			select(ng-model="myMonth" ng-options='month.name for month in months')
+			select(ng-model="myDay" ng-options='day.name for day in days')
+			select(ng-model="myYear" ng-options='year.name for year in years')
+			br
+			select(ng-model="myHour" ng-options='hour.name for hour in hours')
+			span :
+			select(ng-model="myMinute" ng-options='minute.name for minute in minutes')
 	tr
 		td(colspan="2")
 			button(ng-click="create()") Create Contest
