@@ -8,10 +8,11 @@ angular
 		$scope.title = "Cat Pics";
 		$scope.tags = "Felines, Cats, Kitties";
 		$scope.rules = "Must be a cute kitty";
-		$scope.deadline = "12/1/2014";
+		$scope.deadline = new Date();
 		$scope.create = function() {
 			var postData = {};
 			postData.title = $scope.title;
+			postData.deadline = $scope.deadline;
 			postData.tags = [];
 			$.each($scope.tags.split(','), function() {
     			postData.tags.push($.trim(this).toLowerCase());
