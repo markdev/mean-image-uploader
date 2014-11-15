@@ -8,6 +8,8 @@ angular
 		$scope.title = "Cat Pics";
 		$scope.tags = "Felines, Cats, Kitties";
 		$scope.rules = "Must be a cute kitty";
+		$scope.submissionAvailability = "owner";
+		$scope.submissionLimit = "many";
 		$scope.months = [ {name: "Jan"}, {name: "Feb"}, {name: "Mar"}, {name: "Apr"}, {name: "May"}, {name: "Jun"}, {name: "Jul"}, {name: "Aug"}, {name: "Sep"}, {name: "Oct"}, {name: "Nov"}, {name: "Dec"} ];
 		$scope.myMonth = $scope.months[0];
 		$scope.days = [ {name: "1"}, {name: "2"}, {name: "3"}, {name: "4"}, {name: "5"}, {name: "6"}, {name: "7"}, {name: "8"}, {name: "9"}, {name: "10"}, {name: "11"}, {name: "12"}, {name: "13"}, {name: "14"}, {name: "15"}, {name: "16"}, {name: "17"}, {name: "18"}, {name: "19"}, {name: "20"}, {name: "21"}, {name: "22"}, {name: "23"}, {name: "24"}, {name: "25"}, {name: "26"}, {name: "27"}, {name: "28"}, {name: "29"}, {name: "30"}, {name: "31"} ];
@@ -26,8 +28,10 @@ angular
 			deadline += $scope.myHour.name + ':';
 			deadline += $scope.myMinute.name + ':00 GMT-0500 (EST)';
 			var postData = {};
-			postData.title = $scope.title;
 			postData.deadline = deadline;
+			postData.title = $scope.title;
+			postData.submissionAvailability = $scope.submissionAvailability;
+			postData.submissionLimit = $scope.submissionLimit;
 			postData.tags = [];
 			$.each($scope.tags.split(','), function() {
     			postData.tags.push($.trim(this).toLowerCase());

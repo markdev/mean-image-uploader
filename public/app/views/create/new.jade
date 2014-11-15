@@ -29,6 +29,24 @@ table.formTable(ng-controller="ContestCreateNewCtrl")
 			span :
 			select(ng-model="myMinute" ng-options='minute.name for minute in minutes')
 	tr
+		td
+			label Who can submit:
+		td
+			input(type="radio" ng-model="submissionAvailability" value="owner" checked)
+			label Just me
+			br
+			input(type="radio" ng-model="submissionAvailability" value="public")
+			label Others
+	tr(ng-show="submissionAvailability == 'public'")
+		td
+			label # of Entries:
+		td
+			input(type="radio" ng-model="submissionLimit" value="one" checked)
+			label Just one
+			br
+			input(type="radio" ng-model="submissionLimit" value="many")
+			label Unlimited
+	tr
 		td(colspan="2")
 			button(ng-click="create()") Create Contest
 

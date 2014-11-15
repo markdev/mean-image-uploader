@@ -17,18 +17,19 @@ var entrySchema = mongoose.Schema({
 });
 
 var contestSchema = mongoose.Schema({
-	  _owner: 			{ type: Schema.ObjectId, ref: 'userSchema', required: true }
-	, created: 			{ type: Date, default: Date.now }
-	, title: 			{ type: String, required: true }
-	, banner:  			{ type: String, default: null }
-	, rules: 			{ type: String }
-	, tags: 			{ type: [ String ] }
-	, deadline: 		{ type: Date }
-	, competition: 		{ type: String, enum: ['justMe', 'public'] }
-	, judging: 			{ type: String, enum: ['public'] }
-	, competitors: 		[ { type: ObjectId, ref: 'User'} ]
-	, judges: 			[ { type: ObjectId, ref: 'User'} ]
-	, entries: 			[ { type: ObjectId, ref: 'Entry'} ]
+	  _owner: 					{ type: Schema.ObjectId, ref: 'userSchema', required: true }
+	, created: 					{ type: Date, default: Date.now }
+	, title: 					{ type: String, required: true }
+	, banner:  					{ type: String, default: null }
+	, rules: 					{ type: String }
+	, tags: 					{ type: [ String ] }
+	, deadline: 				{ type: Date }
+	, submissionAvailability: 	{ type: String, enum: ['owner', 'public'], default: 'owner' }
+	, submissionLimit: 			{ type: String, enum: ['one', 'many'], default: 'many' }
+	, judging: 					{ type: String, enum: ['public'] }
+	, competitors: 				[ { type: ObjectId, ref: 'User'} ]
+	, judges: 					[ { type: ObjectId, ref: 'User'} ]
+	, entries: 					[ { type: ObjectId, ref: 'Entry'} ]
 });
 
 
