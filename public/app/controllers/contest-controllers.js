@@ -33,20 +33,23 @@ angular
 	.controller('ContestListCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
 		console.log('ContestListCtrl loaded...');
 		$scope.contests = [];
-		ContestFactory.getContestsByOwner()
-			.then(function(contests) {
-				//console.log(data);
-				if (contests.success) {
-					console.log(contests);
-					$scope.contests = contests.contests;
-				} else {
-					console.log("fail");
-				}		
-			})
+		var getContests = function() {
+			ContestFactory.getContestsByOwner()
+				.then(function(contests) {
+					//console.log(data);
+					if (contests.success) {
+						console.log(contests);
+						$scope.contests = contests.contests;
+					} else {
+						console.log("fail");
+					}		
+				})
+			};
+		getContests();
 		$scope.deleteContest = function(_id) {
 			ContestFactory.deleteContest(_id)
 				.then(function(contests) {
-					console.log(contests);
+					getContests();
 				})
 		}
 	}])
