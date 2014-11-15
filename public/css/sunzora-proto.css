@@ -49,6 +49,9 @@ header.main {
       height: 4.5em;
       background-size: 100% 100%;
       background-image: url("/img/icons/sunzorawhite.png"); }
+      header.main nav a.title:hover {
+        background-image: url("/img/icons/sunzoragray.png");
+        cursor: pointer; }
     header.main nav div.welcomeUser {
       display: block;
       float: left;
@@ -66,6 +69,9 @@ header.main {
       height: 5em;
       background-size: 100% 100%;
       background-image: url("/img/icons/searchwhite.png"); }
+      header.main nav a.search:hover {
+        background-image: url("/img/icons/searchgray.png");
+        cursor: pointer; }
 
 section.mainBody {
   padding-top: 7em;

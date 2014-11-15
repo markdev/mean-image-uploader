@@ -49,11 +49,25 @@ angular
 			})
 
 			//////////////
+			.state('search', {
+				  abstract: true
+				, url: '/search'
+				, templateUrl: '/views/default'
+				, controller: function($scope) {
+					$scope.title = 'search';
+				}
+			})
+
+			.state('search.home', {
+				  url: ''
+				, templateUrl: '/views/search/main'
+			})
+
+			//////////////
 			.state('create', {
 				  abstract: true
 				, url: '/create'
 				, templateUrl: '/views/default'
-				//, controller: 'SunzoraCtrl'
 				, controller: function($scope) {
 					$scope.title = 'create';
 				}
