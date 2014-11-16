@@ -24,8 +24,8 @@ var contestSchema = mongoose.Schema({
 	, rules: 					{ type: String }
 	, tags: 					{ type: [ String ] }
 	, deadline: 				{ type: Date }
-	, submissionAvailability: 	{ type: String, enum: ['owner', 'public'], default: 'owner' }
-	, submissionLimit: 			{ type: String, enum: ['one', 'many'], default: 'many' }
+	, submissionAvailability: 	{ type: String, enum: ["owner", "public"], default: "owner" }
+	, submissionLimit: 			{ type: String, enum: ["one", "many"], default: "many" }
 	, judging: 					{ type: String, enum: ['public'] }
 	, competitors: 				[ { type: ObjectId, ref: 'User'} ]
 	, judges: 					[ { type: ObjectId, ref: 'User'} ]

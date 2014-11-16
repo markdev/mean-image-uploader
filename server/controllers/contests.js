@@ -66,7 +66,6 @@ exports.deleteContest = function(req, res, next) {
 exports.getBanner = function(req, res, next) {
 	Contest.findOne({_id: req.param('id')}, function(err, contest) {
 		console.log("contest banner:");
-		console.log(contest.banner);
 		if (err || contest == null || contest.banner == null) {
 			res.sendfile(bannerDestination + 'blankBanner.png');
 		} else {
