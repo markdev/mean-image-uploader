@@ -75,6 +75,7 @@ header.main {
 
 section.mainBody {
   padding-top: 7em;
+  padding-bottom: 7em;
   width: 40em;
   margin: auto; }
   section.mainBody h1.title {
@@ -86,6 +87,16 @@ section.mainBody {
       padding: .5em 0em; }
       section.mainBody nav.bigLinks ul div.menuItem a {
         text-decoration: none; }
+  section.mainBody input#searchBar {
+    display: block;
+    float: left;
+    width: 20em;
+    height: 1.6em;
+    font-size: 1.5em;
+    margin: 0 auto; }
+  section.mainBody button#searchButton {
+    height: 4em;
+    border: none; }
 
 footer.main {
   position: fixed;

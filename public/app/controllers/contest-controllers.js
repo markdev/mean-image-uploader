@@ -48,6 +48,16 @@ angular
 		};
 	}])
 
+	.controller('ContestSearchCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
+		console.log('ContestSearchCtrl loaded...');
+		$scope.find = function() {
+			ContestFactory.getContestByString($scope.searchStr)
+				.then(function(contests) {
+					console.log(contests);
+				})
+		}
+	}])
+
 	.controller('ContestListCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
 		console.log('ContestListCtrl loaded...');
 		$scope.contests = [];
