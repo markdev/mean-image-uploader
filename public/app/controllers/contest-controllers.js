@@ -50,8 +50,10 @@ angular
 
 	.controller('ContestSearchCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
 		console.log('ContestSearchCtrl loaded...');
-		$scope.contests = [{"_id" : 0, "title" : "no contests yet"}];
+		//$scope.contests = [{"_id" : 0, "title" : "no contests yet"}];
+		$scope.contests = [];
 		$scope.find = function() {
+			console.log("FIND");
 			ContestFactory.getContestByString($scope.searchStr)
 				.then(function(contests) {
 					console.log(contests);

@@ -1,6 +1,6 @@
 h1 Search for contests
 div(ng-controller="ContestSearchCtrl")
-	input(type="text" id="searchBar" ng-model="searchStr")
+	input(type="text" id="searchBar" ng-keyup="find()" ng-model="searchStr")
 	button(ng-click="find()" id="searchButton") Find by title and tag
 	br
 
