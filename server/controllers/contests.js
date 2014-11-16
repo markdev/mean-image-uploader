@@ -119,6 +119,22 @@ exports.getByTag = function(req, res, next) {
 	});
 }
 
+exports.getByTagOrName = function(req, res, next) {
+	console.log("called: contests.getByTagOrName");
+	var re = new RegExp(req.param('str'), 'i');
+	Contest.find({ 
+		$or: [
+			{tags: { $in: [req.param('str')] }},
+			{title: {$regex: re}}
+			]}, function(err, contests) {
+		if (err) {
+			res.send({ success: false, message: "No contests with that tag or name."});
+		} else {
+			res.send({ success: true, contests: contests });
+		}
+	});
+}
+
 exports.getByUser = function(req, res, next) {
 	console.log("called: contests.getByUser");
 	Contest.find({ tags: { $in: [req.param('slug')] }}, function(err, contests) {

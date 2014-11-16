@@ -46,7 +46,7 @@ angular
 		ContestFactory.getContestByString = function(str) {
 			console.log("Getting contests by string");
 			var deferred = $q.defer();
-			$http.get(urlBase + "/byName/" + str)
+			$http.get(urlBase + "/byString/" + str)
 				.success(function(contest) {
 					console.log("SUCCESS!")
 					deferred.resolve(contest)
