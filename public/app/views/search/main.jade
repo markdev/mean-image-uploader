@@ -8,7 +8,7 @@ div(ng-controller="ContestSearchCtrl")
 		ul(class="bigItemList" ng-repeat="contest in contests")
 			li
 				div.menuItem
-					a(ui-sref="create.edit({id: '{{contest._id}}' })")
+					a(ui-sref="contest.join({id: '{{contest._id}}' })")
 						img(ng-src="/api/contest/banner/{{contest._id}}") 
 					span {{ contest.title }}
 

@@ -63,6 +63,7 @@ angular
 				, templateUrl: '/views/search/main'
 			})
 
+
 			//////////////
 			.state('create', {
 				  abstract: true
@@ -86,6 +87,22 @@ angular
 			.state('create.edit', {
 				  url: '/edit/:id'
 				, templateUrl: '/views/create/edit'
+			})
+
+
+			//////////////
+			.state('contest', {
+				  abstract: true
+				, url: '/contest'
+				, templateUrl: '/views/default'
+				, controller: function($scope) {
+					$scope.title = 'contest';
+				}
+			})
+
+			.state('contest.join', {
+				  url: '/join/:id'
+				, templateUrl: '/views/contest/join'
 			})
 
 			//////////////

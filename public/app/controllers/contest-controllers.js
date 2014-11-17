@@ -50,7 +50,6 @@ angular
 
 	.controller('ContestSearchCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
 		console.log('ContestSearchCtrl loaded...');
-		//$scope.contests = [{"_id" : 0, "title" : "no contests yet"}];
 		$scope.contests = [];
 		$scope.find = function() {
 			console.log("FIND");
@@ -133,6 +132,7 @@ angular
 			ContestFactory.edit(postData)
 				.then(function(response) {
 					console.log(response);
+					$state.go("create.home");
 				})
 		}
 	}])
