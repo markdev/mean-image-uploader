@@ -211,4 +211,21 @@ angular
 		$scope.submit = function() {
 			console.log("submission");
 		};
+		$scope.onFileSelect = function($files) {
+			for (var i = 0; i < $files.length; i++) {
+				var file = $files[i];
+				console.log(file);
+				$scope.upload = $upload.upload({
+					method: 'POST',
+					url: '/api/contest/banner',
+					data: { id: $scope.contest._id },
+					file: file
+				}).progress(function(evt) {
+					console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+				}).success(function(data, status, headers, config) {
+        			console.log(data);
+        			imageUpdate();
+      			});
+			}
+		};
 	}])
