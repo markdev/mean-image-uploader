@@ -8,6 +8,7 @@ var mongoose = require('mongoose')
 var entrySchema = mongoose.Schema({
 	  _owner: 			{ type: Schema.ObjectId, ref: 'userSchema' }
 	, created: 			{ type: Date, default: Date.now }
+	, title: 			{ type: String, default: null }
 	, content: 			{ type: String, default: null }
 	, ratings: 			[ {
 		  _owner: 		{ type: Schema.ObjectId, ref: 'User' }

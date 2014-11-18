@@ -204,3 +204,11 @@ angular
 				})
 		};
 	}])
+
+	.controller('EntrySubmitCtrl', ['$scope', '$rootScope', '$timeout', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $rootScope, $timeout, $upload, $stateParams, $state, $location, ContestFactory){
+		console.log('EntrySubmitCtrl loaded...');
+		$scope.title = "My title";
+		$scope.submit = function() {
+			console.log("submission");
+		};
+	}])
