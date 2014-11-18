@@ -65,6 +65,28 @@ angular
 			return deferred.promise;			
 		}
 
+		ContestFactory.getContestsByJudge = function() {
+			console.log("Getting contests by judge");
+			var deferred = $q.defer();
+			$http.get(urlBase + "/byJudge/" + $rootScope.currentUser._id)
+				.success(function(contest) {
+					console.log("SUCCESS!")
+					deferred.resolve(contest)
+				})
+			return deferred.promise;			
+		}
+
+		ContestFactory.getContestsByCompetitor = function() {
+			console.log("Getting contests by competitor");
+			var deferred = $q.defer();
+			$http.get(urlBase + "/byCompetitor/" + $rootScope.currentUser._id)
+				.success(function(contest) {
+					console.log("SUCCESS!")
+					deferred.resolve(contest)
+				})
+			return deferred.promise;			
+		}
+
 		ContestFactory.getContestById = function(id) {
 			console.log("Getting contest by id");
 			var deferred = $q.defer();

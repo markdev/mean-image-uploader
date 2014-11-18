@@ -161,6 +161,11 @@ angular
 				, templateUrl: '/views/compete/submit'
 			})
 
+			.state('compete.status', {
+				  url: '/status/:id'
+				, templateUrl: '/views/compete/playByPlay'
+			})
+
 			//////////////
 			.state('settings', {
 				  abstract: true

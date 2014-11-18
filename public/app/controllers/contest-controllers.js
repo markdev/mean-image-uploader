@@ -88,6 +88,42 @@ angular
 		}
 	}])
 
+	.controller('ContestJudgeListCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
+		console.log('ContestJudgeListCtrl loaded...');
+		$scope.contests = [];
+		var getContests = function() {
+			ContestFactory.getContestsByJudge()
+				.then(function(contests) {
+					//console.log(data);
+					if (contests.success) {
+						console.log(contests);
+						$scope.contests = contests.contests;
+					} else {
+						console.log("fail");
+					}		
+				})
+			};
+		getContests();
+	}])
+
+	.controller('ContestCompeteListCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
+		console.log('ContestCompeteListCtrl loaded...');
+		$scope.contests = [];
+		var getContests = function() {
+			ContestFactory.getContestsByCompetitor()
+				.then(function(contests) {
+					//console.log(data);
+					if (contests.success) {
+						console.log(contests);
+						$scope.contests = contests.contests;
+					} else {
+						console.log("fail");
+					}		
+				})
+			};
+		getContests();
+	}])
+
 	.controller('ContestEditCtrl', ['$scope', '$timeout', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $timeout, $upload, $stateParams, $state, $location, ContestFactory){
 		console.log('ContestEditCtrl loaded...');
 		$scope.id = $stateParams.id;

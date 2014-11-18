@@ -1,1 +1,9 @@
-h1 competition
+h1.title Here are the contests I'm competing in:
+nav.bigLinks(ng-controller="ContestCompeteListCtrl")
+	ul(class="bigItemList" ng-repeat="contest in contests")
+		li
+			div.menuItem
+				a(ui-sref="compete.status({id: '{{contest._id}}' })")
+					img(ng-src="/api/contest/banner/{{contest._id}}") 
+				span {{ contest.title }}
+				//button(ng-click="deleteContest('{{contest._id}}')") Delete {{ contest.title }}

@@ -1,1 +1,9 @@
-h1 judging
+h1.title Here are the contests I'm judging:
+nav.bigLinks(ng-controller="ContestJudgeListCtrl")
+	ul(class="bigItemList" ng-repeat="contest in contests")
+		li
+			div.menuItem
+				a(ui-sref="judge.contest({id: '{{contest._id}}' })")
+					img(ng-src="/api/contest/banner/{{contest._id}}") 
+				span {{ contest.title }}
+				//button(ng-click="deleteContest('{{contest._id}}')") Delete {{ contest.title }}
