@@ -153,4 +153,18 @@ angular
 			.then(function(judgeState) {
 				$scope.judgeState = judgeState;
 			})
+		$scope.judgeContest = function() {
+			ContestFactory.addJudge($stateParams.id, $rootScope.currentUser._id)
+				.then(function(result) {
+					//console.log(result);
+					$state.go("judge.contest", {id: $stateParams.id });
+				})
+		};
+		$scope.competeInContest = function() {
+			ContestFactory.addCompetitor($stateParams.id, $rootScope.currentUser._id)
+				.then(function(result) {
+					//console.log(result);
+					$state.go("compete.submitEntry", {id: $stateParams.id });
+				})
+		};
 	}])

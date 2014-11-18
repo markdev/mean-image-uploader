@@ -55,8 +55,8 @@ module.exports = function(app) {
 	app.get('/api/contest/byCompetitor/:slug'	, api.contests.getByCompetitor);
 	app.get('/api/contest/byJudge/:slug'	, api.contests.getByJudge);
 	app.del('/api/contest/:slug'		, api.contests.endContest);
-	app.post('/api/contest/compete'		, api.contests.compete);
-	app.post('/api/contest/judge'		, api.contests.judge);
+	app.post('/api/contest/compete'		, api.contests.addCompetitor);
+	app.post('/api/contest/judge'		, api.contests.addJudge);
 	app.post('/api/contest/entry'		, api.contests.addEntry);
 	app.post('/api/contest/rating' 		, api.contests.addRating);
 	app.get('/api/contest/banner/:id?' 	, api.contests.getBanner);

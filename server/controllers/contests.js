@@ -174,7 +174,7 @@ exports.endContest = function(req, res, next) {
 	res.send({ success: true, slug: req.param('slug') });
 }
 
-exports.compete = function(req, res, next) {
+exports.addCompetitor = function(req, res, next) {
 	console.log("called: contests.compete");
 	Contest.findByIdAndUpdate(
 		req.body.contest,
@@ -190,7 +190,7 @@ exports.compete = function(req, res, next) {
 	);
 }
 
-exports.judge = function(req, res, next) {
+exports.addJudge = function(req, res, next) {
 	console.log("called: contests.judge");
 	Contest.findByIdAndUpdate(
 		req.body.contest,
@@ -285,8 +285,6 @@ exports.addRating = function(req, res, next) {
 }
 
 exports.getJudgeState = function(req, res, next) {
-	//console.log(req.param('contest'));
-	//console.log(req.param('user'));
 	Contest.findOne({_id: req.param('contest')}, function(err, contest) {
 		//cannot
 		if (contest.judging != "public") {
@@ -306,11 +304,20 @@ exports.getJudgeState = function(req, res, next) {
 }
 
 exports.getCompeteState = function(req, res, next) {
-	//console.log(req.param('contest'));
-	//console.log(req.param('user'));
 	Contest.findOne({_id: req.param('contest')}, function(err, contest) {
-		console.log(contest);
+		//cannot
+		if (true) {
+			console.log("competing: cannot");
+			res.send({success: true, state: "cannot"});		
+		//can
+		} else if (true) {
+			console.log("competing: can");
+			res.send({success: true, state: "can"});
+		//already
+		} else if (contest.competitors.indexOf(req.param('user')) !== -1) {
+			console.log("competing: already");
+			res.send({success: true, state: "already"});
+		}
 	});
-	res.send({success: true, state: "can"});
 }
 

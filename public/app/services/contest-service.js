@@ -109,6 +109,34 @@ angular
 			return deferred.promise;			
 		}
 
+		ContestFactory.addJudge = function(contestId, userId) {
+			console.log("adding a judge");
+			var postData = {};
+			postData.user = userId;
+			postData.contest = contestId;
+			var deferred = $q.defer(postData);
+			$http.post(urlBase + "/judge", postData)
+				.success(function(response) {
+					console.log("SUCCESS!");
+					deferred.resolve(response);
+				})
+			return deferred.promise;			
+		}
+
+		ContestFactory.addCompetitor = function(contestId, userId) {
+			console.log("adding a competitor");
+			var postData = {};
+			postData.user = userId;
+			postData.contest = contestId;
+			var deferred = $q.defer(postData);
+			$http.post(urlBase + "/compete", postData)
+				.success(function(response) {
+					console.log("SUCCESS!");
+					deferred.resolve(response);
+				})
+			return deferred.promise;			
+		}
+
 		return ContestFactory;
 	}])
 	;

@@ -117,8 +117,8 @@ angular
 			})
 
 			.state('messages.home', {
-				url: '',
-				templateUrl: '/views/messages/main'
+				  url: ''
+				, templateUrl: '/views/messages/main'
 			})
 
 			//////////////
@@ -132,8 +132,13 @@ angular
 			})
 
 			.state('judge.home', {
-				url: '',
-				templateUrl: '/views/judge/main'
+				  url: ''
+				, templateUrl: '/views/judge/main'
+			})
+
+			.state('judge.contest', {
+				  url: '/:id'
+				, templateUrl: '/views/judge/contest'
 			})
 
 			//////////////
@@ -147,8 +152,13 @@ angular
 			})
 
 			.state('compete.home', {
-				url: '',
-				templateUrl: '/views/compete/main'
+				  url: ''
+				, templateUrl: '/views/compete/main'
+			})
+
+			.state('compete.submitEntry', {
+				  url: '/submit/:id'
+				, templateUrl: '/views/compete/submit'
 			})
 
 			//////////////
