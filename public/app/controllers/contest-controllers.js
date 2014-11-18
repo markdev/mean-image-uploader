@@ -136,3 +136,21 @@ angular
 				})
 		}
 	}])
+
+	.controller('ContestJoinCtrl', ['$scope', '$rootScope', '$timeout', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $rootScope, $timeout, $upload, $stateParams, $state, $location, ContestFactory){
+		console.log('ContestJoinCtrl loaded...');
+		// possible states for competeState and judgeState:
+		// 'already'
+		// 'can'
+		// 'cannot'
+		$scope.competeState = 'cannot';
+		$scope.judgeState = 'cannot';
+		ContestFactory.getCompeteStateByUser($stateParams.id, $rootScope.currentUser)
+			.then(function(competeState) {
+				$scope.competeState = competeState;
+			})
+		ContestFactory.getJudgeStateByUser($stateParams.id, $rootScope.currentUser)
+			.then(function(judgeState) {
+				$scope.judgeState = judgeState;
+			})
+	}])

@@ -87,6 +87,28 @@ angular
 			return deferred.promise;			
 		}
 
+		ContestFactory.getCompeteStateByUser = function(contestId, userId) {
+			console.log("getting compete state by user");
+			var deferred = $q.defer();
+			$http.get(urlBase + "/byId/" + contestId)
+				.success(function(response) {
+					console.log("SUCCESS!");
+					deferred.resolve("can");
+				})
+			return deferred.promise;			
+		}
+
+		ContestFactory.getJudgeStateByUser = function(contestId, userId) {
+			console.log("getting judge state by user");
+			var deferred = $q.defer();
+			$http.get(urlBase + "/byId/" + contestId)
+				.success(function(response) {
+					console.log("SUCCESS!");
+					deferred.resolve("can");
+				})
+			return deferred.promise;			
+		}
+
 		return ContestFactory;
 	}])
 	;

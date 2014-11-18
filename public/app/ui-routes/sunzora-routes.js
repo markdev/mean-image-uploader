@@ -37,15 +37,15 @@ angular
 			})
 
 			.state('logout', {
-				url: '/logout',
+				  url: '/logout'
 				//templateUrl: '/views/login'
-				controller: 'UserLogoutCtrl'
+				, controller: 'UserLogoutCtrl'
 			})
 
 			.state('signup', {
-				url: '/signup',
-				templateUrl: '/views/signupview',
-				controller: 'UserLogoutCtrl'
+				  url: '/signup'
+				, templateUrl: '/views/signupview'
+				, controller: 'UserLogoutCtrl'
 			})
 
 			//////////////
@@ -103,6 +103,7 @@ angular
 			.state('contest.join', {
 				  url: '/join/:id'
 				, templateUrl: '/views/contest/join'
+				, controller: 'ContestJoinCtrl'
 			})
 
 			//////////////

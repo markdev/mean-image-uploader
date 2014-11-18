@@ -50,7 +50,7 @@ module.exports = function(app) {
 	app.get('/api/contest/byId/:slug' 	, api.contests.getBySlug);
 	app.get('/api/contest/byName/:str' 	, api.contests.getByNameStr);
 	app.get('/api/contest/byTag/:tag'	, api.contests.getByTag);
-	app.get('/api/contest/byString/:str' 	, api.contests.getByTagOrName);
+	app.get('/api/contest/byString/:str' 	, requireLogin(), api.contests.getByTagOrName);
 	app.get('/api/contest/byCreator/:slug'	, api.contests.getByUser);
 	app.get('/api/contest/byCompetitor/:slug'	, api.contests.getByCompetitor);
 	app.get('/api/contest/byJudge/:slug'	, api.contests.getByJudge);
