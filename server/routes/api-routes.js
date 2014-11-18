@@ -61,6 +61,8 @@ module.exports = function(app) {
 	app.post('/api/contest/rating' 		, api.contests.addRating);
 	app.get('/api/contest/banner/:id?' 	, api.contests.getBanner);
 	app.post('/api/contest/banner' 		, api.contests.uploadBanner);
+	app.get('/api/contest/judgeState/:contest/:user', api.contests.getJudgeState);
+	app.get('/api/contest/competeState/:contest/:user', api.contests.getCompeteState);
 
 	// get new entry for this contest
 	// rate entry

@@ -26,10 +26,10 @@ var contestSchema = mongoose.Schema({
 	, deadline: 				{ type: Date }
 	, submissionAvailability: 	{ type: String, enum: ["owner", "public"], default: "owner" }
 	, submissionLimit: 			{ type: String, enum: ["one", "many"], default: "many" }
-	, judging: 					{ type: String, enum: ['public'] }
-	, competitors: 				[ { type: ObjectId, ref: 'User'} ]
-	, judges: 					[ { type: ObjectId, ref: 'User'} ]
-	, entries: 					[ { type: ObjectId, ref: 'Entry'} ]
+	, judging: 					{ type: String, enum: ["public"], default: "public" }
+	, competitors: 				[ { type: ObjectId, ref: "User"} ]
+	, judges: 					[ { type: ObjectId, ref: "User"} ]
+	, entries: 					[ { type: ObjectId, ref: "Entry"} ]
 });
 
 

@@ -90,10 +90,10 @@ angular
 		ContestFactory.getCompeteStateByUser = function(contestId, userId) {
 			console.log("getting compete state by user");
 			var deferred = $q.defer();
-			$http.get(urlBase + "/byId/" + contestId)
+			$http.get(urlBase + "/competeState/" + contestId + "/" + userId)
 				.success(function(response) {
 					console.log("SUCCESS!");
-					deferred.resolve("can");
+					deferred.resolve(response.state);
 				})
 			return deferred.promise;			
 		}
@@ -101,10 +101,10 @@ angular
 		ContestFactory.getJudgeStateByUser = function(contestId, userId) {
 			console.log("getting judge state by user");
 			var deferred = $q.defer();
-			$http.get(urlBase + "/byId/" + contestId)
+			$http.get(urlBase + "/judgeState/" + contestId + "/" + userId)
 				.success(function(response) {
 					console.log("SUCCESS!");
-					deferred.resolve("can");
+					deferred.resolve(response.state);
 				})
 			return deferred.promise;			
 		}

@@ -145,11 +145,11 @@ angular
 		// 'cannot'
 		$scope.competeState = 'cannot';
 		$scope.judgeState = 'cannot';
-		ContestFactory.getCompeteStateByUser($stateParams.id, $rootScope.currentUser)
+		ContestFactory.getCompeteStateByUser($stateParams.id, $rootScope.currentUser._id)
 			.then(function(competeState) {
 				$scope.competeState = competeState;
 			})
-		ContestFactory.getJudgeStateByUser($stateParams.id, $rootScope.currentUser)
+		ContestFactory.getJudgeStateByUser($stateParams.id, $rootScope.currentUser._id)
 			.then(function(judgeState) {
 				$scope.judgeState = judgeState;
 			})

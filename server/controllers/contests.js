@@ -6,6 +6,7 @@ var Contest = require('mongoose').model('Contest')
 //  , util = require('util')
   , lwip = require('lwip')
 //  , nodemailer = require('nodemailer');
+//  , jquery = require('jquery')
   ;
 
 var bannerDestination = 'public/img/contestBanners/';
@@ -281,5 +282,35 @@ exports.addRating = function(req, res, next) {
 			}
 		}		
 	);
+}
+
+exports.getJudgeState = function(req, res, next) {
+	//console.log(req.param('contest'));
+	//console.log(req.param('user'));
+	Contest.findOne({_id: req.param('contest')}, function(err, contest) {
+		//cannot
+		if (contest.judging != "public") {
+			console.log("judging: cannot");
+			res.send({success: true, state: "cannot"});
+		//can
+		} else if (contest.judging == "public" 
+			&& contest.judges.indexOf(req.param('user')) === -1) {
+			console.log("judging: can");
+			res.send({success: true, state: "can"});
+		//already
+		} else if (contest.judges.indexOf(req.param('user')) !== -1) { 
+			console.log("judging: already");
+			res.send({success: true, state: "already"});			
+		}
+	});
+}
+
+exports.getCompeteState = function(req, res, next) {
+	//console.log(req.param('contest'));
+	//console.log(req.param('user'));
+	Contest.findOne({_id: req.param('contest')}, function(err, contest) {
+		console.log(contest);
+	});
+	res.send({success: true, state: "can"});
 }
 
