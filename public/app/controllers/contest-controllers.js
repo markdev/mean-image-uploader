@@ -205,11 +205,22 @@ angular
 		};
 	}])
 
-	.controller('EntrySubmitCtrl', ['$scope', '$rootScope', '$timeout', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $rootScope, $timeout, $upload, $stateParams, $state, $location, ContestFactory){
+	.controller('EntrySubmitCtrl', ['$scope', 'fileReader', '$rootScope', '$timeout', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, fileReader, $rootScope, $timeout, $upload, $stateParams, $state, $location, ContestFactory){
 		console.log('EntrySubmitCtrl loaded...');
 		console.log($stateParams);
 		$scope.title = "My title";
 		$scope.file = null;
+		console.log(fileReader)
+		$scope.getFile = function () {
+			$scope.progress = 0;
+			fileReader.readAsDataUrl($scope.file, $scope)
+				.then(function(result) {
+					$scope.imageSrc = result;
+				});
+			};
+		$scope.$on("fileProgress", function(e, progress) {
+			$scope.progress = progress.loaded / progress.total;
+		});
 		$scope.onFileSelect = function($files) {
 			for (var i = 0; i < $files.length; i++) {
 				$scope.file = $files[i];
@@ -230,7 +241,7 @@ angular
 		};
 	}])
 
-
+/*
 var UploadController = function ($scope, fileReader) {
 	console.log(fileReader)
     $scope.getFile = function () {
@@ -244,3 +255,4 @@ var UploadController = function ($scope, fileReader) {
     	$scope.progress = progress.loaded / progress.total;
     });
 };
+*/
