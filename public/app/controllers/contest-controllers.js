@@ -3,7 +3,7 @@ console.log("loaded: contest controllers");
 angular
 	.module('yote')
 
-	.controller('ContestCreateNewCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
+	.controller('ContestCreateNewCtrl', ['$scope',  'fileReader', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, fileReader, $stateParams, $state, $location, ContestFactory){
 		console.log('ContestCreateNewCtrl loaded...');
 		$scope.title = "Cat Pics";
 		$scope.tags = "Felines, Cats, Kitties";
@@ -240,6 +240,7 @@ angular
 				console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
 			}).success(function(data, status, headers, config) {
     			console.log(data);
+    			$state.go('compete.home');
   			});
 		};
 	}])

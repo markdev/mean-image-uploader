@@ -11,6 +11,7 @@ var Contest = require('mongoose').model('Contest')
 
 var bannerDestination = 'public/img/contestBanners/';
 var entryDestination = 'public/img/contestEntries/';
+var entryThumbDestination = 'public/img/contestEntryThumbs/';
 
 exports.create = function(req, res, next) {
 	console.log("called: contests.create");
@@ -209,8 +210,8 @@ exports.addJudge = function(req, res, next) {
 
 exports.addEntry = function(req, res, next) {
 	console.log("called: contests.addEntry");
-
 	var entryName = req.files.file.name;
+
 	fs.rename('images/tmp/' + entryName, entryDestination + entryName, function (err) {
 		console.log("Image has been moved");
 		lwip.open(entryDestination + entryName, function(err, image) {
@@ -223,6 +224,17 @@ exports.addEntry = function(req, res, next) {
 			});
 		});
 	});
+
+	fs.createReadStream(entryDestination + entryName).pipe(fs.createWriteStream(entryThumbDestination + entryName));
+	lwip.open(entryThumbDestination + entryName, function(err, image) {
+		if (err) throw err;
+		//lanczos
+		image.resize(50, 50, function(err, rzdImg) {
+			rzdImg.writeFile(entryThumbDestination + entryName, function(err) {
+				if (err) throw err;
+			})
+		});
+	})
 
 	var entryData = {};
 	entryData.title = req.body.title;
