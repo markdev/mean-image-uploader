@@ -10,6 +10,7 @@ var Contest = require('mongoose').model('Contest')
   ;
 
 var bannerDestination = 'public/img/contestBanners/';
+var entryDestination = 'public/img/contestEntries/';
 
 exports.create = function(req, res, next) {
 	console.log("called: contests.create");
@@ -208,7 +209,23 @@ exports.addJudge = function(req, res, next) {
 
 exports.addEntry = function(req, res, next) {
 	console.log("called: contests.addEntry");
+
+	var entryName = req.files.file.name;
+	fs.rename('images/tmp/' + entryName, entryDestination + entryName, function (err) {
+		console.log("Image has been moved");
+		lwip.open(entryDestination + entryName, function(err, image) {
+			if (err) throw err;
+			// lanczos
+			image.resize(400, 400, function(err, rzdImg) {
+				rzdImg.writeFile(entryDestination + entryName, function(err) {
+					if (err) throw err;
+				});
+			});
+		});
+	});
+
 	var entryData = {};
+	entryData.title = req.body.title;
 	entryData.content = req.body.content;
 	Entry.create(entryData, function(err, entry) {
 		if (err) {

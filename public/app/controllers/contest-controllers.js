@@ -230,8 +230,11 @@ angular
 		$scope.submit = function() {
 			$scope.upload = $upload.upload({
 				method: 'POST',
-				url: '/api/contest/banner',
-				data: { id: $stateParams.id },
+				url: '/api/contest/entry',
+				data: { id: $stateParams.id, 
+						title: $scope.title, 
+						contest: $stateParams.id
+					},
 				file: $scope.file
 			}).progress(function(evt) {
 				console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
@@ -240,19 +243,3 @@ angular
   			});
 		};
 	}])
-
-/*
-var UploadController = function ($scope, fileReader) {
-	console.log(fileReader)
-    $scope.getFile = function () {
-    	$scope.progress = 0;
-    	fileReader.readAsDataUrl($scope.file, $scope)
-    		.then(function(result) {
-    			$scope.imageSrc = result;
-    		});
-    	};
-    $scope.$on("fileProgress", function(e, progress) {
-    	$scope.progress = progress.loaded / progress.total;
-    });
-};
-*/
