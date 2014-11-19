@@ -207,25 +207,25 @@ angular
 
 	.controller('EntrySubmitCtrl', ['$scope', '$rootScope', '$timeout', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $rootScope, $timeout, $upload, $stateParams, $state, $location, ContestFactory){
 		console.log('EntrySubmitCtrl loaded...');
+		console.log($stateParams);
 		$scope.title = "My title";
-		$scope.submit = function() {
-			console.log("submission");
-		};
+		$scope.file = null;
 		$scope.onFileSelect = function($files) {
 			for (var i = 0; i < $files.length; i++) {
-				var file = $files[i];
-				console.log(file);
-				$scope.upload = $upload.upload({
-					method: 'POST',
-					url: '/api/contest/banner',
-					data: { id: $scope.contest._id },
-					file: file
-				}).progress(function(evt) {
-					console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-				}).success(function(data, status, headers, config) {
-        			console.log(data);
-        			imageUpdate();
-      			});
+				$scope.file = $files[i];
+				console.log($scope.file);
 			}
+		};
+		$scope.submit = function() {
+			$scope.upload = $upload.upload({
+				method: 'POST',
+				url: '/api/contest/banner',
+				data: { id: $stateParams.id },
+				file: $scope.file
+			}).progress(function(evt) {
+				console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+			}).success(function(data, status, headers, config) {
+    			console.log(data);
+  			});
 		};
 	}])
