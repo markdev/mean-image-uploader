@@ -1,6 +1,7 @@
 include includes/backButton
 
-div(ng-controller="EntrySubmitCtrl")
+
+div(ng-controller="UploadController")
 	h1.title Submit your entry
 	table.formTable
 		tr
@@ -12,8 +13,26 @@ div(ng-controller="EntrySubmitCtrl")
 			td
 				label Entry
 			td
+				//input(type="file" ng-file-select="onFileSelect($files)")
 				input(type="file" ng-file-select="onFileSelect($files)")
-				img(ng-src="{{ path }}")
+				//img(ng-src="{{ path }}")
+				img(ng-src="{{imageSrc}}")
 		tr
 			td(colspan="2")
-				button(ng-click="submit()") Submit Entry							
+				button(ng-click="submit()") Submit Entry
+
+	h2 Progress:
+	progress(value="{{progress}}")
+
+
+//div(ng-controller="UploadController");
+//	form
+//		input(type="file" ng-file-select="onFileSelect($files)")
+//
+//	h2 Preview:
+//	br
+//	span(ng-hide="imageSrc") No image choosed
+//	img(ng-src="{{imageSrc}}")
+//
+//	h2 Progress:
+//	progress(value="{{progress}}")				
