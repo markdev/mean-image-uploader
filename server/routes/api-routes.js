@@ -65,6 +65,9 @@ module.exports = function(app) {
 	app.get('/api/contest/judgeState/:contest/:user', api.contests.getJudgeState);
 	app.get('/api/contest/competeState/:contest/:user', api.contests.getCompeteState);
 
+	// Entry routes
+	app.get('/api/entry/byUser/:id'		, api.entries.getByUser);
+	app.get('/api/entry/content/:id' 	, api.entries.getContent);
 	// get new entry for this contest
 	// rate entry
 	// remove entry

@@ -106,15 +106,15 @@ angular
 		getContests();
 	}])
 
-	.controller('ContestCompeteListCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
+	.controller('ContestCompeteListCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', 'EntryFactory', function($scope, $stateParams, $state, $location, ContestFactory, EntryFactory){
 		console.log('ContestCompeteListCtrl loaded...');
 		$scope.contests = [];
 		$scope.contestsSubmittable = [];
-		ContestFactory.getContestsByCompetitor()
-			.then(function(contests) {
-				if (contests.success) {
-					console.log(contests);
-					$scope.contests = contests.contests;
+		EntryFactory.getContestsByCompetitor()
+			.then(function(entries) {
+				if (entries.success) {
+					console.log(entries);
+					$scope.contests = entries.entries;
 				} else {
 					console.log("fail");
 				}		

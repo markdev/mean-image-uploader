@@ -16,5 +16,5 @@ exports.users = require('../controllers/users');
 exports.Contest = mongoose.model('Contest');
 exports.contests = require('../controllers/contests');
 
-//exports.Entry = mongoose.model('Entry');
-//exports.entries = require('../controllers/entries');
+exports.Entry = mongoose.model('Entry');
+exports.entries = require('../controllers/entries');

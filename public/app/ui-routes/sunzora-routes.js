@@ -157,7 +157,7 @@ angular
 				, controller: 'ContestCompeteListCtrl'
 			})
 
-			.state('compete.submitEntry', {
+			.state('compete.submit', {
 				  url: '/submit/:id'
 				, templateUrl: '/views/compete/submit'
 			})

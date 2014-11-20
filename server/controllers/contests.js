@@ -171,7 +171,6 @@ exports.getByCompetitorSubmittable = function(req, res, next) {
 				for (var i = 0; i<entries.length; i++) {
 					entryArray[entryArray.length] = entries[i].contest;
 				}
-				console.log(entryArray);
 				Contest.find( { $and: [
 					{ competitors: { $in: [mongoose.Types.ObjectId(req.param('slug'))] }},
 					{ $or: [
@@ -269,7 +268,7 @@ exports.addEntry = function(req, res, next) {
 	entryData._owner = req.user._id;
 	entryData.contest = req.body.contest;
 	entryData.title = req.body.title;
-	entryData.content = req.body.content;
+	entryData.content = entryName;
 	Entry.create(entryData, function(err, entry) {
 		if (err) {
 			res.send({success: false, error: err});

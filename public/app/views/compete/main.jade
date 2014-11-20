@@ -6,7 +6,7 @@ nav.bigLinks
 	ul(class="bigItemList" ng-repeat="contest in contestsSubmittable")
 		li
 			div.menuItem
-				a(ui-sref="compete.status({id: '{{contest._id}}' })")
+				a(ui-sref="compete.submit({id: '{{contest._id}}' })")
 					img(ng-src="/api/contest/banner/{{contest._id}}") 
 				span {{ contest.title }}			
 br
@@ -19,6 +19,6 @@ nav.bigLinks
 		li
 			div.menuItem
 				a(ui-sref="compete.status({id: '{{contest._id}}' })")
-					img(ng-src="/api/contest/banner/{{contest._id}}") 
+					img(ng-src="/api/entry/content/{{contest._id}}") 
 				span {{ contest.title }}
 				//button(ng-click="deleteContest('{{contest._id}}')") Delete {{ contest.title }}
