@@ -97,6 +97,12 @@ angular
 		$scope.getNewEntry = function() {
 			console.log("Getting a new entry");
 		}
+		$scope.rate = function(score) {
+			console.log(score);
+		}
+		$scope.scroll = function() {
+			console.log("scrolling");
+		}
 	}])
 
 	.controller('ContestJudgeListCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){

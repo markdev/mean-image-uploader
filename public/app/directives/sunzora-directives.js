@@ -15,4 +15,14 @@ angular
 			}
 		}
 	})
+
+	.directive("scroll", function ($window) {
+		return function(scope, element, attrs) {
+			angular.element($window).bind("scroll", function() {
+				scope.visible = false;
+				console.log("spuh");
+				scope.$apply();
+			});
+		};
+	});
 	;

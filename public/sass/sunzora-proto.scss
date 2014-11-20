@@ -152,6 +152,45 @@ section.mainBody {
 		}
 		table#buttons {
 			margin: 0 auto;
+			button {
+				display: table-cell;
+				border-radius: 10px;
+				width: 70px;
+				height: 70px;
+				text-align: center;
+				vertical-align: middle;	
+				&#star1 { 
+					background-image: url("/img/icons/star1.png");	 
+				}
+				&#star2 { 
+					background-image: url("/img/icons/star2.png");	 
+				}
+				&#star3 { 
+					background-image: url("/img/icons/star3.png");	 
+				}
+				&#star4 { 
+					background-image: url("/img/icons/star4.png");	 
+				}
+				&#star5 { 
+					background-image: url("/img/icons/star5.png");	 
+				}
+				&#star6 { 
+					background-image: url("/img/icons/star6.png");	 
+				}
+				&#star7 { 
+					background-image: url("/img/icons/star7.png");	 
+				}
+				&#star8 { 
+					background-image: url("/img/icons/star8.png");	 
+				}
+				&#star9 { 
+					background-image: url("/img/icons/star9.png");	 
+				}
+				&#star10 { 
+					background-image: url("/img/icons/star10.png");	 
+				}
+			}
+			/*
 			a.score {
 				width: auto;
 				height: 70px;
@@ -182,6 +221,7 @@ section.mainBody {
 					}
 				}
 			}
+			*/
 		}
 	}
 }
