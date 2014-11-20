@@ -109,19 +109,25 @@ angular
 	.controller('ContestCompeteListCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
 		console.log('ContestCompeteListCtrl loaded...');
 		$scope.contests = [];
-		var getContests = function() {
-			ContestFactory.getContestsByCompetitor()
-				.then(function(contests) {
-					//console.log(data);
-					if (contests.success) {
-						console.log(contests);
-						$scope.contests = contests.contests;
-					} else {
-						console.log("fail");
-					}		
-				})
-			};
-		getContests();
+		$scope.contestsSubmittable = [];
+		ContestFactory.getContestsByCompetitor()
+			.then(function(contests) {
+				if (contests.success) {
+					console.log(contests);
+					$scope.contests = contests.contests;
+				} else {
+					console.log("fail");
+				}		
+			})
+		ContestFactory.getSubmittableContestsByCompetitor()
+			.then(function(contests) {
+				if (contests.success) {
+					console.log(contests);
+					$scope.contestsSubmittable = contests.contests;
+				} else {
+					console.log("fail");
+				}	
+			})
 	}])
 
 	.controller('ContestEditCtrl', ['$scope', '$timeout', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $timeout, $upload, $stateParams, $state, $location, ContestFactory){

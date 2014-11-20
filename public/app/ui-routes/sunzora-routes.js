@@ -154,6 +154,7 @@ angular
 			.state('compete.home', {
 				  url: ''
 				, templateUrl: '/views/compete/main'
+				, controller: 'ContestCompeteListCtrl'
 			})
 
 			.state('compete.submitEntry', {

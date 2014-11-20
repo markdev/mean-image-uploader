@@ -1,5 +1,20 @@
-h1.title Here are the contests I'm competing in:
-nav.bigLinks(ng-controller="ContestCompeteListCtrl")
+h1.title Here are the contests I'm competing in
+
+h1.title Submit entry to:
+hr 
+nav.bigLinks
+	ul(class="bigItemList" ng-repeat="contest in contestsSubmittable")
+		li
+			div.menuItem
+				a(ui-sref="compete.status({id: '{{contest._id}}' })")
+					img(ng-src="/api/contest/banner/{{contest._id}}") 
+				span {{ contest.title }}			
+br
+br
+
+h1.title See status:
+hr 
+nav.bigLinks
 	ul(class="bigItemList" ng-repeat="contest in contests")
 		li
 			div.menuItem

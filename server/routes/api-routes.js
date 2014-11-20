@@ -53,6 +53,7 @@ module.exports = function(app) {
 	app.get('/api/contest/byString/:str' 	, requireLogin(), api.contests.getByTagOrName);
 	app.get('/api/contest/byCreator/:slug'	, api.contests.getByUser);
 	app.get('/api/contest/byCompetitor/:slug'	, api.contests.getByCompetitor);
+	app.get('/api/contest/byCompetitorSubmittable/:slug'	, api.contests.getByCompetitorSubmittable);
 	app.get('/api/contest/byJudge/:slug'	, api.contests.getByJudge);
 	app.del('/api/contest/:slug'		, api.contests.endContest);
 	app.post('/api/contest/compete'		, api.contests.addCompetitor);

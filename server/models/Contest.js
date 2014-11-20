@@ -6,7 +6,8 @@ var mongoose = require('mongoose')
 
 
 var entrySchema = mongoose.Schema({
-	  _owner: 			{ type: Schema.ObjectId, ref: 'userSchema' }
+	  _owner: 			{ type: Schema.ObjectId, ref: 'userSchema', required: true }
+	, contest: 			{ type: Schema.ObjectId, ref: 'Contest', required: true }
 	, created: 			{ type: Date, default: Date.now }
 	, title: 			{ type: String, default: null }
 	, content: 			{ type: String, default: null }

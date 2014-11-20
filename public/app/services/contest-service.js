@@ -87,6 +87,17 @@ angular
 			return deferred.promise;			
 		}
 
+		ContestFactory.getSubmittableContestsByCompetitor = function() {
+			console.log("Getting contests by competitor");
+			var deferred = $q.defer();
+			$http.get(urlBase + "/byCompetitorSubmittable/" + $rootScope.currentUser._id)
+				.success(function(contest) {
+					console.log("SUCCESS!")
+					deferred.resolve(contest)
+				})
+			return deferred.promise;			
+		}
+
 		ContestFactory.getContestById = function(id) {
 			console.log("Getting contest by id");
 			var deferred = $q.defer();

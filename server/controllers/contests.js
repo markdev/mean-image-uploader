@@ -160,6 +160,35 @@ exports.getByCompetitor = function(req, res, next) {
 	});
 }
 
+exports.getByCompetitorSubmittable = function(req, res, next) {
+	console.log("called: contests.getByCompetitorSubittable");
+	Entry.find( 
+		{_owner: mongoose.Types.ObjectId(req.param('slug'))}, 
+		{contest : 1}, 
+			function(err, entries) {
+				console.log(entries);
+				var entryArray = [];
+				for (var i = 0; i<entries.length; i++) {
+					entryArray[entryArray.length] = entries[i].contest;
+				}
+				console.log(entryArray);
+				Contest.find( { $and: [
+					{ competitors: { $in: [mongoose.Types.ObjectId(req.param('slug'))] }},
+					{ $or: [
+						{ submissionLimit: 'many' },
+						{ _id : { $nin: entryArray }} //doesn't have an entry by that user.
+						]}
+					]}, function(err, contests) {
+					if (err) {
+						res.send({ success: false, message: "No contests with that tag."});
+					} else {
+						res.send({ success: true, contests: contests });
+					}
+				});
+			}
+	);
+}
+
 exports.getByJudge = function(req, res, next) {
 	console.log("called: contests.getByJudge");
 	Contest.find({ judges: { $in: [mongoose.Types.ObjectId(req.param('slug'))] }}, function(err, contests) {
@@ -237,6 +266,8 @@ exports.addEntry = function(req, res, next) {
 	})
 
 	var entryData = {};
+	entryData._owner = req.user._id;
+	entryData.contest = req.body.contest;
 	entryData.title = req.body.title;
 	entryData.content = req.body.content;
 	Entry.create(entryData, function(err, entry) {
