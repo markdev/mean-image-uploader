@@ -41,7 +41,7 @@ header.main {
     display: table;
     margin: 0 auto;
     padding-top: 1em;
-    width: 39em; }
+    width: 42em; }
     header.main nav a.title {
       display: block;
       float: left;
@@ -76,7 +76,7 @@ header.main {
 section.mainBody {
   padding-top: 7em;
   padding-bottom: 7em;
-  width: 40em;
+  width: 42em;
   margin: auto; }
   section.mainBody h1.title {
     text-align: center; }
@@ -97,6 +97,58 @@ section.mainBody {
   section.mainBody button#searchButton {
     height: 4em;
     border: none; }
+  section.mainBody div#judgeLayout {
+    text-align: center; }
+    section.mainBody div#judgeLayout div#carousel {
+      text-align: center;
+      overflow-x: scroll; }
+      section.mainBody div#judgeLayout div#carousel table {
+        margin: 0 auto; }
+        section.mainBody div#judgeLayout div#carousel table div.imageFrame {
+          padding: 30px;
+          height: auto;
+          float: left; }
+          section.mainBody div#judgeLayout div#carousel table div.imageFrame img {
+            height: 400px;
+            width: 300px;
+            float: left; }
+    section.mainBody div#judgeLayout table#buttons {
+      margin: 0 auto; }
+      section.mainBody div#judgeLayout table#buttons a.score {
+        width: auto;
+        height: 70px; }
+        section.mainBody div#judgeLayout table#buttons a.score div.button {
+          display: table-cell;
+          border-radius: 10px;
+          width: 70px;
+          height: 70px;
+          margin: 10px;
+          text-align: center;
+          vertical-align: middle; }
+          section.mainBody div#judgeLayout table#buttons a.score div.button#button1 {
+            background-image: url("/img/icons/star1.png"); }
+          section.mainBody div#judgeLayout table#buttons a.score div.button#button2 {
+            background-image: url("/img/icons/star2.png"); }
+          section.mainBody div#judgeLayout table#buttons a.score div.button#button3 {
+            background-image: url("/img/icons/star3.png"); }
+          section.mainBody div#judgeLayout table#buttons a.score div.button#button4 {
+            background-image: url("/img/icons/star4.png"); }
+          section.mainBody div#judgeLayout table#buttons a.score div.button#button5 {
+            background-image: url("/img/icons/star5.png"); }
+          section.mainBody div#judgeLayout table#buttons a.score div.button#button6 {
+            background-image: url("/img/icons/star6.png"); }
+          section.mainBody div#judgeLayout table#buttons a.score div.button#button7 {
+            background-image: url("/img/icons/star7.png"); }
+          section.mainBody div#judgeLayout table#buttons a.score div.button#button8 {
+            background-image: url("/img/icons/star8.png"); }
+          section.mainBody div#judgeLayout table#buttons a.score div.button#button9 {
+            background-image: url("/img/icons/star9.png"); }
+          section.mainBody div#judgeLayout table#buttons a.score div.button#button10 {
+            background-image: url("/img/icons/star10.png"); }
+          section.mainBody div#judgeLayout table#buttons a.score div.button.active {
+            font-weight: bold;
+            font-size: 2em;
+            background-color: #f00; }
 
 footer.main {
   position: fixed;

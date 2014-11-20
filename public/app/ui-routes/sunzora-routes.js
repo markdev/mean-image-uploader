@@ -139,6 +139,7 @@ angular
 			.state('judge.contest', {
 				  url: '/:id'
 				, templateUrl: '/views/judge/contest'
+				, controller: 'ContestJudgeCtrl'
 			})
 
 			//////////////

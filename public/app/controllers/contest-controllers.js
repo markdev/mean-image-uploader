@@ -88,6 +88,17 @@ angular
 		}
 	}])
 
+	.controller('ContestJudgeCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', 'EntryFactory', function($scope, $stateParams, $state, $location, ContestFactory, EntryFactory){
+		console.log('ContestJudgeCtrl loaded...');
+		ContestFactory.getContestById($stateParams.id)
+			.then(function(result) {
+				$scope.contest = result.contest;
+			})
+		$scope.getNewEntry = function() {
+			console.log("Getting a new entry");
+		}
+	}])
+
 	.controller('ContestJudgeListCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
 		console.log('ContestJudgeListCtrl loaded...');
 		$scope.contests = [];
