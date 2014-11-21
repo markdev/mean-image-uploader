@@ -32,6 +32,17 @@ angular
 			return deferred.promise;
 		}
 
+		EntryFactory.addRating = function(postData) {
+			console.log("Adding Rating");
+			var deferred = $q.defer(postData);
+			$http.post(urlBase + "/rating", postData)
+				.success(function(response) {
+					console.log("SUCCESS");
+					deferred.resolve(response)
+				})
+			return deferred.promise;
+		}
+
 		return EntryFactory;
 	}])
 	;

@@ -21,10 +21,7 @@ angular
 			restrict: 'A',
 			link: function (scope, element, attrs) {
 				element.bind('scroll', function () {
-					scope.findCenterImage();
-					$rootScope.$broadcast('someEvent', {
-						data: "valueToPass"
-					});
+					$rootScope.$broadcast('scroll');
 				});
 			}
 		};
@@ -32,10 +29,10 @@ angular
 
 	.directive('entryFrame', function() {
 		return {
-			//require 'scroller',
 			restrict: 'E',
 			scope: {
-				entry: '='
+				entry: '=',
+				set: '&'
 			},
 			replace: true,
 			template: '<div><div class="imageFrame"><img ng-src="/api/entry/realContent/{{entry._id}}" /></div></div>',
@@ -43,19 +40,14 @@ angular
 				element.bind("click", function() {
 					console.log(element.position().left);
 				})
-				scope.$on('someEvent', function (event, result) {
-					scope.receivedData = result.data;
-					console.log(element.position().left);
+				scope.$on('scroll', function (event, result) {
+					if (element.position().left > 200 && element.position().left < 560) {
+						scope.set();
+					}
+		     		scope.$apply();
 				});
 			},
 			controller: function($scope) {
-				console.log($scope.entry);
-				/*
-				$scope.$on('someEvent', function (event, result) {
-					$scope.receivedData = result.data;
-					console.log(element);
-				});
-				*/
 			}
 		}
 	})

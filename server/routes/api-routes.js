@@ -59,13 +59,13 @@ module.exports = function(app) {
 	app.post('/api/contest/compete'		, api.contests.addCompetitor);
 	app.post('/api/contest/judge'		, api.contests.addJudge);
 	app.post('/api/contest/entry'		, api.contests.addEntry);
-	app.post('/api/contest/rating' 		, api.contests.addRating);
 	app.get('/api/contest/banner/:id?' 	, api.contests.getBanner);
 	app.post('/api/contest/banner' 		, api.contests.uploadBanner);
 	app.get('/api/contest/judgeState/:contest/:user', api.contests.getJudgeState);
 	app.get('/api/contest/competeState/:contest/:user', api.contests.getCompeteState);
 
 	// Entry routes
+	app.post('/api/entry/rating' 		, api.contests.addRating);
 	app.get('/api/entry/byUser/:id'		, api.entries.getByUser);
 	app.get('/api/entry/content/:id' 	, api.entries.getThumb);
 	app.get('/api/entry/realContent/:id' 	, api.entries.getContent);

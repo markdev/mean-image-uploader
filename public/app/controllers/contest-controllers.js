@@ -94,9 +94,8 @@ angular
 			.then(function(result) {
 				$scope.contest = result.contest;
 			})
-		$scope.active = "active";
-		$scope.activeId = 0;
 		$scope.entries = [];
+		$scope.activeEntry = null;
 		EntryFactory.getEntriesByContest($stateParams.id)
 			.then(function(result) {
 				var processedEntries = [];
@@ -110,22 +109,21 @@ angular
 		$scope.getNewEntry = function() {
 			console.log("Getting a new entry");
 		}
+		$scope.callFocus = function(entryId) {
+			$scope.activeEntry = entryId;
+		}
 		$scope.rate = function(score) {
 			console.log(score);
-		}
-		$scope.findActive = function() {
-			for (var i=0; i<$scope.entries.length; i++) {
-				console.log();
-			}
+			console.log($scope.activeEntry);
+			var postData = {};
+			postData.score = score;
+			postData.entry = $scope.activeEntry
+			EntryFactory.addRating(postData)
+				.then(function(result){
+					console.log(result);
+				})
 		}
 
-		$scope.findCenterImage = function() {
-			console.log("finding that image");
-		};
-
-		$scope.test = function() {
-			console.log("testing the scroll function");
-		}
 	}])
 
 	.controller('ContestJudgeListCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){

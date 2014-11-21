@@ -329,7 +329,7 @@ exports.addRating = function(req, res, next) {
 	Entry.findByIdAndUpdate(
 		req.body.entry,
 		{ $push: {"ratings": {
-			"owner": req.body.user,
+			"owner": req.user._id,
 			"score": req.body.score
 		}}},
 		{safe: true, upsert: true},

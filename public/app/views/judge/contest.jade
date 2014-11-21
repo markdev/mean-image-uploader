@@ -7,7 +7,7 @@ div#judgeLayout
 		table
 			tr
 				td(ng-repeat="entry in entries")
-					entry-frame(entry="entry")
+					entry-frame(entry="entry" set="callFocus(entry._id)")
 				//-	div.imageFrame(ng-class="{{entry.active}}")
 						img(ng-src="/api/entry/realContent/{{entry._id}}")
 
