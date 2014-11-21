@@ -103,6 +103,9 @@ angular
 		$scope.scroll = function() {
 			console.log("scrolling");
 		}
+		$scope.test = function() {
+			console.log("testing the scroll function");
+		}
 	}])
 
 	.controller('ContestJudgeListCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){

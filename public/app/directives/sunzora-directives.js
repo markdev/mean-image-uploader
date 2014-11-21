@@ -16,13 +16,14 @@ angular
 		}
 	})
 
-	.directive("scroll", function ($window) {
-		return function(scope, element, attrs) {
-			angular.element($window).bind("scroll", function() {
-				scope.visible = false;
-				console.log("spuh");
-				scope.$apply();
-			});
+	.directive('scroller', function () {
+		return {
+			restrict: 'A',
+			link: function (scope, elem, attrs) {
+				elem.bind('scroll', function () {
+					console.log("PEE PEE!!!");
+				});
+			}
 		};
-	});
+	})
 	;

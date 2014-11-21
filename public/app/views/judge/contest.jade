@@ -3,7 +3,7 @@ hr
 
 h1 Judging contest: {{ contest.title }}
 div#judgeLayout
-	div#carousel(scroll)
+	div#carousel(scroller)
 		table
 			tr
 				td
@@ -20,3 +20,13 @@ div#judgeLayout
 			td
 				button(id="star#{i}" ng-click="rate(#{i})") #{i}
 			- }
+
+	script(type='text/javascript').
+		// yes this is a sin against humanity but whatever.
+		/*
+		$('document').ready(function() {
+			$('div#carousel').scroll(function() {
+				console.log("works");
+			});
+		});
+		*/
