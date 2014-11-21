@@ -94,6 +94,13 @@ angular
 			.then(function(result) {
 				$scope.contest = result.contest;
 			})
+		$scope.myClass = "active";
+		$scope.entries = [];
+		EntryFactory.getEntriesByContest($stateParams.id)
+			.then(function(result) {
+				$scope.entries = result.entries;
+				console.log($scope.entries);
+			})
 		$scope.getNewEntry = function() {
 			console.log("Getting a new entry");
 		}

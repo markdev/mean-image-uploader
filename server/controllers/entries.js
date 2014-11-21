@@ -24,17 +24,39 @@ exports.getByUser = function(req, res, next) {
 	});
 }
 
+exports.getThumb = function(req, res, next) {
+	console.log("called: getThumb");
+	Entry.findOne({_id: req.param('id')}, function(err, entry) {
+		console.log("entry banner:");
+		console.log(entry);
+		if (err || entry == null) {
+			res.sendfile(entryThumbDestination + 'blankThumb.png');
+		} else {
+			res.sendfile(entryThumbDestination + entry.content);
+		}
+	})
+}
+
 exports.getContent = function(req, res, next) {
 	console.log("called: getContent");
 	Entry.findOne({_id: req.param('id')}, function(err, entry) {
 		console.log("entry banner:");
 		console.log(entry);
 		if (err || entry == null) {
-			console.log("EPIC FIAL");
-			res.sendfile(entryThumbDestination + 'blankThumb.png');
+			res.sendfile(entryDestination + 'blankThumb.png');
 		} else {
-			console.log("SHABAM");
-			res.sendfile(entryThumbDestination + entry.content);
+			res.sendfile(entryDestination + entry.content);
+		}
+	})
+}
+
+exports.getByContest = function(req, res, next) {
+	console.log("called: getByContest");
+	Entry.find({contest: req.param('id')}, function(err, entries) {
+		if (err) {
+			res.send({ success: false, message: "No entries for this user."});
+		} else {
+			res.send({ success: true, entries: entries });
 		}
 	})
 }

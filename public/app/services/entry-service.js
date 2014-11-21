@@ -21,6 +21,17 @@ angular
 			return deferred.promise;
 		}
 
+		EntryFactory.getEntriesByContest = function(contestId) {
+			console.log("Getting entries by contest");
+			var deferred = $q.defer();
+			$http.get(urlBase + "/byContest/" + contestId)
+				.success(function(response) {
+					console.log("SUCCESS!")
+					deferred.resolve(response)
+				})
+			return deferred.promise;
+		}
+
 		return EntryFactory;
 	}])
 	;

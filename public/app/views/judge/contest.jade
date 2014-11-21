@@ -6,27 +6,13 @@ div#judgeLayout
 	div#carousel(scroller)
 		table
 			tr
-				td
-					img(src="http://www.picgifs.com/clip-art/cartoons/south-park/clip-art-south-park-362717.jpg")
-				td
-					img(src="http://www.picgifs.com/clip-art/cartoons/south-park/clip-art-south-park-362717.jpg")
-				td
-					img(src="http://www.picgifs.com/clip-art/cartoons/south-park/clip-art-south-park-362717.jpg")
-				td
-					img(src="http://www.picgifs.com/clip-art/cartoons/south-park/clip-art-south-park-362717.jpg")
+				td(ng-repeat="entry in entries")
+					div.imageFrame
+						img(ng-src="/api/entry/realContent/{{entry._id}}")
+
 	table#buttons
 		tr
 			- for (var i=1; i<=10; i++) {
 			td
 				button(id="star#{i}" ng-click="rate(#{i})") #{i}
 			- }
-
-	script(type='text/javascript').
-		// yes this is a sin against humanity but whatever.
-		/*
-		$('document').ready(function() {
-			$('div#carousel').scroll(function() {
-				console.log("works");
-			});
-		});
-		*/

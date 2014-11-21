@@ -67,7 +67,9 @@ module.exports = function(app) {
 
 	// Entry routes
 	app.get('/api/entry/byUser/:id'		, api.entries.getByUser);
-	app.get('/api/entry/content/:id' 	, api.entries.getContent);
+	app.get('/api/entry/content/:id' 	, api.entries.getThumb);
+	app.get('/api/entry/realContent/:id' 	, api.entries.getContent);
+	app.get('/api/entry/byContest/:id'	, api.entries.getByContest);
 	// get new entry for this contest
 	// rate entry
 	// remove entry

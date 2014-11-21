@@ -108,6 +108,8 @@ section.mainBody {
           padding: 30px;
           height: auto;
           float: left; }
+          section.mainBody div#judgeLayout div#carousel table div.imageFrame.active {
+            background-color: #f00; }
           section.mainBody div#judgeLayout div#carousel table div.imageFrame img {
             height: 400px;
             width: 300px;

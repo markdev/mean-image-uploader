@@ -138,10 +138,13 @@ section.mainBody {
 			overflow-x: scroll;
 			table {
 				margin: 0 auto;
-				div.imageFrame{
+				div.imageFrame {
 					padding: 30px;
 					height: auto;
 					float: left;
+					&.active {
+						background-color: #f00;
+					}
 					img {
 						height: 400px;
 						width: 300px;
