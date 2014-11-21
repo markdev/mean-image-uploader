@@ -41,8 +41,15 @@ angular
 					console.log(element.position().left);
 				})
 				scope.$on('scroll', function (event, result) {
+					var imageFrame = element.find('.imageFrame');
 					if (element.position().left > 200 && element.position().left < 560) {
 						scope.set();
+						imageFrame.addClass('active');
+						$compile(imageFrame)(scope);
+					} else {
+						if (imageFrame.hasClass('active')) {
+                    		imageFrame.removeClass('active');
+                    	}
 					}
 		     		scope.$apply();
 				});
