@@ -94,11 +94,17 @@ angular
 			.then(function(result) {
 				$scope.contest = result.contest;
 			})
-		$scope.myClass = "active";
+		$scope.active = "active";
+		$scope.activeId = 0;
 		$scope.entries = [];
 		EntryFactory.getEntriesByContest($stateParams.id)
 			.then(function(result) {
-				$scope.entries = result.entries;
+				var processedEntries = [];
+				for (var i=0; i<result.entries.length; i++) {
+					result.entries[i].active = (i==2)? "active" : "";
+					processedEntries.push(result.entries[i]);
+				}
+				$scope.entries = processedEntries;
 				console.log($scope.entries);
 			})
 		$scope.getNewEntry = function() {
@@ -107,9 +113,16 @@ angular
 		$scope.rate = function(score) {
 			console.log(score);
 		}
-		$scope.scroll = function() {
-			console.log("scrolling");
+		$scope.findActive = function() {
+			for (var i=0; i<$scope.entries.length; i++) {
+				console.log();
+			}
 		}
+
+		$scope.findCenterImage = function() {
+			console.log("finding that image");
+		};
+
 		$scope.test = function() {
 			console.log("testing the scroll function");
 		}
