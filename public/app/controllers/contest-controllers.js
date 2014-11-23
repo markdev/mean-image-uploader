@@ -88,7 +88,7 @@ angular
 		}
 	}])
 
-	.controller('ContestJudgeCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', 'EntryFactory', function($scope, $stateParams, $state, $location, ContestFactory, EntryFactory){
+	.controller('ContestJudgeCtrl', ['$scope', '$rootScope', '$stateParams', '$state', '$location', 'ContestFactory', 'EntryFactory', function($scope, $rootScope, $stateParams, $state, $location, ContestFactory, EntryFactory){
 		console.log('ContestJudgeCtrl loaded...');
 		ContestFactory.getContestById($stateParams.id)
 			.then(function(result) {
@@ -102,7 +102,6 @@ angular
 				var processedEntries = [];
 				for (var i=0; i<result.entries.length; i++) {
 					processedEntries.push(result.entries[i]);
-					//$scope.entries[result.entries[i]._id] = result.entries[i];
 				}
 				$scope.entries = processedEntries;
 				console.log($scope.entries);
@@ -112,6 +111,11 @@ angular
 		}
 		$scope.callFocus = function(entryId) {
 			$scope.activeEntry = entryId;
+			if ($scope.entryRatingMap.hasOwnProperty(entryId)) {
+				//console.log("Yes and the rating is " + $scope.entryRatingMap[entryId]);
+				// now broadcast
+				$rootScope.$broadcast('markAsRated', { score: $scope.entryRatingMap[entryId] });
+			}
 		}
 		$scope.rate = function(score) {
 			console.log(score);

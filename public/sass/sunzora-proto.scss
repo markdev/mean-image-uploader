@@ -162,6 +162,9 @@ section.mainBody {
 				height: 70px;
 				text-align: center;
 				vertical-align: middle;	
+				&.clicked {
+					color: #f00;
+				}
 				&#star1 { 
 					background-image: url("/img/icons/star1.png");	 
 				}
@@ -169,8 +172,7 @@ section.mainBody {
 					background-image: url("/img/icons/star2.png");	 
 				}
 				&#star3 { 
-					background-image: url("/img/icons/star3.png");
-					color: #f00;	 
+					background-image: url("/img/icons/star3.png"); 
 				}
 				&#star4 { 
 					background-image: url("/img/icons/star4.png");	 

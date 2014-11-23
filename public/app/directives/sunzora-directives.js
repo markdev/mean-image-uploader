@@ -46,7 +46,6 @@ angular
 						scope.callFocus();
 						imageFrame.addClass('active');
 						$compile(imageFrame)(scope);
-		     			$rootScope.$broadcast('testEvent');
 					} else {
 						if (imageFrame.hasClass('active')) {
                     		imageFrame.removeClass('active');
@@ -74,9 +73,16 @@ angular
 					//scope.$apply($scope.rate(2));
 					scope.rate();
 				})
-				scope.$on('testEvent', function(event, data) {
-					console.log("I am tested");
-				});
+				scope.$on('markAsRated', function(event, data) {
+					var testId = "star" + data.score;
+					var button = element.find("button");
+					if (button.attr('id') == testId) {
+						console.log(testId);
+						button.addClass('clicked');
+					} else {
+						button.removeClass('clicked')
+					}
+				})
 			}
 		}
 	})

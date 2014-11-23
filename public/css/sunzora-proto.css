@@ -123,13 +123,14 @@ section.mainBody {
         height: 70px;
         text-align: center;
         vertical-align: middle; }
+        section.mainBody div#judgeLayout table#buttons button.clicked {
+          color: #f00; }
         section.mainBody div#judgeLayout table#buttons button#star1 {
           background-image: url("/img/icons/star1.png"); }
         section.mainBody div#judgeLayout table#buttons button#star2 {
           background-image: url("/img/icons/star2.png"); }
         section.mainBody div#judgeLayout table#buttons button#star3 {
-          background-image: url("/img/icons/star3.png");
-          color: #f00; }
+          background-image: url("/img/icons/star3.png"); }
         section.mainBody div#judgeLayout table#buttons button#star4 {
           background-image: url("/img/icons/star4.png"); }
         section.mainBody div#judgeLayout table#buttons button#star5 {
