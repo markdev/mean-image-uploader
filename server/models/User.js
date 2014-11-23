@@ -1,8 +1,9 @@
-var mongoose = require('mongoose')
-  , crypto = require('crypto')
+var mongoose 	= require('mongoose')
+  , crypto 		= require('crypto')
+  , ObjectId 	= mongoose.SchemaTypes.ObjectId
   ;
 
-//define user schema
+//define User schema
 var userSchema = mongoose.Schema({
 	  created: 			{ type : Date, default: Date.now }
 	, updated: 			{ type: Date, default: Date.now }
@@ -46,7 +47,7 @@ userSchema.statics = {
 
 var User = mongoose.model('User', userSchema);
 
-//user model methods
+//User model methods
 exports.createDefaults = function() {
 	User.find({}).exec(function(err, users) {
 		if(users.length === 0) {

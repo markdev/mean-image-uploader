@@ -1,25 +1,11 @@
-var mongoose = require('mongoose')
-  , ObjectId = mongoose.SchemaTypes.ObjectId
-  , Schema = mongoose.Schema
-//  , crypto = require('crypto')
+var mongoose 	= require('mongoose')
+  , crypto 		= require('crypto')
+  , ObjectId 	= mongoose.SchemaTypes.ObjectId
   ;
 
-
-var entrySchema = mongoose.Schema({
-	  _owner: 			{ type: Schema.ObjectId, ref: 'userSchema', required: true }
-	, contest: 			{ type: Schema.ObjectId, ref: 'Contest', required: true }
-	, created: 			{ type: Date, default: Date.now }
-	, title: 			{ type: String, default: null }
-	, content: 			{ type: String, default: null }
-	, ratings: 			[ {
-		  _owner: 		{ type: Schema.ObjectId, ref: 'User' }
-		, created: 		{ type : Date, default: Date.now }
-		, score: 		{ type: Number }	
-		} ]
-});
-
+//define Contest schema
 var contestSchema = mongoose.Schema({
-	  _owner: 					{ type: Schema.ObjectId, ref: 'userSchema', required: true }
+	  _owner: 					{ type: ObjectId, ref: 'userSchema', required: true }
 	, created: 					{ type: Date, default: Date.now }
 	, title: 					{ type: String, required: true }
 	, banner:  					{ type: String, default: null }
@@ -40,28 +26,12 @@ contestSchema.methods = {
 };
 
 contestSchema.statics = {
-	/*
-	createPasswordSalt: function() {
-		return crypto.randomBytes(256).toString('base64');
-	}
-	, hashPassword: function(salt, password) {
-		var hmac = crypto.createHmac('sha1', salt);
-		return hmac.update(password).digest('hex');
-	}
-	, createRandomString: function() {
-		var text = "";
-		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-		for( var i=0; i < 6; i++ ) {
-        	text += possible.charAt(Math.floor(Math.random() * possible.length)); }
-        return text;
-	}
-	*/
-}
 
-var Contest = mongoose.model('Contest', contestSchema);
-var Entry = mongoose.model('Entry', entrySchema);
+};
 
-//user model methods
+var Contest = mongoose.model('Contest', contestSchema)
+
+//Contest model methods
 exports.createDefaults = function() {
 	console.log("contest create defaults");
 	Contest.find({}).exec(function(err, contests) {

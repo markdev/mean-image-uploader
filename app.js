@@ -10,7 +10,6 @@ var express 		= require('express')
   , LocalStrategy   = require('passport-local').Strategy
   , multer			= require('multer')
   , RedisStore      = require('connect-redis')(expressSession)
-  // ,	mongoose 		= require('mongoose')
   ;
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -88,15 +87,10 @@ passport.use(new LocalStrategy({
 app.use(multer({
 	dest: "./images/tmp"
 }));
-/*
-app.get('/', function(req, res) {
-	res.render('test');
-});
-*/
 
 //configure server routes
-require('./server/routes/api-routes')(app)
-require('./server/routes/server-routes')(app); // TODO: set this up later
+require('./server/routes/api-routes')(app);
+require('./server/routes/server-routes')(app);
 
 app.listen(config.port);
 console.log("app is listening on port " + config.port + "...");
