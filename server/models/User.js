@@ -45,7 +45,7 @@ userSchema.statics = {
 	}
 }
 
-var User = mongoose.model('User', userSchema);
+User = mongoose.model('User', userSchema);
 
 //User model methods
 exports.createDefaults = function() {

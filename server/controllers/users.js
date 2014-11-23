@@ -1,9 +1,9 @@
-var User = require('mongoose').model('User')
-  , fs = require('fs')
-  , util = require('util')
-  , lwip = require('lwip')
-  , nodemailer = require('nodemailer')
-  , passport = require('passport')
+var User 		= require('mongoose').model('User')
+  , fs 			= require('fs')
+  , util 		= require('util')
+  , lwip 		= require('lwip')
+  , nodemailer 	= require('nodemailer')
+  , passport 	= require('passport')
   ;
 
 var avatarDestination = 'public/img/avatars/';

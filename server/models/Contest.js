@@ -29,7 +29,7 @@ contestSchema.statics = {
 
 };
 
-var Contest = mongoose.model('Contest', contestSchema)
+Contest = mongoose.model('Contest', contestSchema)
 
 //Contest model methods
 exports.createDefaults = function() {

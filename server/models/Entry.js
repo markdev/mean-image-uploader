@@ -1,7 +1,7 @@
 var mongoose 	= require('mongoose')
   , crypto 		= require('crypto')
+  , ObjectId 	= mongoose.SchemaTypes.ObjectId
   ;
-var ObjectId 	= mongoose.SchemaTypes.ObjectId;
 
 //define Entry schema
 var entrySchema = mongoose.Schema({
@@ -26,7 +26,7 @@ entrySchema.statics = {
 
 }
 
-var Entry = mongoose.model('Entry', entrySchema);
+Entry = mongoose.model('Entry', entrySchema);
 
 //Entry model methods
 exports.createDefaults = function() {

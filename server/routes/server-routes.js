@@ -3,11 +3,7 @@ var mongoose = require('mongoose')
   , api = require('./route-config')
   ;
 
-
-
 module.exports = function(app) {
-
-
 
  	//render jade views as html
 	app.get('/views/*', function(req, res) {
