@@ -8,19 +8,6 @@ var User 		= require('mongoose').model('User')
 
 var avatarDestination = 'public/img/avatars/';
 
-//list all users
-//  - security breach, don't show passwords
-exports.list = function(req, res, next) {
-	console.log("called: users.list");
-	User.find({}, {'_id': 0, 'password_salt': 0, 'password_hash': 0}, function (err, users) {
-		if (err) {
-			res.send({ success: false, message: "Can't find users"});
-		} else {
-			res.send({ success: true, users: users });
-		}
-	});
-}
-
 exports.login = function(req, res, next) {
 	console.log("DEBUG 1");
 	req.body.email = req.body.email.toLowerCase();
@@ -44,6 +31,7 @@ exports.logout = function(req, res, next) {
 	req.logout();
 	res.end();
 }
+
 
 exports.create = function(req, res, next) {
 	console.log("called: users.create");
@@ -72,6 +60,30 @@ exports.create = function(req, res, next) {
 			});
 		});
 	}
+}
+
+//list all users
+//  - security breach, don't show passwords
+exports.list = function(req, res, next) {
+	console.log("called: users.list");
+	User.find({}, {'_id': 0, 'password_salt': 0, 'password_hash': 0}, function (err, users) {
+		if (err) {
+			res.send({ success: false, message: "Can't find users"});
+		} else {
+			res.send({ success: true, users: users });
+		}
+	});
+}
+
+
+exports.getAvatar = function(req, res, next) {
+	User.findOne({_id: req.param('id')}, function(err, user) {
+		if (err || user == null || user.avatar == null) {
+			res.sendfile(avatarDestination + 'blankAvatar.png');
+		} else {
+			res.sendfile(avatarDestination + user.avatar);
+		}
+	})
 }
 
 exports.getBySlug = function(req, res, next) {
@@ -104,6 +116,13 @@ exports.changePassword = function(req, res, next) {
 	});
 }
 
+exports.deleteUser = function(req, res, next) {
+	console.log("called: users.deleteUser");
+	User.findOne({_id: req.param('slug')}).remove(function() {
+		res.send({ success: true });
+	});
+}
+
 exports.updateUser = function(req, res, next) {
 	console.log("called: users.updateUser");
 	User.findOne({email: req.body.email}, function(err, user) {
@@ -125,16 +144,6 @@ exports.updateUser = function(req, res, next) {
 			})
 		}
 	});
-}
-
-exports.getAvatar = function(req, res, next) {
-	User.findOne({_id: req.param('id')}, function(err, user) {
-		if (err || user == null || user.avatar == null) {
-			res.sendfile(avatarDestination + 'blankAvatar.png');
-		} else {
-			res.sendfile(avatarDestination + user.avatar);
-		}
-	})
 }
 
 // lots of cleanup for this one
@@ -169,14 +178,6 @@ exports.uploadAvatar = function(req, res, next) {
 				}
 			})
 		}
-	});
-}
-
-
-exports.deleteUser = function(req, res, next) {
-	console.log("called: users.deleteUser");
-	User.findOne({_id: req.param('slug')}).remove(function() {
-		res.send({ success: true });
 	});
 }
 
@@ -221,6 +222,4 @@ exports.requestPasswordReset = function(req, res, next) {
 	})
 }
 
-
-//populate default users
 

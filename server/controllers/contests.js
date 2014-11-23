@@ -1,12 +1,8 @@
-var Contest = require('mongoose').model('Contest')
-  , Entry = require('mongoose').model('Entry')
-//  , Rating = require('mongoose').model('Rating')
-  , mongoose = require('mongoose')
-  , fs = require('fs')
-//  , util = require('util')
-  , lwip = require('lwip')
-//  , nodemailer = require('nodemailer');
-//  , jquery = require('jquery')
+var Contest 		= require('mongoose').model('Contest')
+  , Entry 			= require('mongoose').model('Entry')
+  , mongoose 		= require('mongoose')
+  , fs 				= require('fs')
+  , lwip 			= require('lwip')
   ;
 
 var bannerDestination = 'public/img/contestBanners/';
@@ -66,15 +62,15 @@ exports.deleteContest = function(req, res, next) {
 	})
 }
 
-exports.getBanner = function(req, res, next) {
-	Contest.findOne({_id: req.param('id')}, function(err, contest) {
-		console.log("contest banner:");
-		if (err || contest == null || contest.banner == null) {
-			res.sendfile(bannerDestination + 'blankBanner.png');
+exports.getByOwner = function(req, res, next) {
+	console.log("called: contest.getByOwner");
+	Contest.find({"_owner" : req.param('id')}, function(err, contests) {
+		if (err) {
+			res.send({ success: false, message: "No contest with that owner."});
 		} else {
-			res.sendfile(bannerDestination + contest.banner);
+			res.send({ success: true, contests: contests });
 		}
-	})
+	});
 }
 
 exports.getBySlug = function(req, res, next) {
@@ -84,17 +80,6 @@ exports.getBySlug = function(req, res, next) {
 			res.send({ success: false, message: "No contest with that id."});
 		} else {
 			res.send({ success: true, contest: contest });
-		}
-	});
-}
-
-exports.getByOwner = function(req, res, next) {
-	console.log("called: contest.getByOwner");
-	Contest.find({"_owner" : req.param('id')}, function(err, contests) {
-		if (err) {
-			res.send({ success: false, message: "No contest with that owner."});
-		} else {
-			res.send({ success: true, contests: contests });
 		}
 	});
 }
@@ -290,6 +275,18 @@ exports.addEntry = function(req, res, next) {
 	});
 }
 
+
+exports.getBanner = function(req, res, next) {
+	Contest.findOne({_id: req.param('id')}, function(err, contest) {
+		console.log("contest banner:");
+		if (err || contest == null || contest.banner == null) {
+			res.sendfile(bannerDestination + 'blankBanner.png');
+		} else {
+			res.sendfile(bannerDestination + contest.banner);
+		}
+	})
+}
+
 exports.uploadBanner = function(req, res, next) {
 	console.log("called: users.uploadBanner");
 	Contest.findOne({_id: req.body.id}, function(err, contest) {
@@ -322,25 +319,6 @@ exports.uploadBanner = function(req, res, next) {
 			})			
 		} 
 	})
-}
-
-exports.addRating = function(req, res, next) {
-	console.log("called: contests.addRating");
-	Entry.findByIdAndUpdate(
-		req.body.entry,
-		{ $push: {"ratings": {
-			"owner": req.user._id,
-			"score": req.body.score
-		}}},
-		{safe: true, upsert: true},
-		function(err, entry) {
-			if (err) {
-				res.send({success: false, message: "Error inserting score"});
-			} else {
-				res.send({success: true, entry: entry});
-			}
-		}		
-	);
 }
 
 exports.getJudgeState = function(req, res, next) {

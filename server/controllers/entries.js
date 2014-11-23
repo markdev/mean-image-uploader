@@ -8,9 +8,23 @@ var Entry = require('mongoose').model('Entry')
 var entryDestination = 'public/img/contestEntries/';
 var entryThumbDestination = 'public/img/contestEntryThumbs/';
 
-exports.submit = function(req, res, next) {
-	console.log("called: entries.submit");
-	res.send({ success: true, data: req.body });
+exports.addRating = function(req, res, next) {
+	console.log("called: contests.addRating");
+	Entry.findByIdAndUpdate(
+		req.body.entry,
+		{ $push: {"ratings": {
+			"owner": req.user._id,
+			"score": req.body.score
+		}}},
+		{safe: true, upsert: true},
+		function(err, entry) {
+			if (err) {
+				res.send({success: false, message: "Error inserting score"});
+			} else {
+				res.send({success: true, entry: entry});
+			}
+		}		
+	);
 }
 
 exports.getByUser = function(req, res, next) {
