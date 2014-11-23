@@ -96,12 +96,13 @@ angular
 			})
 		$scope.entries = [];
 		$scope.activeEntry = null;
+		$scope.entryRatingMap = []; //this is a shitshow
 		EntryFactory.getEntriesByContest($stateParams.id)
 			.then(function(result) {
 				var processedEntries = [];
 				for (var i=0; i<result.entries.length; i++) {
-					result.entries[i].active = (i==2)? "active" : "";
 					processedEntries.push(result.entries[i]);
+					//$scope.entries[result.entries[i]._id] = result.entries[i];
 				}
 				$scope.entries = processedEntries;
 				console.log($scope.entries);
@@ -121,6 +122,7 @@ angular
 			EntryFactory.addRating(postData)
 				.then(function(result){
 					console.log(result);
+					$scope.entryRatingMap[result.entry._id] = score;
 				})
 		}
 

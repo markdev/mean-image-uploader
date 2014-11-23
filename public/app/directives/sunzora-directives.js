@@ -27,12 +27,12 @@ angular
 		};
 	})
 
-	.directive('entryFrame', function() {
+	.directive('entryFrame', function($compile, $rootScope) {
 		return {
 			restrict: 'E',
 			scope: {
 				entry: '=',
-				set: '&'
+				callFocus: '&'
 			},
 			replace: true,
 			template: '<div><div class="imageFrame"><img ng-src="/api/entry/realContent/{{entry._id}}" /></div></div>',
@@ -43,9 +43,10 @@ angular
 				scope.$on('scroll', function (event, result) {
 					var imageFrame = element.find('.imageFrame');
 					if (element.position().left > 200 && element.position().left < 560) {
-						scope.set();
+						scope.callFocus();
 						imageFrame.addClass('active');
 						$compile(imageFrame)(scope);
+		     			$rootScope.$broadcast('testEvent');
 					} else {
 						if (imageFrame.hasClass('active')) {
                     		imageFrame.removeClass('active');
@@ -55,6 +56,27 @@ angular
 				});
 			},
 			controller: function($scope) {
+			}
+		}
+	})
+
+	.directive('rateButton', function() {
+		return {
+			restrict: 'E',
+			scope: {
+				value: '=',
+				rate: '&'  // let's cycle through the options
+			},
+			replace: true,
+			template: '<div><button id="star{{value}}" ng-click="rate({{value}})">{{value}}</button></div>',
+			link: function(scope, element, attrs) {
+				element.bind("click", function(e) {
+					//scope.$apply($scope.rate(2));
+					scope.rate();
+				})
+				scope.$on('testEvent', function(event, data) {
+					console.log("I am tested");
+				});
 			}
 		}
 	})

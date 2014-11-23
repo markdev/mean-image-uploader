@@ -128,7 +128,8 @@ section.mainBody {
         section.mainBody div#judgeLayout table#buttons button#star2 {
           background-image: url("/img/icons/star2.png"); }
         section.mainBody div#judgeLayout table#buttons button#star3 {
-          background-image: url("/img/icons/star3.png"); }
+          background-image: url("/img/icons/star3.png");
+          color: #f00; }
         section.mainBody div#judgeLayout table#buttons button#star4 {
           background-image: url("/img/icons/star4.png"); }
         section.mainBody div#judgeLayout table#buttons button#star5 {

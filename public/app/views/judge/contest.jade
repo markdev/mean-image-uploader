@@ -7,7 +7,7 @@ div#judgeLayout
 		table
 			tr
 				td(ng-repeat="entry in entries")
-					entry-frame(entry="entry" set="callFocus(entry._id)")
+					entry-frame(entry="entry" call-focus="callFocus(entry._id)")
 				//-	div.imageFrame(ng-class="{{entry.active}}")
 						img(ng-src="/api/entry/realContent/{{entry._id}}")
 
@@ -15,5 +15,6 @@ div#judgeLayout
 		tr
 			- for (var i=1; i<=10; i++) {
 			td
-				button(id="star#{i}" ng-click="rate(#{i})") #{i}
+				//-button(id="star#{i}" ng-click="rate(#{i})") #{i}
+				rate-button(value="#{i}" rate="rate(#{i})")
 			- }
