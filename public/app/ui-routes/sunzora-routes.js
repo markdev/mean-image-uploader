@@ -183,9 +183,9 @@ angular
 				templateUrl: '/views/settings/main'
 			})
 
-			.state('settings.updateAccount', {
+			.state('settings.avatar', {
 				url: '/account',
-				templateUrl: '/views/settings/account'
+				templateUrl: '/views/settings/avatar'
 			})
 
 			.state('settings.changePassword', {

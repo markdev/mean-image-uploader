@@ -81,7 +81,7 @@ angular
 				});
 		}
 	}])
-
+/*
 	.controller('UserAccountSettingsCtrl', ['$scope', '$stateParams', '$state', '$rootScope', 'UserFactory', function($scope, $stateParams, $state, $rootScope, UserFactory) {  
 		$scope.firstName = "";
 		$scope.lastName = "";
@@ -93,27 +93,39 @@ angular
 			console.log('updating user');
 		};
 	}])
+*/
 
-	.controller('UserAvatarUploadCtrl', ['$scope', '$upload', '$stateParams', '$state', '$rootScope', 'UserFactory', function($scope, $upload, $stateParams, $state, $rootScope, UserFactory) {  
-		$scope.foo = "This is foo";
+	.controller('UserAvatarUploadCtrl', ['$scope', 'fileReader', '$upload', '$stateParams', '$state', '$rootScope', 'UserFactory', function($scope, fileReader, $upload, $stateParams, $state, $rootScope, UserFactory) {  
+		$scope.file = null;
+		$scope.getFile = function () {
+			$scope.progress = 0;
+			fileReader.readAsDataUrl($scope.file, $scope)
+				.then(function(result) {
+					$scope.imageSrc = result;
+				});
+			};
+		$scope.$on("fileProgress", function(e, progress) {
+			$scope.progress = progress.loaded / progress.total;
+		});
 		$scope.onFileSelect = function($files) {
 			for (var i = 0; i < $files.length; i++) {
-				var file = $files[i];
-				$scope.upload = $upload.upload({
-					method: 'POST',
-					url: '/api/user/avatar',
-					data: { id: currentUser._id },
-					file: file
-				}).progress(function(evt) {
-					console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-				}).success(function(data, status, headers, config) {
-        			console.log(data);
-      			});
+				$scope.file = $files[i];
+				console.log($scope.file);
 			}
 		};
-
 		$scope.update = function() {
-			console.log("updating");
+			console.log("SUBMITT");
+			$scope.upload = $upload.upload({
+				method: 'POST',
+				url: '/api/user/avatar',
+				data: { id: currentUser._id },
+				file: $scope.file
+			}).progress(function(evt) {
+				console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+			}).success(function(data, status, headers, config) {
+    			console.log(data);
+    			$state.go('settings.home');
+  			});
 		};
 
 	}])
