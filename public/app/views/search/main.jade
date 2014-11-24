@@ -9,6 +9,6 @@ div(ng-controller="ContestSearchCtrl")
 			li
 				div.menuItem
 					a(ui-sref="contest.join({id: '{{contest._id}}' })")
-						img(ng-src="/api/contest/banner/{{contest._id}}") 
+						img.thumbnail(ng-src="/api/contest/banner/{{contest._id}}") 
 					span {{ contest.title }}
 

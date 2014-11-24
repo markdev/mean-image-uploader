@@ -11,7 +11,7 @@ var entrySchema = mongoose.Schema({
 	, title: 			{ type: String, default: null }
 	, content: 			{ type: String, default: null }
 	, ratings: 			[ {
-		  _owner: 		{ type: ObjectId, ref: 'User' }
+		  _owner: 		{ type: ObjectId, ref: 'User', required: true }
 		, created: 		{ type : Date, default: Date.now }
 		, score: 		{ type: Number }	
 		} ]

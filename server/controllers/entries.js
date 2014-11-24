@@ -8,25 +8,6 @@ var Entry = require('mongoose').model('Entry')
 var entryDestination = 'public/img/contestEntries/';
 var entryThumbDestination = 'public/img/contestEntryThumbs/';
 
-exports.addRating = function(req, res, next) {
-	console.log("called: contests.addRating");
-	Entry.findByIdAndUpdate(
-		req.body.entry,
-		{ $push: {"ratings": {
-			"owner": req.user._id,
-			"score": req.body.score
-		}}},
-		{safe: true, upsert: true},
-		function(err, entry) {
-			if (err) {
-				res.send({success: false, message: "Error inserting score"});
-			} else {
-				res.send({success: true, entry: entry});
-			}
-		}		
-	);
-}
-
 exports.getByUser = function(req, res, next) {
 	console.log("called: getByUser");
 	Entry.find({"_owner" : req.param('id')}, function(err, entries) {
@@ -73,4 +54,42 @@ exports.getByContest = function(req, res, next) {
 			res.send({ success: true, entries: entries });
 		}
 	})
+}
+
+exports.loadNewEntry = function(req, res, next) {
+	console.log("called: entry.loadNewEntry");
+	Entry.findOne({ // Need to find a way to randomize this
+		  _id: { $nin: req.body.existingEntries }
+		, contest: req.body.cId
+		, $or: [
+			  { ratings: [] }
+			, { "ratings._owner" : {$ne: req.body.uId}}
+			//, { "ratings._owner" : {$ne: req.user._id}}
+			]
+	}, function(err, entry) {
+		if (err) {
+			res.send({ success: false, message: "No entries for this contest."});
+		} else {
+			res.send({ success: true, entry: entry });
+		}
+	})
+}
+
+exports.addRating = function(req, res, next) {
+	console.log("called: contests.addRating");
+	Entry.findByIdAndUpdate(
+		req.body.entry,
+		{ $push: {"ratings": {
+			"_owner": req.user._id,
+			"score": req.body.score
+		}}},
+		{safe: true, upsert: true},
+		function(err, entry) {
+			if (err) {
+				res.send({success: false, message: "Error inserting score"});
+			} else {
+				res.send({success: true, entry: entry});
+			}
+		}		
+	);
 }

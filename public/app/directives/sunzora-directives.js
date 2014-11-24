@@ -69,10 +69,6 @@ angular
 			replace: true,
 			template: '<div><button id="star{{value}}" ng-click="rate({{value}})">{{value}}</button></div>',
 			link: function(scope, element, attrs) {
-				element.bind("click", function(e) {
-					//scope.$apply($scope.rate(2));
-					scope.rate();
-				})
 				scope.$on('markAsRated', function(event, data) {
 					var testId = "star" + data.score;
 					var button = element.find("button");

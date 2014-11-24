@@ -275,7 +275,7 @@ angular
 			ContestFactory.addCompetitor($stateParams.id, $rootScope.currentUser._id)
 				.then(function(result) {
 					//console.log(result);
-					$state.go("compete.submitEntry", {id: $stateParams.id });
+					$state.go("compete.submit", {id: $stateParams.id });
 				})
 		};
 	}])

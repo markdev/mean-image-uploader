@@ -65,11 +65,15 @@ module.exports = function(app) {
 	app.get('/api/contest/competeState/:contest/:user', api.contests.getCompeteState);
 
 	// Entry routes
-	app.post('/api/entry/rating' 		, api.entries.addRating);
+
 	app.get('/api/entry/byUser/:id'		, api.entries.getByUser);
 	app.get('/api/entry/content/:id' 	, api.entries.getThumb);
 	app.get('/api/entry/realContent/:id' 	, api.entries.getContent);
 	app.get('/api/entry/byContest/:id'	, api.entries.getByContest);
+
+	app.post('/api/entry/loadNew' 		, api.entries.loadNewEntry);
+	app.post('/api/entry/rating' 		, api.entries.addRating);
+
 
 
   // catch all other requests and send 404
