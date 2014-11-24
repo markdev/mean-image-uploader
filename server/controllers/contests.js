@@ -13,13 +13,63 @@ exports.create = function(req, res, next) {
 	console.log("called: contests.create");
 	var userData = req.body;
 	userData._owner = req.user._id
+	console.log(req.files.file.name);
+	userData.banner = req.files.file.name;
 	Contest.create(userData, function(err, contest) {
 		if (err) {
 			res.send({success: false, error: err});
 		} else {
+			contest.banner = req.files.file.name;
+			console.log("CONTEST BANNER IS:");
+			console.log(contest.banner)
+			fs.rename('images/tmp/' + contest.banner, bannerDestination + contest.banner, function (err) {
+				console.log("Image has been moved");
+				lwip.open(bannerDestination + contest.banner, function(err, image) {
+					if (err) throw err;
+					// lanczos
+					image.resize(50, 50, function(err, rzdImg) {
+						rzdImg.writeFile(bannerDestination + contest.banner, function(err) {
+							if (err) throw err;
+						});
+					});
+				});
+			});
 			res.send({success: true, contest: contest});
 		}
 	});
+
+/*
+	Contest.findOne({_id: req.body.id}, function(err, contest) {
+		if (err) {
+			// stuff
+		} else {
+			if (contest.banner !== null && contest.banner !== undefined) {
+				console.log("banner is: " + contest.banner);
+				fs.unlink(bannerDestination + contest.banner);
+			}
+			contest.banner = req.files.file.name;
+			fs.rename('images/tmp/' + contest.banner, bannerDestination + contest.banner, function (err) {
+				console.log("Image has been moved");
+				lwip.open(bannerDestination + contest.banner, function(err, image) {
+					if (err) throw err;
+					// lanczos
+					image.resize(50, 50, function(err, rzdImg) {
+						rzdImg.writeFile(bannerDestination + contest.banner, function(err) {
+							if (err) throw err;
+						});
+					});
+				});
+			});
+			contest.save(function(err) {
+				if (err) {
+					res.send({success: false, message: "Failed to update avatar"});
+				} else {
+					res.send({success: true, contest: contest});
+				}
+			})			
+		} 
+	})
+*/
 }
 
 exports.edit = function(req, res, next) { // TODO this doesn't do anything useful yet

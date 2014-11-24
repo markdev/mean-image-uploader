@@ -87,6 +87,9 @@ section.mainBody {
       padding: .5em 0em; }
       section.mainBody nav.bigLinks ul div.menuItem a {
         text-decoration: none; }
+      section.mainBody nav.bigLinks ul div.menuItem img.thumbnail {
+        width: 3em;
+        height: 3em; }
   section.mainBody input#searchBar {
     display: block;
     float: left;
@@ -145,6 +148,9 @@ section.mainBody {
           background-image: url("/img/icons/star9.png"); }
         section.mainBody div#judgeLayout table#buttons button#star10 {
           background-image: url("/img/icons/star10.png"); }
+  section.mainBody img.preview {
+    width: 10em;
+    height: 10em; }
 
 footer.main {
   position: fixed;

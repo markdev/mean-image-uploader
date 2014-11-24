@@ -14,10 +14,7 @@ div(ng-controller="EntrySubmitCtrl")
 				label Entry
 			td
 				input(type="file" ng-file-select="onFileSelect($files)")
-				img(ng-src="{{imageSrc}}")
+				img.preview(ng-src="{{imageSrc}}")
 		tr
 			td(colspan="2")
-				button(ng-click="submit()") Submit Entry
-
-	//h2 Progress:
-	//progress(value="{{progress}}")			
+				button(ng-click="submit()") Submit Entry		

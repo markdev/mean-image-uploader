@@ -116,6 +116,10 @@ section.mainBody {
 				a {
 					text-decoration: none;
 				}
+				img.thumbnail {
+					width: 3em;
+					height: 3em;
+				}
 			}
 		}
 	}
@@ -197,6 +201,10 @@ section.mainBody {
 				}
 			}
 		}
+	}
+	img.preview {
+		width: 10em;
+		height: 10em;
 	}
 }
 

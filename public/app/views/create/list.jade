@@ -7,6 +7,7 @@ nav.bigLinks(ng-controller="ContestListCtrl")
 		li
 			div.menuItem
 				a(ui-sref="create.edit({id: '{{contest._id}}' })")
-					img(ng-src="/api/contest/banner/{{contest._id}}") 
+					img.thumbnail(ng-src="/api/contest/banner/{{contest._id}}") 
+					//-img(ng-src="{{contest.imageUrl}}")
 				span {{ contest.title }}
 				button(ng-click="deleteContest('{{contest._id}}')") Delete {{ contest.title }}

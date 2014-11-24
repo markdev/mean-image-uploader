@@ -7,7 +7,7 @@ nav.bigLinks
 		li
 			div.menuItem
 				a(ui-sref="compete.submit({id: '{{contest._id}}' })")
-					img(ng-src="/api/contest/banner/{{contest._id}}") 
+					img.thumbnail(ng-src="/api/contest/banner/{{contest._id}}") 
 				span {{ contest.title }}			
 br
 br
@@ -19,5 +19,5 @@ nav.bigLinks
 		li
 			div.menuItem
 				a(ui-sref="compete.status({id: '{{contest._id}}' })")
-					img(ng-src="/api/entry/content/{{contest._id}}") 
+					img.thumbnail(ng-src="/api/entry/content/{{contest._id}}") 
 				span {{ contest.title }}

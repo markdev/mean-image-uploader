@@ -3,7 +3,7 @@ console.log("loaded: contest controllers");
 angular
 	.module('yote')
 
-	.controller('ContestCreateNewCtrl', ['$scope',  'fileReader', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, fileReader, $stateParams, $state, $location, ContestFactory){
+	.controller('ContestCreateNewCtrl', ['$scope',  '$upload', 'fileReader', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $upload, fileReader, $stateParams, $state, $location, ContestFactory){
 		console.log('ContestCreateNewCtrl loaded...');
 		$scope.title = "Cat Pics";
 		$scope.tags = "Felines, Cats, Kitties";
@@ -20,6 +20,22 @@ angular
 		$scope.myHour = $scope.hours[0];
 		$scope.minutes = [ {name: "00"}, {name: "05"}, {name: "10"}, {name: "15"}, {name: "20"}, {name: "25"}, {name: "30"}, {name: "35"}, {name: "40"}, {name: "45"},{name: "50"},{name: "55"} ];
 		$scope.myMinute = $scope.minutes[0];
+		$scope.getFile = function () {
+			$scope.progress = 0;
+			fileReader.readAsDataUrl($scope.file, $scope)
+				.then(function(result) {
+					$scope.imageSrc = result;
+				});
+			};
+		$scope.$on("fileProgress", function(e, progress) {
+			$scope.progress = progress.loaded / progress.total;
+		});
+		$scope.onFileSelect = function($files) {
+			for (var i = 0; i < $files.length; i++) {
+				$scope.file = $files[i];
+				console.log($scope.file);
+			}
+		};
 		$scope.create = function() {
 			var deadline = 'Sat ';
 			deadline += $scope.myMonth.name + ' ';
@@ -37,14 +53,18 @@ angular
     			postData.tags.push($.trim(this).toLowerCase());
 			});
 			postData.rules = $scope.rules;
-			ContestFactory.create(postData)
-				.then(function(data) {
-					if (data.success) {
-						$state.go('create.home');
-					} else {
-						console.log("fail");
-					}					
-				})
+
+			$scope.upload = $upload.upload({
+				method: 'POST',
+				url: '/api/contest/',
+				data: postData,
+				file: $scope.file
+			}).progress(function(evt) {
+				console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+			}).success(function(data, status, headers, config) {
+    			console.log(data);
+    			$state.go('create.home');
+  			});
 		};
 	}])
 
@@ -67,10 +87,15 @@ angular
 		var getContests = function() {
 			ContestFactory.getContestsByOwner()
 				.then(function(contests) {
-					//console.log(data);
 					if (contests.success) {
-						console.log(contests);
+						//console.log(contests);
 						$scope.contests = contests.contests;
+						//for (contest in contests.contests) {
+						//	contest.imageUrl = "/api/contest/banner/" + contest._id + "?" + new Date().getTime();
+							//$scope.$apply(function() {
+						//		$scope.contests.push(contest);
+							//});
+						//}
 					} else {
 						console.log("fail");
 					}		
@@ -254,43 +279,4 @@ angular
 				})
 		};
 	}])
-
-	.controller('EntrySubmitCtrl', ['$scope', 'fileReader', '$rootScope', '$timeout', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, fileReader, $rootScope, $timeout, $upload, $stateParams, $state, $location, ContestFactory){
-		console.log('EntrySubmitCtrl loaded...');
-		console.log($stateParams);
-		$scope.title = "My title";
-		$scope.file = null;
-		console.log(fileReader)
-		$scope.getFile = function () {
-			$scope.progress = 0;
-			fileReader.readAsDataUrl($scope.file, $scope)
-				.then(function(result) {
-					$scope.imageSrc = result;
-				});
-			};
-		$scope.$on("fileProgress", function(e, progress) {
-			$scope.progress = progress.loaded / progress.total;
-		});
-		$scope.onFileSelect = function($files) {
-			for (var i = 0; i < $files.length; i++) {
-				$scope.file = $files[i];
-				console.log($scope.file);
-			}
-		};
-		$scope.submit = function() {
-			$scope.upload = $upload.upload({
-				method: 'POST',
-				url: '/api/contest/entry',
-				data: { id: $stateParams.id, 
-						title: $scope.title, 
-						contest: $stateParams.id
-					},
-				file: $scope.file
-			}).progress(function(evt) {
-				console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-			}).success(function(data, status, headers, config) {
-    			console.log(data);
-    			$state.go('compete.home');
-  			});
-		};
-	}])
+	;
