@@ -13,7 +13,7 @@ var entrySchema = mongoose.Schema({
 	, ratings: 			[ {
 		  _owner: 		{ type: ObjectId, ref: 'User', required: true }
 		, created: 		{ type : Date, default: Date.now }
-		, score: 		{ type: Number }	
+		, score: 		{ type: Number, required: true }	
 		} ]
 });
 

@@ -22,8 +22,9 @@ function requireRole(role) {
 		} else {  next(); }
 	}
 }
-
-
+/*
+sudo curl -i -X POST -H 'Content-Type: application/json' -d '{"eId":"5472ebc6efab195e801b6535", "uId":"546b00d09ea23d9bdd46e47d"}' http://127.0.0.1:2345/api/entry/rating
+*/
 module.exports = function(app) {
 	/****************************
 	/*  DEFAULT USER API ROUTES
