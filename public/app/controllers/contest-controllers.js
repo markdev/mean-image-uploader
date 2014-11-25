@@ -134,6 +134,19 @@ angular
 		$scope.$on('loadANewEntry', function() {
 			$scope.loadNewEntry();
 		});
+		$scope.callFocus = function() {
+			console.log("FOCUS");
+		}
+		/*
+		$scope.callFocus = function(entryId) {
+			$scope.activeEntry = entryId;
+			if ($scope.entryRatingMap.hasOwnProperty(entryId)) {
+				//console.log("Yes and the rating is " + $scope.entryRatingMap[entryId]);
+				// now broadcast
+				$rootScope.$broadcast('markAsRated', { score: $scope.entryRatingMap[entryId] });
+			}
+		}
+		*/
 	}])
 		/*
 		ContestFactory.getContestById($stateParams.id)

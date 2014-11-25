@@ -21,7 +21,32 @@ angular
 			restrict: 'A',
 			link: function (scope, element, attrs) {
 				element.bind('scroll', function () {
-					var callLimit = 500;
+					angular.forEach(angular.element('.imageFrame'), function(value, key) {
+
+						var entry = angular.element(value);
+						//console.log(entry.position().left);
+						if (entry.position().left > 200 && entry.position().left < 560) {
+							scope.callFocus();
+							entry.addClass('active');
+							$compile(entry)(scope);
+						} else {
+							if (entry.hasClass('active')) {
+	                    		entry.removeClass('active');
+	                    	}
+						}
+
+						//a.addClass('ss');
+					});
+					//$rootScope.$broadcast('scrolling');
+					//var frame = element.find('.imageFrame').each();
+					//console.log(frame);
+
+					/*
+					for (var i=0; i<frames.length; i++) {
+						console.log(frames[i]);
+					}
+					*/
+					var callLimit = 600;
 					var lPos = element.find('td.entryCell').last().position().left;
 					if (lPos < callLimit) {
 						$rootScope.$broadcast('loadANewEntry');
@@ -44,8 +69,9 @@ angular
 				element.bind("click", function() {
 					console.log(element.position().left);
 				})
-				scope.$on('scroll', function (event, result) {
+				scope.$on('scrolling', function (event, result) {
 					console.log("scrolling from directive");
+					/*
 					var imageFrame = element.find('.imageFrame');
 					if (element.position().left > 200 && element.position().left < 560) {
 						scope.callFocus();
@@ -57,6 +83,7 @@ angular
                     	}
 					}
 		     		scope.$apply();
+		     		*/
 				});
 			},
 			controller: function($scope) {
