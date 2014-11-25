@@ -22,11 +22,9 @@ angular
 			link: function (scope, element, attrs) {
 				element.bind('scroll', function () {
 					angular.forEach(angular.element('.imageFrame'), function(value, key) {
-
 						var entry = angular.element(value);
-						//console.log(entry.position().left);
 						if (entry.position().left > 200 && entry.position().left < 560) {
-							scope.callFocus();
+							scope.callFocus(key);
 							entry.addClass('active');
 							$compile(entry)(scope);
 						} else {
@@ -34,18 +32,8 @@ angular
 	                    		entry.removeClass('active');
 	                    	}
 						}
-
-						//a.addClass('ss');
+						scope.$apply();
 					});
-					//$rootScope.$broadcast('scrolling');
-					//var frame = element.find('.imageFrame').each();
-					//console.log(frame);
-
-					/*
-					for (var i=0; i<frames.length; i++) {
-						console.log(frames[i]);
-					}
-					*/
 					var callLimit = 600;
 					var lPos = element.find('td.entryCell').last().position().left;
 					if (lPos < callLimit) {
@@ -71,19 +59,6 @@ angular
 				})
 				scope.$on('scrolling', function (event, result) {
 					console.log("scrolling from directive");
-					/*
-					var imageFrame = element.find('.imageFrame');
-					if (element.position().left > 200 && element.position().left < 560) {
-						scope.callFocus();
-						imageFrame.addClass('active');
-						$compile(imageFrame)(scope);
-					} else {
-						if (imageFrame.hasClass('active')) {
-                    		imageFrame.removeClass('active');
-                    	}
-					}
-		     		scope.$apply();
-		     		*/
 				});
 			},
 			controller: function($scope) {

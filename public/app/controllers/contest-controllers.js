@@ -123,8 +123,11 @@ angular
 			postData.existingEntries = $scope.existingEntries;
 			EntryFactory.loadNewEntry(postData)
 				.then(function(entry) {
-					console.log(entry);
-					if (entry.entry !== null) {
+					//console.log(entry);
+					//console.log($scope.entries);
+					//console.log($scope.existingEntries);
+					//console.log(entry.entry._id);
+					if (entry.entry !== null && $scope.existingEntries.indexOf(entry.entry._id) == -1) {
 						$scope.entries.push(entry.entry);
 						$scope.existingEntries.push(entry.entry._id);
 					}
@@ -134,8 +137,9 @@ angular
 		$scope.$on('loadANewEntry', function() {
 			$scope.loadNewEntry();
 		});
-		$scope.callFocus = function() {
-			console.log("FOCUS");
+		$scope.callFocus = function(key) {
+			//console.log("FOCUS:" + key);
+			//console.log($scope.existingEntries[key]);
 		}
 		/*
 		$scope.callFocus = function(entryId) {

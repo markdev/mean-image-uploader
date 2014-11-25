@@ -107,8 +107,7 @@ section.mainBody {
       text-align: center;
       overflow-x: scroll; }
       section.mainBody div#judgeLayout div#carousel div#innerWrapper {
-        width: 75em;
-        background-color: #0f0; }
+        width: 75em; }
         section.mainBody div#judgeLayout div#carousel div#innerWrapper table {
           margin: 0 auto; }
           section.mainBody div#judgeLayout div#carousel div#innerWrapper table div.imageFrame {
