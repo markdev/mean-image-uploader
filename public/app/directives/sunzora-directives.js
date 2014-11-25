@@ -75,7 +75,7 @@ angular
 				active: '@'
 			},
 			replace: true,
-			template: '<div><button id="star{{value}}" class="{{active}}" ng-click="rate({{value}})">{{value}}</button></div>',
+			template: '<div><div class="rateButton {{active}}" id="star{{value}}" ng-click="rate({{value}})">{{value}}</button></div>',
 			link: function(scope, element, attrs) {
 				scope.$on('markAsRated', function(event, data) {
 					var testId = "star" + data.score;

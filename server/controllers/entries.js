@@ -77,19 +77,42 @@ exports.loadNewEntry = function(req, res, next) {
 
 exports.addRating = function(req, res, next) {
 	console.log("called: contests.addRating");
-	Entry.findByIdAndUpdate(
-		req.body.entry,
-		{ $push: {"ratings": {
-			"_owner": req.user._id,
-			"score": req.body.score
-		}}},
-		{safe: true, upsert: true},
-		function(err, entry) {
-			if (err) {
-				res.send({success: false, message: "Error inserting score"});
-			} else {
-				res.send({success: true, entry: entry});
+	Entry.update(
+		{
+			"_id": req.body.eId,
+			"ratings._owner": req.user._id
+			//"ratings._owner": req.body.uId
+		},
+		{
+			"$set": {
+				"ratings.$.score": req.body.score
 			}
-		}		
-	);
+		},
+		function(err, numAffected) {
+			if (numAffected == 0) {
+				console.log("Nothing there yet, now inserting");
+				Entry.update(
+					{
+						"_id": req.body.eId,
+					},
+					{
+						"$push": {
+							"ratings": {
+								"_owner": req.user._id,
+								//"_owner": req.body.uId,
+								"score": req.body.score
+							}
+						}
+					},
+					function(err, numAffected) {
+						res.send({ success: true, entry: numAffected });
+					}
+				)
+			} else {
+				res.send({ success: true, entry: numAffected });
+			}
+		}
+
+		);
+
 }

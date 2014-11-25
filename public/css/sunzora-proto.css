@@ -41,7 +41,7 @@ header.main {
     display: table;
     margin: 0 auto;
     padding-top: 1em;
-    width: 42em; }
+    width: 49em; }
     header.main nav a.title {
       display: block;
       float: left;
@@ -76,7 +76,7 @@ header.main {
 section.mainBody {
   padding-top: 7em;
   padding-bottom: 7em;
-  width: 42em;
+  width: 49em;
   margin: auto; }
   section.mainBody h1.title {
     text-align: center; }
@@ -103,7 +103,7 @@ section.mainBody {
   section.mainBody div#judgeLayout {
     text-align: center; }
     section.mainBody div#judgeLayout div#carousel {
-      width: 42em;
+      width: 49em;
       text-align: center;
       overflow-x: scroll; }
       section.mainBody div#judgeLayout div#carousel div#innerWrapper {
@@ -122,34 +122,34 @@ section.mainBody {
               float: left; }
     section.mainBody div#judgeLayout table#buttons {
       margin: 0 auto; }
-      section.mainBody div#judgeLayout table#buttons button {
+      section.mainBody div#judgeLayout table#buttons div.rateButton {
         display: table-cell;
         border-radius: 10px;
-        width: 70px;
+        width: 90px;
         height: 70px;
         text-align: center;
         vertical-align: middle; }
-        section.mainBody div#judgeLayout table#buttons button.marked {
-          color: #f00; }
-        section.mainBody div#judgeLayout table#buttons button#star1 {
+        section.mainBody div#judgeLayout table#buttons div.rateButton.marked {
+          background-image: url("/img/icons/staractive.png") !important; }
+        section.mainBody div#judgeLayout table#buttons div.rateButton#star1 {
           background-image: url("/img/icons/star1.png"); }
-        section.mainBody div#judgeLayout table#buttons button#star2 {
+        section.mainBody div#judgeLayout table#buttons div.rateButton#star2 {
           background-image: url("/img/icons/star2.png"); }
-        section.mainBody div#judgeLayout table#buttons button#star3 {
+        section.mainBody div#judgeLayout table#buttons div.rateButton#star3 {
           background-image: url("/img/icons/star3.png"); }
-        section.mainBody div#judgeLayout table#buttons button#star4 {
+        section.mainBody div#judgeLayout table#buttons div.rateButton#star4 {
           background-image: url("/img/icons/star4.png"); }
-        section.mainBody div#judgeLayout table#buttons button#star5 {
+        section.mainBody div#judgeLayout table#buttons div.rateButton#star5 {
           background-image: url("/img/icons/star5.png"); }
-        section.mainBody div#judgeLayout table#buttons button#star6 {
+        section.mainBody div#judgeLayout table#buttons div.rateButton#star6 {
           background-image: url("/img/icons/star6.png"); }
-        section.mainBody div#judgeLayout table#buttons button#star7 {
+        section.mainBody div#judgeLayout table#buttons div.rateButton#star7 {
           background-image: url("/img/icons/star7.png"); }
-        section.mainBody div#judgeLayout table#buttons button#star8 {
+        section.mainBody div#judgeLayout table#buttons div.rateButton#star8 {
           background-image: url("/img/icons/star8.png"); }
-        section.mainBody div#judgeLayout table#buttons button#star9 {
+        section.mainBody div#judgeLayout table#buttons div.rateButton#star9 {
           background-image: url("/img/icons/star9.png"); }
-        section.mainBody div#judgeLayout table#buttons button#star10 {
+        section.mainBody div#judgeLayout table#buttons div.rateButton#star10 {
           background-image: url("/img/icons/star10.png"); }
   section.mainBody img.preview {
     width: 10em;

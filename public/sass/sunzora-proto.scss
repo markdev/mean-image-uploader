@@ -3,7 +3,7 @@ $sunzoraOrange: #FFA834;
 $headline: #FFF;
 $headerHeight: 7em;
 $footerHeight: 7em;
-$bodyWidth: 42em;
+$bodyWidth: 49em;
 
 /* clear your css here */
 html, body, ul, ol, header, h2, h1 {
@@ -163,15 +163,15 @@ section.mainBody {
 		}
 		table#buttons {
 			margin: 0 auto;
-			button {
+			div.rateButton {
 				display: table-cell;
 				border-radius: 10px;
-				width: 70px;
+				width: 90px;
 				height: 70px;
 				text-align: center;
 				vertical-align: middle;	
 				&.marked {
-					color: #f00;
+					background-image: url("/img/icons/staractive.png") !important;
 				}
 				&#star1 { 
 					background-image: url("/img/icons/star1.png");	 

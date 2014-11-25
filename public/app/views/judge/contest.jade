@@ -9,16 +9,11 @@ div#judgeLayout
 				tr
 					td.entryCell(ng-repeat="entry in entries")
 						entry-frame(entry="entry" call-focus="callFocus(entry._id)")
-					//-	div.imageFrame(ng-class="{{entry.active}}")
-							img(ng-src="/api/entry/realContent/{{entry._id}}")
 
 	table#buttons
 		tr
-			//- for (var i=1; i<=10; i++) {
 			td(ng-repeat="score in scores")
-				//-button(id="star#{i}" ng-click="rate(#{i})") #{i}
 				div(ng-if="score == activeEntry.score")
 					rate-button(value="score" rate="rate(score)" active="marked")
 				div(ng-if="score != activeEntry.score")
 					rate-button(value="score" rate="rate(score)" active="unmarked")
-			//- }

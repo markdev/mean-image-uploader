@@ -146,67 +146,15 @@ angular
 		$scope.rate = function(score) {
 			console.log($scope.activeEntry);
 			var postData = {};
-			postData.score = $scope.activeEntry.score;
-			postData.entry = $scope.activeEntry._id;
-			//console.log(postData);
-			//database stuff
-			$scope.entryScoreMap[$scope.activeEntryKey].score = score;
-
-		}
-		/*
-		$scope.callFocus = function(entryId) {
-			$scope.activeEntry = entryId;
-			if ($scope.entryRatingMap.hasOwnProperty(entryId)) {
-				//console.log("Yes and the rating is " + $scope.entryRatingMap[entryId]);
-				// now broadcast
-				$rootScope.$broadcast('markAsRated', { score: $scope.entryRatingMap[entryId] });
-			}
-		}
-		*/
-	}])
-		/*
-		ContestFactory.getContestById($stateParams.id)
-			.then(function(result) {
-				$scope.contest = result.contest;
-			})
-		$scope.entries = [];
-		$scope.activeEntry = null;
-		$scope.entryRatingMap = []; //this is a shitshow
-		EntryFactory.getEntriesByContest($stateParams.id)
-			.then(function(result) {
-				var processedEntries = [];
-				for (var i=0; i<result.entries.length; i++) {
-					processedEntries.push(result.entries[i]);
-				}
-				$scope.entries = processedEntries;
-				console.log($scope.entries);
-			})
-		$scope.getNewEntry = function() {
-			console.log("Getting a new entry");
-		}
-		$scope.callFocus = function(entryId) {
-			$scope.activeEntry = entryId;
-			if ($scope.entryRatingMap.hasOwnProperty(entryId)) {
-				//console.log("Yes and the rating is " + $scope.entryRatingMap[entryId]);
-				// now broadcast
-				$rootScope.$broadcast('markAsRated', { score: $scope.entryRatingMap[entryId] });
-			}
-		}
-		$scope.rate = function(score) {
-			console.log(score);
-			console.log($scope.activeEntry);
-			var postData = {};
 			postData.score = score;
-			postData.entry = $scope.activeEntry
+			postData.eId = $scope.activeEntry._id;
 			EntryFactory.addRating(postData)
-				.then(function(result){
+				.then(function(result) {
 					console.log(result);
-					$scope.entryRatingMap[result.entry._id] = score;
+					$scope.entryScoreMap[$scope.activeEntryKey].score = score;
 				})
 		}
-		*/
-
-
+	}])
 
 	.controller('ContestJudgeListCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
 		console.log('ContestJudgeListCtrl loaded...');
