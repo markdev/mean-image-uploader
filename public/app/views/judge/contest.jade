@@ -4,12 +4,13 @@ hr
 h1 Judging contest: {{ contest.title }}
 div#judgeLayout
 	div#carousel(scroller)
-		table
-			tr
-				td(ng-repeat="entry in entries")
-					entry-frame(entry="entry" call-focus="callFocus(entry._id)")
-				//-	div.imageFrame(ng-class="{{entry.active}}")
-						img(ng-src="/api/entry/realContent/{{entry._id}}")
+		div#innerWrapper
+			table
+				tr
+					td.entryCell(ng-repeat="entry in entries")
+						entry-frame(entry="entry" call-focus="callFocus(entry._id)")
+					//-	div.imageFrame(ng-class="{{entry.active}}")
+							img(ng-src="/api/entry/realContent/{{entry._id}}")
 
 	table#buttons
 		tr

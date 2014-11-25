@@ -58,13 +58,13 @@ exports.getByContest = function(req, res, next) {
 
 exports.loadNewEntry = function(req, res, next) {
 	console.log("called: entry.loadNewEntry");
+	console.log(req.body);
 	Entry.findOne({ // Need to find a way to randomize this
 		  _id: { $nin: req.body.existingEntries }
 		, contest: req.body.cId
 		, $or: [
 			  { ratings: [] }
-			, { "ratings._owner" : {$ne: req.body.uId}}
-			//, { "ratings._owner" : {$ne: req.user._id}}
+			, { "ratings._owner" : {$ne: req.user._id}}
 			]
 	}, function(err, entry) {
 		if (err) {

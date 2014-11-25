@@ -103,20 +103,24 @@ section.mainBody {
   section.mainBody div#judgeLayout {
     text-align: center; }
     section.mainBody div#judgeLayout div#carousel {
+      width: 42em;
       text-align: center;
       overflow-x: scroll; }
-      section.mainBody div#judgeLayout div#carousel table {
-        margin: 0 auto; }
-        section.mainBody div#judgeLayout div#carousel table div.imageFrame {
-          padding: 30px;
-          height: auto;
-          float: left; }
-          section.mainBody div#judgeLayout div#carousel table div.imageFrame.active {
-            background-color: #f00; }
-          section.mainBody div#judgeLayout div#carousel table div.imageFrame img {
-            height: 400px;
-            width: 300px;
+      section.mainBody div#judgeLayout div#carousel div#innerWrapper {
+        width: 100em;
+        background-color: #0f0; }
+        section.mainBody div#judgeLayout div#carousel div#innerWrapper table {
+          margin: 0 auto; }
+          section.mainBody div#judgeLayout div#carousel div#innerWrapper table div.imageFrame {
+            padding: 30px;
+            height: auto;
             float: left; }
+            section.mainBody div#judgeLayout div#carousel div#innerWrapper table div.imageFrame.active {
+              background-color: #f00; }
+            section.mainBody div#judgeLayout div#carousel div#innerWrapper table div.imageFrame img {
+              height: 400px;
+              width: 300px;
+              float: left; }
     section.mainBody div#judgeLayout table#buttons {
       margin: 0 auto; }
       section.mainBody div#judgeLayout table#buttons button {

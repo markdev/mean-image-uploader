@@ -16,12 +16,16 @@ angular
 		}
 	})
 
-	.directive('scroller', function ($rootScope) {
+	.directive('scroller', function ($rootScope, $compile, $interpolate) {
 		return {
 			restrict: 'A',
 			link: function (scope, element, attrs) {
 				element.bind('scroll', function () {
-					$rootScope.$broadcast('scroll');
+					var callLimit = 500;
+					var lPos = element.find('td.entryCell').last().position().left;
+					if (lPos < callLimit) {
+						$rootScope.$broadcast('loadANewEntry');
+					}
 				});
 			}
 		};
@@ -41,6 +45,7 @@ angular
 					console.log(element.position().left);
 				})
 				scope.$on('scroll', function (event, result) {
+					console.log("scrolling from directive");
 					var imageFrame = element.find('.imageFrame');
 					if (element.position().left > 200 && element.position().left < 560) {
 						scope.callFocus();

@@ -115,6 +115,27 @@ angular
 
 	.controller('ContestJudgeCtrl', ['$scope', '$rootScope', '$stateParams', '$state', '$location', 'ContestFactory', 'EntryFactory', function($scope, $rootScope, $stateParams, $state, $location, ContestFactory, EntryFactory){
 		console.log('ContestJudgeCtrl loaded...');
+		$scope.entries = [];
+		$scope.existingEntries = [];
+		$scope.loadNewEntry = function() {
+			var postData = {};
+			postData.cId = $stateParams.id;
+			postData.existingEntries = $scope.existingEntries;
+			EntryFactory.loadNewEntry(postData)
+				.then(function(entry) {
+					console.log(entry);
+					if (entry.entry !== null) {
+						$scope.entries.push(entry.entry);
+						$scope.existingEntries.push(entry.entry._id);
+					}
+				})
+		}
+		$scope.loadNewEntry();
+		$scope.$on('loadANewEntry', function() {
+			$scope.loadNewEntry();
+		});
+	}])
+		/*
 		ContestFactory.getContestById($stateParams.id)
 			.then(function(result) {
 				$scope.contest = result.contest;
@@ -154,8 +175,9 @@ angular
 					$scope.entryRatingMap[result.entry._id] = score;
 				})
 		}
+		*/
 
-	}])
+
 
 	.controller('ContestJudgeListCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
 		console.log('ContestJudgeListCtrl loaded...');

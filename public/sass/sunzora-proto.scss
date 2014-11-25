@@ -138,21 +138,26 @@ section.mainBody {
 	div#judgeLayout {
 		text-align: center;
 		div#carousel {
+			width: $bodyWidth;
 			text-align: center;
 			overflow-x: scroll;
-			table {
-				margin: 0 auto;
-				div.imageFrame {
-					padding: 30px;
-					height: auto;
-					float: left;
-					&.active {
-						background-color: #f00;
-					}
-					img {
-						height: 400px;
-						width: 300px;
+			div#innerWrapper {
+				width: 100em;
+				background-color: #0f0;
+				table {
+					margin: 0 auto;
+					div.imageFrame {
+						padding: 30px;
+						height: auto;
 						float: left;
+						&.active {
+							background-color: #f00;
+						}
+						img {
+							height: 400px;
+							width: 300px;
+							float: left;
+						}
 					}
 				}
 			}
