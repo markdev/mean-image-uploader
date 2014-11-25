@@ -14,8 +14,11 @@ div#judgeLayout
 
 	table#buttons
 		tr
-			- for (var i=1; i<=10; i++) {
-			td
+			//- for (var i=1; i<=10; i++) {
+			td(ng-repeat="score in scores")
 				//-button(id="star#{i}" ng-click="rate(#{i})") #{i}
-				rate-button(value="#{i}" rate="rate(#{i})")
-			- }
+				div(ng-if="score == activeEntry.score")
+					rate-button(value="score" rate="rate(score)" active="marked")
+				div(ng-if="score != activeEntry.score")
+					rate-button(value="score" rate="rate(score)" active="unmarked")
+			//- }

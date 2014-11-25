@@ -116,20 +116,21 @@ angular
 	.controller('ContestJudgeCtrl', ['$scope', '$rootScope', '$stateParams', '$state', '$location', 'ContestFactory', 'EntryFactory', function($scope, $rootScope, $stateParams, $state, $location, ContestFactory, EntryFactory){
 		console.log('ContestJudgeCtrl loaded...');
 		$scope.entries = [];
+		$scope.entryScoreMap = []; //boy this is sloppy
 		$scope.existingEntries = [];
+		$scope.activeEntry = null;
+		$scope.activeEntryKey = null;
+		$scope.scores = [1,2,3,4,5,6,7,8,9,10];
 		$scope.loadNewEntry = function() {
 			var postData = {};
 			postData.cId = $stateParams.id;
 			postData.existingEntries = $scope.existingEntries;
 			EntryFactory.loadNewEntry(postData)
 				.then(function(entry) {
-					//console.log(entry);
-					//console.log($scope.entries);
-					//console.log($scope.existingEntries);
-					//console.log(entry.entry._id);
 					if (entry.entry !== null && $scope.existingEntries.indexOf(entry.entry._id) == -1) {
 						$scope.entries.push(entry.entry);
 						$scope.existingEntries.push(entry.entry._id);
+						$scope.entryScoreMap.push({_id: entry.entry._id, score: null});
 					}
 				})
 		}
@@ -138,8 +139,19 @@ angular
 			$scope.loadNewEntry();
 		});
 		$scope.callFocus = function(key) {
-			//console.log("FOCUS:" + key);
-			//console.log($scope.existingEntries[key]);
+			$scope.activeEntry = $scope.entryScoreMap[key]
+			$scope.activeEntryKey = key;
+			console.log($scope.activeEntry);
+		}
+		$scope.rate = function(score) {
+			console.log($scope.activeEntry);
+			var postData = {};
+			postData.score = $scope.activeEntry.score;
+			postData.entry = $scope.activeEntry._id;
+			//console.log(postData);
+			//database stuff
+			$scope.entryScoreMap[$scope.activeEntryKey].score = score;
+
 		}
 		/*
 		$scope.callFocus = function(entryId) {

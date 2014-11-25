@@ -71,10 +71,11 @@ angular
 			restrict: 'E',
 			scope: {
 				value: '=',
-				rate: '&'  // let's cycle through the options
+				rate: '&',  // let's cycle through the options
+				active: '@'
 			},
 			replace: true,
-			template: '<div><button id="star{{value}}" ng-click="rate({{value}})">{{value}}</button></div>',
+			template: '<div><button id="star{{value}}" class="{{active}}" ng-click="rate({{value}})">{{value}}</button></div>',
 			link: function(scope, element, attrs) {
 				scope.$on('markAsRated', function(event, data) {
 					var testId = "star" + data.score;

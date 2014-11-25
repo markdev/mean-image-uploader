@@ -129,7 +129,7 @@ section.mainBody {
         height: 70px;
         text-align: center;
         vertical-align: middle; }
-        section.mainBody div#judgeLayout table#buttons button.clicked {
+        section.mainBody div#judgeLayout table#buttons button.marked {
           color: #f00; }
         section.mainBody div#judgeLayout table#buttons button#star1 {
           background-image: url("/img/icons/star1.png"); }
