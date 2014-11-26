@@ -7,4 +7,4 @@ nav.bigLinks
 		li
 			div.menuItem
 				img.thumbnail(ng-src="/api/entry/content/{{result.entry}}") 
-				span {{result.title}}
+				span {{result.title}} | {{result.deadline}} | {{result.rank}}/{{result.totalEntries}} | {{result.score}} | {{result.totalVotes}}/{{result.totalEntries}}
