@@ -194,10 +194,10 @@ angular
 				, templateUrl: '/views/settings/changePassword'
 			})
 
-			.state('settings.viewAwards', {
+			.state('settings.viewResults', {
 				  url: '/awards'
-				, templateUrl: '/views/settings/awards'
-				, controller: 'UserAwardsCtrl'
+				, templateUrl: '/views/settings/results'
+				, controller: 'UserResultsCtrl'
 			})
 
 			.state('settings.terms', {

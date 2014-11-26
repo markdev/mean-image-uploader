@@ -130,7 +130,7 @@ angular
 
 	}])
 
-	.controller('UserAwardsCtrl', ['$scope', 'fileReader', '$upload', '$stateParams', '$state', '$rootScope', 'UserFactory', function($scope, fileReader, $upload, $stateParams, $state, $rootScope, UserFactory) {  
+	.controller('UserResultsCtrl', ['$scope', 'fileReader', '$upload', '$stateParams', '$state', '$rootScope', 'UserFactory', function($scope, fileReader, $upload, $stateParams, $state, $rootScope, UserFactory) {  
 		$scope.foo = "testing";
 	}])
 
