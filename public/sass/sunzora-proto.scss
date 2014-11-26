@@ -113,6 +113,9 @@ section.mainBody {
 			div.menuItem {
 				border-top: 2px solid black;
 				padding: .5em 0em;
+				&.active {
+					background-color: $sunzoraOrange;
+				}
 				a {
 					text-decoration: none;
 				}

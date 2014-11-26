@@ -1,10 +1,10 @@
 include includes/backButton
 
-h1 Your current standing:
+h1 Your current score: {{activeEntry.score}}
 
 nav.bigLinks
-	ul(class="bigItemList" ng-repeat="entry in entries")
+	ul(class="bigItemList" ng-repeat="entry in entries | orderBy:'score':true")
 		li
-			div.menuItem
+			div.menuItem(ng-class="{active: entry._id==activeEntry._id}")
 				img.thumbnail(ng-src="/api/entry/content/{{entry._id}}") 
 				span {{$index+1}}: {{ entry.title }} score: {{entry.score}} votes: {{entry.votes}}

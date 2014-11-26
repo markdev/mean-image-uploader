@@ -46,9 +46,14 @@ angular
 	.controller('EntryPlayByPlayCtrl', ['$scope', 'fileReader', '$rootScope', '$timeout', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', 'EntryFactory', function($scope, fileReader, $rootScope, $timeout, $upload, $stateParams, $state, $location, ContestFactory, EntryFactory){
 		console.log('EntryPlayByPlayCtrl loaded...');
 		$scope.entries = [];
+		//$scope.activeEntry = $stateParams.id;
+		$scope.activeEntry = null;
 		EntryFactory.getEntryStandingsByEntry($stateParams.id)
 			.then(function(response) {
 				$scope.entries = response.entries;
+				for(var i=0; i<$scope.entries.length; i++) {
+					if ($scope.entries[i]._id == $stateParams.id) $scope.activeEntry = $scope.entries[i];
+				}
 			})
 
 	}])

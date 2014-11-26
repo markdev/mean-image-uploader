@@ -85,6 +85,8 @@ section.mainBody {
     section.mainBody nav.bigLinks ul div.menuItem {
       border-top: 2px solid black;
       padding: .5em 0em; }
+      section.mainBody nav.bigLinks ul div.menuItem.active {
+        background-color: #FFA834; }
       section.mainBody nav.bigLinks ul div.menuItem a {
         text-decoration: none; }
       section.mainBody nav.bigLinks ul div.menuItem img.thumbnail {
