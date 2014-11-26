@@ -1,13 +1,93 @@
 var Contest 		= require('mongoose').model('Contest')
+  , ArchivedContest = require('mongoose').model('ArchivedContest')
   , Entry 			= require('mongoose').model('Entry')
   , mongoose 		= require('mongoose')
   , fs 				= require('fs')
   , lwip 			= require('lwip')
+  , CronJob 		= require('cron').CronJob
   ;
 
 var bannerDestination = 'public/img/contestBanners/';
 var entryDestination = 'public/img/contestEntries/';
 var entryThumbDestination = 'public/img/contestEntryThumbs/';
+
+var archiveContest = function(cId) {
+	Contest.findOne(
+		{
+			"_id": cId
+		},
+		function(err, contest) {
+			ArchivedContest.create(contest, function(err, aContest) {
+				contest.remove(function(err) {
+					//console.log("THIS HAS BEEN REMOVED");
+					moveEntriesToAwards(contest)
+				});
+			})
+		}
+	)
+}
+
+var moveEntriesToAwards = function(contest) {
+	Entry.find(
+		{
+			"contest": contest._id
+		},
+		function(err, entries) {
+			for (var i=0; i<=entries.length; i++) {
+				if (entries[i] != null && entries[i] != undefined) {
+					var awardObject = {};
+					awardObject.uId = entries[i]._owner;
+					awardObject.eId = entries[i]._id;
+					awardObject.cId = entries[i].contest;
+					awardObject.deadline = contest._id;
+					var ratingSum = 0; // One day I'm going to be a real algorithm!
+					for (var j=0; j<entries[i].ratings.length; j++) {
+						if (entries[i].ratings[j] != null) ratingSum += entries[i].ratings[j].score;
+					}
+					awardObject.score = ratingSum / entries[i].ratings.length;
+					awardObject.rank = null;
+					awardObject.totalEntries = entries.length;
+					awardObject.totalVotes = entries[i].ratings.length;
+					console.log(awardObject);
+				}
+			}
+		}
+	)
+}
+
+moveEntriesToAwards({_id: "5472e830538835e87bf7ceed", deadline: "2014-01-01T05:00:00Z"})
+
+/*
+new CronJob('* * * * * *', function(){
+    test();
+}, null, true, "America/New_York");
+*/
+
+//archiveContest("54756dd55207bd7167c6d16f")
+
+/*
+Seconds: 0-59
+Minutes: 0-59
+Hours: 0-23
+Day of Month: 1-31
+Months: 0-11
+Day of Week: 0-6
+
+var CronJob = require('cron').CronJob;
+var job = new CronJob('00 30 11 * * 1-5', function(){
+    // Runs every weekday (Monday through Friday)
+    // at 11:30:00 AM. It does not run on Saturday
+    // or Sunday.
+  }, function () {
+    // This function is executed when the job stops
+  },
+  true  //Start the job right now ,
+  timeZone  //Time zone of this job. 
+);
+*/
+
+
+
 
 exports.create = function(req, res, next) {
 	console.log("called: contests.create");
@@ -37,39 +117,6 @@ exports.create = function(req, res, next) {
 			res.send({success: true, contest: contest});
 		}
 	});
-
-/*
-	Contest.findOne({_id: req.body.id}, function(err, contest) {
-		if (err) {
-			// stuff
-		} else {
-			if (contest.banner !== null && contest.banner !== undefined) {
-				console.log("banner is: " + contest.banner);
-				fs.unlink(bannerDestination + contest.banner);
-			}
-			contest.banner = req.files.file.name;
-			fs.rename('images/tmp/' + contest.banner, bannerDestination + contest.banner, function (err) {
-				console.log("Image has been moved");
-				lwip.open(bannerDestination + contest.banner, function(err, image) {
-					if (err) throw err;
-					// lanczos
-					image.resize(50, 50, function(err, rzdImg) {
-						rzdImg.writeFile(bannerDestination + contest.banner, function(err) {
-							if (err) throw err;
-						});
-					});
-				});
-			});
-			contest.save(function(err) {
-				if (err) {
-					res.send({success: false, message: "Failed to update avatar"});
-				} else {
-					res.send({success: true, contest: contest});
-				}
-			})			
-		} 
-	})
-*/
 }
 
 exports.edit = function(req, res, next) { // TODO this doesn't do anything useful yet

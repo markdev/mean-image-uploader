@@ -123,7 +123,7 @@ exports.getStandingsByEntry = function(req, res, next) {
 			"_id": req.param('eId')
 		}, 
 		{
-			"contest": 1,
+			"contest": 1
 		}, 
 		function(err, entry) {
 			var cId = entry.contest;

@@ -1,7 +1,8 @@
-var mongoose 	= require('mongoose')
-  , User 		= require('./models/User')
-  , Contest 	= require('./models/Contest')
-  , Entry 		= require('./models/Entry')
+var mongoose 			= require('mongoose')
+  , User 				= require('./models/User')
+  , Contest 			= require('./models/Contest')
+  , ArchivedContest 	= require('./models/ArchivedContest')
+  , Entry 				= require('./models/Entry')
   ;
 
 module.exports = function(config) {
