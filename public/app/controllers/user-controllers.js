@@ -131,6 +131,31 @@ angular
 	}])
 
 	.controller('UserResultsCtrl', ['$scope', 'fileReader', '$upload', '$stateParams', '$state', '$rootScope', 'UserFactory', function($scope, fileReader, $upload, $stateParams, $state, $rootScope, UserFactory) {  
-		$scope.foo = "testing";
+		$scope.results = [
+			{
+				"_id" : "54758ec59defce4187b27b3b",
+				"_owner" : "546afef99ea23d9bdd46e476",
+				"entry" : "5472e97e828f71217ec3e0eb",
+				"contest" : "5472e830538835e87bf7ceed",
+				"deadline" : "2014-01-01T05:00:00Z",
+				"score" : 0,
+				"rank" : 10,
+				"totalEntries" : 11,
+				"totalVotes" : 2,
+				"title" : "peacock"
+			},
+			{
+				"_id" : "54758ec59defce4187b27b3a",
+				"_owner" : "546afef99ea23d9bdd46e476",
+				"entry" : "5472ebe0efab195e801b6536",
+				"contest" : "5472e830538835e87bf7ceed",
+				"deadline" : "2014-01-01T05:00:00Z",
+				"score" : 0.5,
+				"rank" : 9,
+				"totalEntries" : 11,
+				"totalVotes" : 2,
+				"title" : "trickster fairie"
+			},
+		];
 	}])
 

@@ -2,5 +2,9 @@ include includes/backButton
 
 h1 Results
 
-{{foo}}
-
+nav.bigLinks
+	ul(class="bigItemList" ng-repeat="result in results")
+		li
+			div.menuItem
+				img.thumbnail(ng-src="/api/entry/content/{{result.entry}}") 
+				span {{result.title}}
