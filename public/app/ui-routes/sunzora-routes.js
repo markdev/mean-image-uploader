@@ -166,6 +166,7 @@ angular
 			.state('compete.status', {
 				  url: '/status/:id'
 				, templateUrl: '/views/compete/playByPlay'
+				, controller: 'EntryPlayByPlayCtrl'
 			})
 
 			//////////////

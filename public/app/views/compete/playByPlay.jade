@@ -1,3 +1,10 @@
 include includes/backButton
 
 h1 Your current standing:
+
+nav.bigLinks
+	ul(class="bigItemList" ng-repeat="entry in entries")
+		li
+			div.menuItem
+				img.thumbnail(ng-src="/api/entry/content/{{entry._id}}") 
+				span {{$index+1}}: {{ entry.title }} score: {{entry.score}} votes: {{entry.votes}}
