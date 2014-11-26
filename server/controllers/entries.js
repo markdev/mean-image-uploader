@@ -132,16 +132,17 @@ exports.getStandingsByEntry = function(req, res, next) {
 					"contest": cId
 				},
 				function(err, entries) {
-					console.log("LENGHT");
-					console.log(entries.length);
 					for (var i=0; i<entries.length; i++) {
-					//	console.log("THE TITLE IS");
-					//	console.log(entries[entry]);
 						var entryObj = {};
 						entryObj._id = entries[i]._id;
 						entryObj.title = entries[i].title;
-						entryObj.score = 4;
-						entryObj.votes = 5;
+
+						var ratingSum = 0; // One day I'm going to be a real algorithm!
+						for (var j=0; j<entries[i].ratings.length; j++) {
+							if (entries[i].ratings[j] != null) ratingSum += entries[i].ratings[j].score;
+						}
+						entryObj.score = ratingSum / entries[i].ratings.length;
+						entryObj.votes = entries[i].ratings.length;
 						entryScores.push(entryObj);
 					}
 					res.send({ success: true, entries: entryScores});
@@ -149,27 +150,4 @@ exports.getStandingsByEntry = function(req, res, next) {
 			)
 		}
 	)
-	/*
-		var entries = [
-			{
-				"_id": "5472e952844331e07d7da3a9",
-				"title": "My Title",
-				"score": 9.32,
-				"votes": 45
-			},
-			{
-				"_id": "5472e8d0ad36ff4d7d5c7b6d",
-				"title": "Castle",
-				"score": 8.28,
-				"votes": 67
-			},
-			{
-				"_id": "5472ea93fb2e02307f72d291",
-				"title": "Other title",
-				"score": 6.74,
-				"votes": 3
-			}
-		];
-	*/
-
 }
