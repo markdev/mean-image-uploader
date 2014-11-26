@@ -76,7 +76,7 @@ exports.loadNewEntry = function(req, res, next) {
 }
 
 exports.addRating = function(req, res, next) {
-	console.log("called: contests.addRating");
+	console.log("called: entry.addRating");
 	Entry.update(
 		{
 			"_id": req.body.eId,
@@ -112,7 +112,11 @@ exports.addRating = function(req, res, next) {
 				res.send({ success: true, entry: numAffected });
 			}
 		}
+	);
+}
 
-		);
+exports.getStandingsByEntry = function(req, res, next) {
+	console.log("called: entry.getStandingsByEntry");
+	res.send({ success: true, foo: "bar"});
 
 }

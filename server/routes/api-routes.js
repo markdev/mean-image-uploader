@@ -71,9 +71,9 @@ module.exports = function(app) {
 	app.get('/api/entry/content/:id' 	, api.entries.getThumb);
 	app.get('/api/entry/realContent/:id' 	, api.entries.getContent);
 	app.get('/api/entry/byContest/:id'	, api.entries.getByContest);
-
 	app.post('/api/entry/loadNew' 		, api.entries.loadNewEntry);
 	app.post('/api/entry/rating' 		, api.entries.addRating);
+	app.get('/api/entry/standingsByEntry/:eId'	, api.entries.getStandingsByEntry);
 
 
 
