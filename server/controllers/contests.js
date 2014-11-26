@@ -1,6 +1,7 @@
 var Contest 		= require('mongoose').model('Contest')
   , ArchivedContest = require('mongoose').model('ArchivedContest')
   , Entry 			= require('mongoose').model('Entry')
+  , Result 			= require('mongoose').model('Result')
   , mongoose 		= require('mongoose')
   , fs 				= require('fs')
   , lwip 			= require('lwip')
@@ -33,35 +34,64 @@ var moveEntriesToAwards = function(contest) {
 			"contest": contest._id
 		},
 		function(err, entries) {
+			var resultsArray = [];
 			for (var i=0; i<=entries.length; i++) {
 				if (entries[i] != null && entries[i] != undefined) {
-					var awardObject = {};
-					awardObject.uId = entries[i]._owner;
-					awardObject.eId = entries[i]._id;
-					awardObject.cId = entries[i].contest;
-					awardObject.deadline = contest._id;
-					var ratingSum = 0; // One day I'm going to be a real algorithm!
+					var resultObject = {};
+					resultObject._owner = entries[i]._owner;
+					resultObject.entry = entries[i]._id;
+					resultObject.title = entries[i].title;
+					resultObject.contest = entries[i].contest;
+					resultObject.deadline = contest.deadline;
+					var ratingSum = 0;
 					for (var j=0; j<entries[i].ratings.length; j++) {
 						if (entries[i].ratings[j] != null) ratingSum += entries[i].ratings[j].score;
 					}
-					awardObject.score = ratingSum / entries[i].ratings.length;
-					awardObject.rank = null;
-					awardObject.totalEntries = entries.length;
-					awardObject.totalVotes = entries[i].ratings.length;
-					console.log(awardObject);
+					resultObject.score = ratingSum / entries[i].ratings.length;
+					resultObject.rank = null;
+					resultObject.totalEntries = entries.length;
+					resultObject.totalVotes = entries[i].ratings.length;
+					resultsArray.push(resultObject);
 				}
+			}
+			function compare(a,b) {
+				if (a.score < b.score)
+					return -1;
+				if (a.score > b.score)
+					return 1;
+				return 0;
+			}
+			resultsArray.sort(compare).reverse();
+			for (var i=1; i<=resultsArray.length; i++) {
+				if (typeof resultsArray[i] !== "undefined")
+					resultsArray[i].rank = i;
+				Result.create(resultsArray[i], function(err, result) {
+					console.log("done");
+				});
 			}
 		}
 	)
 }
 
-moveEntriesToAwards({_id: "5472e830538835e87bf7ceed", deadline: "2014-01-01T05:00:00Z"})
+//moveEntriesToAwards({_id: "5472e830538835e87bf7ceed", deadline: "2014-01-01T05:00:00Z"})
 
-/*
+var test = function() {
+	Contest.find({}, function(err, contests) {
+		for (var i=0; i<=contests.length; i++) {
+			if (typeof contests[i] !== "undefined") {
+				var deadline = Date.parse(contests[i].deadline);
+				var currentTime = new Date().getTime();
+				if (currentTime >= deadline) {
+					archiveContest(contests[i]._id);
+				}
+			}
+		}
+	})
+}
+
 new CronJob('* * * * * *', function(){
     test();
 }, null, true, "America/New_York");
-*/
 
 //archiveContest("54756dd55207bd7167c6d16f")
 

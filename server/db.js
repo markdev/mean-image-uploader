@@ -3,6 +3,7 @@ var mongoose 			= require('mongoose')
   , Contest 			= require('./models/Contest')
   , ArchivedContest 	= require('./models/ArchivedContest')
   , Entry 				= require('./models/Entry')
+  , Result 				= require('./models/Result')
   ;
 
 module.exports = function(config) {
