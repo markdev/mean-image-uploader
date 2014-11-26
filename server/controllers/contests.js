@@ -75,7 +75,8 @@ var moveEntriesToAwards = function(contest) {
 
 //moveEntriesToAwards({_id: "5472e830538835e87bf7ceed", deadline: "2014-01-01T05:00:00Z"})
 
-var test = function() {
+var checkForDeadlines = function() {
+	console.log("deadline cron")
 	Contest.find({}, function(err, contests) {
 		for (var i=0; i<=contests.length; i++) {
 			if (typeof contests[i] !== "undefined") {
@@ -89,8 +90,8 @@ var test = function() {
 	})
 }
 
-new CronJob('* * * * * *', function(){
-    test();
+new CronJob('00 * * * * *', function(){
+    checkForDeadlines();
 }, null, true, "America/New_York");
 
 //archiveContest("54756dd55207bd7167c6d16f")

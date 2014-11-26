@@ -180,39 +180,40 @@ angular
 			})
 
 			.state('settings.home', {
-				url: '',
-				templateUrl: '/views/settings/main'
+				  url: ''
+				, templateUrl: '/views/settings/main'
 			})
 
 			.state('settings.avatar', {
-				url: '/account',
-				templateUrl: '/views/settings/avatar'
+				  url: '/account'
+				, templateUrl: '/views/settings/avatar'
 			})
 
 			.state('settings.changePassword', {
-				url: '/password',
-				templateUrl: '/views/settings/changePassword'
+				  url: '/password'
+				, templateUrl: '/views/settings/changePassword'
 			})
 
 			.state('settings.viewAwards', {
-				url: '/awards',
-				templateUrl: '/views/settings/awards'
+				  url: '/awards'
+				, templateUrl: '/views/settings/awards'
+				, controller: 'UserAwardsCtrl'
 			})
 
 			.state('settings.terms', {
-				url: '/terms',
-				templateUrl: '/views/settings/terms'
+				  url: '/terms'
+				, templateUrl: '/views/settings/terms'
 			})
 
 			.state('settings.contact', {
-				url: '/contact',
-				templateUrl: '/views/settings/contact'
+				  url: '/contact'
+				, templateUrl: '/views/settings/contact'
 			})
 
 			//////////////
 			.state('loginPage', {
-				url: '/login',
-				templateUrl: '/views/login'
+				url: '/login'
+				, templateUrl: '/views/login'
 			})
 
 
