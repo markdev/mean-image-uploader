@@ -47,8 +47,8 @@ angular
 		console.log('EntryPlayByPlayCtrl loaded...');
 		$scope.entries = [];
 		EntryFactory.getEntryStandingsByEntry($stateParams.id)
-			.then(function(entries) {
-				$scope.entries = entries;
+			.then(function(response) {
+				$scope.entries = response.entries;
 			})
 
 	}])

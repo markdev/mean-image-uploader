@@ -23,7 +23,7 @@ exports.getThumb = function(req, res, next) {
 	console.log("called: getThumb");
 	Entry.findOne({_id: req.param('id')}, function(err, entry) {
 		console.log("entry banner:");
-		console.log(entry);
+		//console.log(entry);
 		if (err || entry == null) {
 			res.sendfile(entryThumbDestination + 'blankThumb.png');
 		} else {
@@ -36,7 +36,7 @@ exports.getContent = function(req, res, next) {
 	console.log("called: getContent");
 	Entry.findOne({_id: req.param('id')}, function(err, entry) {
 		console.log("entry banner:");
-		console.log(entry);
+		//console.log(entry);
 		if (err || entry == null) {
 			res.sendfile(entryDestination + 'blankThumb.png');
 		} else {
@@ -117,6 +117,59 @@ exports.addRating = function(req, res, next) {
 
 exports.getStandingsByEntry = function(req, res, next) {
 	console.log("called: entry.getStandingsByEntry");
-	res.send({ success: true, foo: "bar"});
+	var entryScores = [];
+	Entry.findOne(
+		{
+			"_id": req.param('eId')
+		}, 
+		{
+			"contest": 1,
+		}, 
+		function(err, entry) {
+			var cId = entry.contest;
+			Entry.find(
+				{
+					"contest": cId
+				},
+				function(err, entries) {
+					console.log("LENGHT");
+					console.log(entries.length);
+					for (var i=0; i<entries.length; i++) {
+					//	console.log("THE TITLE IS");
+					//	console.log(entries[entry]);
+						var entryObj = {};
+						entryObj._id = entries[i]._id;
+						entryObj.title = entries[i].title;
+						entryObj.score = 4;
+						entryObj.votes = 5;
+						entryScores.push(entryObj);
+					}
+					res.send({ success: true, entries: entryScores});
+				}
+			)
+		}
+	)
+	/*
+		var entries = [
+			{
+				"_id": "5472e952844331e07d7da3a9",
+				"title": "My Title",
+				"score": 9.32,
+				"votes": 45
+			},
+			{
+				"_id": "5472e8d0ad36ff4d7d5c7b6d",
+				"title": "Castle",
+				"score": 8.28,
+				"votes": 67
+			},
+			{
+				"_id": "5472ea93fb2e02307f72d291",
+				"title": "Other title",
+				"score": 6.74,
+				"votes": 3
+			}
+		];
+	*/
 
 }
