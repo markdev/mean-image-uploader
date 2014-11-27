@@ -152,7 +152,7 @@ exports.uploadAvatar = function(req, res, next) {
 	console.log("called: users.uploadAvatar");
 	User.findOne({_id: req.body.id}, function(err, user) {
 		if (err) {
-			//stuff
+			console.log(err);
 		} else {
 			if (user.avatar !== null && user.avatar !== undefined) {
 				console.log("avatar is: " + user.avatar);
