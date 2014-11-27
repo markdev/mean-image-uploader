@@ -4,6 +4,7 @@ var User 		= require('mongoose').model('User')
   , lwip 		= require('lwip')
   , nodemailer 	= require('nodemailer')
   , passport 	= require('passport')
+  , exec 		= require('child_process').exec
   ;
 
 var avatarDestination = 'public/img/avatars/';
@@ -160,6 +161,11 @@ exports.uploadAvatar = function(req, res, next) {
 			user.avatar = req.files.file.name;
 			fs.rename('images/tmp/' + user.avatar, avatarDestination + user.avatar, function (err) {
 				console.log("Image has been moved");
+				console.log(user.avatar);
+				exec('convert ' + avatarDestination + user.avatar + ' -resize 50x50 ' + avatarDestination + user.avatar, function(err, stdout, stderr) {
+					console.log("AVATAR RESIZING WITH IMAGEMAGICK");
+				})
+				/*
 				lwip.open(avatarDestination + user.avatar, function(err, image) {
 					if (err) throw err;
 					// lanczos
@@ -169,6 +175,7 @@ exports.uploadAvatar = function(req, res, next) {
 						});
 					});
 				});
+				*/
 			});
 			user.save(function(err) {
 				if (err) {
