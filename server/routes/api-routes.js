@@ -64,7 +64,6 @@ module.exports = function(app) {
 	app.get('/api/contest/competeState/:contest/:user', api.contests.getCompeteState);
 
 	// Entry routes
-
 	app.get('/api/entry/byUser/:id'		, api.entries.getByUser);
 	app.get('/api/entry/content/:id' 	, api.entries.getThumb);
 	app.get('/api/entry/realContent/:id' 	, api.entries.getContent);
@@ -73,7 +72,8 @@ module.exports = function(app) {
 	app.post('/api/entry/rating' 		, api.entries.addRating);
 	app.get('/api/entry/standingsByEntry/:eId'	, api.entries.getStandingsByEntry);
 
-
+	// Result routes
+	app.get('/api/result/byUser/:id'	, api.results.getByUser);
 
   // catch all other requests and send 404
 	app.all('/api/*', function(req, res) {
