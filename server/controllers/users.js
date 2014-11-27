@@ -150,8 +150,10 @@ exports.updateUser = function(req, res, next) {
 // lots of cleanup for this one
 exports.uploadAvatar = function(req, res, next) {
 	console.log("called: users.uploadAvatar");
+	console.log("SFTP");
 	User.findOne({_id: req.body.id}, function(err, user) {
 		if (err) {
+			console.log(req.body.id);
 			console.log(err);
 		} else {
 			if (user.avatar !== null && user.avatar !== undefined) {
