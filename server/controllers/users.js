@@ -1,11 +1,12 @@
 var User 		= require('mongoose').model('User')
   , fs 			= require('fs')
+  , os 			= require('os')
   , util 		= require('util')
   , lwip 		= require('lwip')
   , nodemailer 	= require('nodemailer')
   , passport 	= require('passport')
   , exec 		= require('child_process').exec
-  , rootDir  	= require('../config')['development'].rootDir
+  , rootDir  	= require('../config')[os.hostname()].rootDir
   ;
 
 var avatarDestination = 'public/img/avatars/';

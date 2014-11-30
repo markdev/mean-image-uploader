@@ -4,9 +4,10 @@ var Contest 		= require('mongoose').model('Contest')
   , Result 			= require('mongoose').model('Result')
   , mongoose 		= require('mongoose')
   , fs 				= require('fs')
+  , os 				= require('os')
   , lwip 			= require('lwip')
   , CronJob 		= require('cron').CronJob
-  , rootDir  		= require('../config')['development'].rootDir
+  , rootDir  		= require('../config')[os.hostname()].rootDir
   , exec 			= require('child_process').exec
   ;
 

@@ -1,5 +1,6 @@
 // Declare variables
 var express 		= require('express')
+  , os 				= require('os')
   , path			= require('path')
   ,	bodyParser 		= require('body-parser')
   , cookieParser    = require('cookie-parser')
@@ -12,9 +13,10 @@ var express 		= require('express')
   , RedisStore      = require('connect-redis')(expressSession)
   ;
 
-var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+//var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+var hostname = os.hostname();
 var app = express();
-var config = require('./server/config')[env];
+var config = require('./server/config')[hostname];
 
 //initialize database
 require('./server/db')(config);
