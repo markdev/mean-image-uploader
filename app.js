@@ -88,9 +88,8 @@ app.use(multer({
 	dest: "./images/tmp"
 }));
 
-//configure server routes
+//configure routes
 require('./server/routes/api-routes')(app);
-require('./server/routes/server-routes')(app);
 
 app.listen(config.port);
 console.log("app is listening on port " + config.port + "...");

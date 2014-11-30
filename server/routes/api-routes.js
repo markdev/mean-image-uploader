@@ -79,4 +79,33 @@ module.exports = function(app) {
 	app.all('/api/*', function(req, res) {
 		res.send(404);
 	});
+
+
+	/****************************
+	/*  DEFAULT SERVER ROUTES
+	/****************************/
+
+
+	 	//render jade views as html
+	app.get('/views/*', function(req, res) {
+		var file = req.params[0];
+		res.render('../../public/app/views/' + file);
+	});
+
+	//render layout
+	app.get('*', function(req, res) {
+		var currentUser = {};
+		if(req.user) {
+			currentUser = {
+				_id: req.user._id
+				, firstName: req.user.firstName
+				, lastName: req.user.lastName
+				, email: req.user.email
+				, roles: req.user.roles
+			}
+		}
+		res.render('layout', {
+			currentUser: currentUser
+		});
+	});
 }
