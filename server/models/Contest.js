@@ -1,6 +1,7 @@
 var mongoose 	= require('mongoose')
   , crypto 		= require('crypto')
   , ObjectId 	= mongoose.SchemaTypes.ObjectId
+  , CronJob 	= require('cron').CronJob
   ;
 
 //define Contest schema
@@ -29,7 +30,7 @@ contestSchema.statics = {
 
 };
 
-Contest = mongoose.model('Contest', contestSchema)
+Contest = mongoose.model('Contest', contestSchema);
 
 //Contest model methods
 exports.createDefaults = function() {
@@ -47,3 +48,105 @@ exports.createDefaults = function() {
 		}
 	});
 };
+
+//archive cronjob
+var checkForDeadlines = function() {
+	console.log("deadline cron")
+	Contest.find({}, function(err, contests) {
+		for (var i=0; i<=contests.length; i++) {
+			if (typeof contests[i] !== "undefined") {
+				var deadline = Date.parse(contests[i].deadline);
+				var currentTime = new Date().getTime();
+				if (currentTime >= deadline) {
+					archiveContest(contests[i]._id);
+				}
+			}
+		}
+	})
+}
+
+var archiveContest = function(cId) {
+	Contest.findOne(
+		{
+			"_id": cId
+		},
+		function(err, contest) {
+			ArchivedContest.create(contest, function(err, aContest) {
+				contest.remove(function(err) {
+					//console.log("THIS HAS BEEN REMOVED");
+					moveEntriesToAwards(contest)
+				});
+			})
+		}
+	)
+}
+
+var moveEntriesToAwards = function(contest) {
+	Entry.find(
+		{
+			"contest": contest._id
+		},
+		function(err, entries) {
+			var resultsArray = [];
+			for (var i=0; i<=entries.length; i++) {
+				if (entries[i] != null && entries[i] != undefined) {
+					var resultObject = {};
+					resultObject._owner = entries[i]._owner;
+					resultObject.entry = entries[i]._id;
+					resultObject.title = entries[i].title;
+					resultObject.contest = entries[i].contest;
+					resultObject.deadline = contest.deadline;
+					var ratingSum = 0;
+					for (var j=0; j<entries[i].ratings.length; j++) {
+						if (entries[i].ratings[j] != null) ratingSum += entries[i].ratings[j].score;
+					}
+					resultObject.score = ratingSum / entries[i].ratings.length;
+					resultObject.rank = null;
+					resultObject.totalEntries = entries.length;
+					resultObject.totalVotes = entries[i].ratings.length;
+					resultsArray.push(resultObject);
+				}
+			}
+			function compare(a,b) {
+				if (a.score < b.score)
+					return -1;
+				if (a.score > b.score)
+					return 1;
+				return 0;
+			}
+			resultsArray.sort(compare).reverse();
+			for (var i=1; i<=resultsArray.length; i++) {
+				if (typeof resultsArray[i] !== "undefined")
+					resultsArray[i].rank = i;
+				Result.create(resultsArray[i], function(err, result) {
+					console.log("done");
+				});
+			}
+		}
+	)
+}
+
+new CronJob('00 * * * * *', function(){
+    checkForDeadlines();
+}, null, true, "America/New_York");
+
+/*
+Seconds: 0-59
+Minutes: 0-59
+Hours: 0-23
+Day of Month: 1-31
+Months: 0-11
+Day of Week: 0-6
+
+var CronJob = require('cron').CronJob;
+var job = new CronJob('00 30 11 * * 1-5', function(){
+    // Runs every weekday (Monday through Friday)
+    // at 11:30:00 AM. It does not run on Saturday
+    // or Sunday.
+  }, function () {
+    // This function is executed when the job stops
+  },
+  true  //Start the job right now ,
+  timeZone  //Time zone of this job. 
+);
+*/

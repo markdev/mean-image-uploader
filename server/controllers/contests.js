@@ -6,7 +6,6 @@ var Contest 		= require('mongoose').model('Contest')
   , fs 				= require('fs')
   , os 				= require('os')
   , lwip 			= require('lwip')
-  , CronJob 		= require('cron').CronJob
   , rootDir  		= require('../config').rootDir
   , exec 			= require('child_process').exec
   ;
@@ -14,113 +13,6 @@ var Contest 		= require('mongoose').model('Contest')
 var bannerDestination = 'public/img/contestBanners/';
 var entryDestination = 'public/img/contestEntries/';
 var entryThumbDestination = 'public/img/contestEntryThumbs/';
-
-var archiveContest = function(cId) {
-	Contest.findOne(
-		{
-			"_id": cId
-		},
-		function(err, contest) {
-			ArchivedContest.create(contest, function(err, aContest) {
-				contest.remove(function(err) {
-					//console.log("THIS HAS BEEN REMOVED");
-					moveEntriesToAwards(contest)
-				});
-			})
-		}
-	)
-}
-
-var moveEntriesToAwards = function(contest) {
-	Entry.find(
-		{
-			"contest": contest._id
-		},
-		function(err, entries) {
-			var resultsArray = [];
-			for (var i=0; i<=entries.length; i++) {
-				if (entries[i] != null && entries[i] != undefined) {
-					var resultObject = {};
-					resultObject._owner = entries[i]._owner;
-					resultObject.entry = entries[i]._id;
-					resultObject.title = entries[i].title;
-					resultObject.contest = entries[i].contest;
-					resultObject.deadline = contest.deadline;
-					var ratingSum = 0;
-					for (var j=0; j<entries[i].ratings.length; j++) {
-						if (entries[i].ratings[j] != null) ratingSum += entries[i].ratings[j].score;
-					}
-					resultObject.score = ratingSum / entries[i].ratings.length;
-					resultObject.rank = null;
-					resultObject.totalEntries = entries.length;
-					resultObject.totalVotes = entries[i].ratings.length;
-					resultsArray.push(resultObject);
-				}
-			}
-			function compare(a,b) {
-				if (a.score < b.score)
-					return -1;
-				if (a.score > b.score)
-					return 1;
-				return 0;
-			}
-			resultsArray.sort(compare).reverse();
-			for (var i=1; i<=resultsArray.length; i++) {
-				if (typeof resultsArray[i] !== "undefined")
-					resultsArray[i].rank = i;
-				Result.create(resultsArray[i], function(err, result) {
-					console.log("done");
-				});
-			}
-		}
-	)
-}
-
-//moveEntriesToAwards({_id: "5472e830538835e87bf7ceed", deadline: "2014-01-01T05:00:00Z"})
-
-var checkForDeadlines = function() {
-	console.log("deadline cron")
-	Contest.find({}, function(err, contests) {
-		for (var i=0; i<=contests.length; i++) {
-			if (typeof contests[i] !== "undefined") {
-				var deadline = Date.parse(contests[i].deadline);
-				var currentTime = new Date().getTime();
-				if (currentTime >= deadline) {
-					archiveContest(contests[i]._id);
-				}
-			}
-		}
-	})
-}
-
-new CronJob('00 * * * * *', function(){
-    checkForDeadlines();
-}, null, true, "America/New_York");
-
-//archiveContest("54756dd55207bd7167c6d16f")
-
-/*
-Seconds: 0-59
-Minutes: 0-59
-Hours: 0-23
-Day of Month: 1-31
-Months: 0-11
-Day of Week: 0-6
-
-var CronJob = require('cron').CronJob;
-var job = new CronJob('00 30 11 * * 1-5', function(){
-    // Runs every weekday (Monday through Friday)
-    // at 11:30:00 AM. It does not run on Saturday
-    // or Sunday.
-  }, function () {
-    // This function is executed when the job stops
-  },
-  true  //Start the job right now ,
-  timeZone  //Time zone of this job. 
-);
-*/
-
-
 
 
 exports.create = function(req, res, next) {
