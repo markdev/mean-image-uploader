@@ -2,10 +2,6 @@ var Entry 		= require('mongoose').model('Entry')
   , os 			= require('os')
   , rootDir  	= require('../config').rootDir
   , exec 		= require('child_process').exec
-//  , fs = require('fs')
-//  , util = require('util')
-//  , lwip = require('lwip')
-//  , nodemailer = require('nodemailer');
   ;
 
 var entryDestination = 'public/img/contestEntries/';

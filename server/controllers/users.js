@@ -2,7 +2,6 @@ var User 		= require('mongoose').model('User')
   , fs 			= require('fs')
   , os 			= require('os')
   , util 		= require('util')
-  , lwip 		= require('lwip')
   , nodemailer 	= require('nodemailer')
   , passport 	= require('passport')
   , exec 		= require('child_process').exec
@@ -25,7 +24,6 @@ exports.login = function(req, res, next) {
 		req.logIn(user, function(err) {
 			if(err) {return next(err);}
 			res.send({success:true, user: user});
-			//res.redirect('/login');
 		});
 	})(req, res, next);
 }
@@ -169,17 +167,6 @@ exports.uploadAvatar = function(req, res, next) {
 				exec('convert ' + avatarDestination + user.avatar + ' -resize 50x50 ' + avatarDestination + user.avatar, function(err, stdout, stderr) {
 					console.log("AVATAR RESIZING WITH IMAGEMAGICK");
 				})
-				/*
-				lwip.open(avatarDestination + user.avatar, function(err, image) {
-					if (err) throw err;
-					// lanczos
-					image.resize(50, 50, function(err, rzdImg) {
-						rzdImg.writeFile(avatarDestination + user.avatar, function(err) {
-							if (err) throw err;
-						});
-					});
-				});
-				*/
 			});
 			user.save(function(err) {
 				if (err) {
