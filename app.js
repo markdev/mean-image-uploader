@@ -13,10 +13,7 @@ var express 		= require('express')
   , RedisStore      = require('connect-redis')(expressSession)
   ;
 
-//var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-//var hostname = os.hostname();
 var app = express();
-//var config = require('./server/config')[hostname];
 var config = require('./server/config')
 
 //initialize database

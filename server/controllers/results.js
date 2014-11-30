@@ -1,8 +1,4 @@
 var Result = require('mongoose').model('Result')
-//  , fs = require('fs')
-//  , util = require('util')
-//  , lwip = require('lwip')
-//  , nodemailer = require('nodemailer');
   ;
 
 //var entryDestination = 'public/img/contestEntries/';
