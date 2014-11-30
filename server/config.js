@@ -18,6 +18,6 @@ module.exports = {
 			port: '6379'
 		},
 		rootDir: '/var/www/sunzora-proto/',
-    	port: process.env.PORT || 80
+    	port: process.env.PORT || 2345
 	}
 }
