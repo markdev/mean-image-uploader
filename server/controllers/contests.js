@@ -7,7 +7,7 @@ var Contest 		= require('mongoose').model('Contest')
   , os 				= require('os')
   , lwip 			= require('lwip')
   , CronJob 		= require('cron').CronJob
-  , rootDir  		= require('../config')[os.hostname()].rootDir
+  , rootDir  		= require('../config').rootDir
   , exec 			= require('child_process').exec
   ;
 

@@ -1,6 +1,6 @@
 var Entry 		= require('mongoose').model('Entry')
   , os 			= require('os')
-  , rootDir  	= require('../config')[os.hostname()].rootDir
+  , rootDir  	= require('../config').rootDir
   , exec 		= require('child_process').exec
 //  , fs = require('fs')
 //  , util = require('util')

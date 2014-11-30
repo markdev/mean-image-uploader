@@ -6,7 +6,7 @@ var User 		= require('mongoose').model('User')
   , nodemailer 	= require('nodemailer')
   , passport 	= require('passport')
   , exec 		= require('child_process').exec
-  , rootDir  	= require('../config')[os.hostname()].rootDir
+  , rootDir  	= require('../config').rootDir
   ;
 
 var avatarDestination = 'public/img/avatars/';
