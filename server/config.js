@@ -8,6 +8,7 @@ module.exports = {
 			host: '127.0.0.1',
 			port: '6379'
 		},
+		rootDir: '/var/www/sunzora-proto/',
 		port: process.env.PORT || 2345
 	},
 	production: {
@@ -16,6 +17,7 @@ module.exports = {
 			host: '127.0.0.1',
 			port: '6379'
 		},
+		rootDir: '/var/www/sunzora-proto/',
     	port: process.env.PORT || 80
 	}
 }

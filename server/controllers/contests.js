@@ -6,6 +6,8 @@ var Contest 		= require('mongoose').model('Contest')
   , fs 				= require('fs')
   , lwip 			= require('lwip')
   , CronJob 		= require('cron').CronJob
+  , rootDir  		= require('../config')['development'].rootDir
+  , exec 			= require('child_process').exec
   ;
 
 var bannerDestination = 'public/img/contestBanners/';
@@ -135,6 +137,10 @@ exports.create = function(req, res, next) {
 			console.log(contest.banner)
 			fs.rename('images/tmp/' + contest.banner, bannerDestination + contest.banner, function (err) {
 				console.log("Image has been moved");
+				exec('convert ' + bannerDestination + contest.banner + ' -resize 50x50 ' + bannerDestination + contest.banner, function(err, stdout, stderr) {
+					console.log("AVATAR RESIZING WITH IMAGEMAGICK");
+				})
+				/*
 				lwip.open(bannerDestination + contest.banner, function(err, image) {
 					if (err) throw err;
 					// lanczos
@@ -144,6 +150,7 @@ exports.create = function(req, res, next) {
 						});
 					});
 				});
+				*/
 			});
 			res.send({success: true, contest: contest});
 		}
@@ -408,9 +415,9 @@ exports.getBanner = function(req, res, next) {
 	Contest.findOne({_id: req.param('id')}, function(err, contest) {
 		console.log("contest banner:");
 		if (err || contest == null || contest.banner == null) {
-			res.sendfile(bannerDestination + 'blankBanner.png');
+			res.sendFile(rootDir + bannerDestination + 'blankBanner.png');
 		} else {
-			res.sendfile(bannerDestination + contest.banner);
+			res.sendFile(rootDir + bannerDestination + contest.banner);
 		}
 	})
 }

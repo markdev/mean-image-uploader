@@ -1,4 +1,6 @@
-var Entry = require('mongoose').model('Entry')
+var Entry 		= require('mongoose').model('Entry')
+  , rootDir  	= require('../config')['development'].rootDir
+  , exec 		= require('child_process').exec
 //  , fs = require('fs')
 //  , util = require('util')
 //  , lwip = require('lwip')
@@ -25,9 +27,9 @@ exports.getThumb = function(req, res, next) {
 		console.log("entry banner:");
 		//console.log(entry);
 		if (err || entry == null) {
-			res.sendfile(entryThumbDestination + 'blankThumb.png');
+			res.sendFile(rootDir + entryThumbDestination + 'blankThumb.png');
 		} else {
-			res.sendfile(entryThumbDestination + entry.content);
+			res.sendFile(rootDir + entryThumbDestination + entry.content);
 		}
 	})
 }
@@ -38,9 +40,9 @@ exports.getContent = function(req, res, next) {
 		console.log("entry banner:");
 		//console.log(entry);
 		if (err || entry == null) {
-			res.sendfile(entryDestination + 'blankThumb.png');
+			res.sendFile(rootDir + entryDestination + 'blankThumb.png');
 		} else {
-			res.sendfile(entryDestination + entry.content);
+			res.sendFile(rootDir + entryDestination + entry.content);
 		}
 	})
 }

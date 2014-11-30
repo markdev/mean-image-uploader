@@ -5,6 +5,7 @@ var User 		= require('mongoose').model('User')
   , nodemailer 	= require('nodemailer')
   , passport 	= require('passport')
   , exec 		= require('child_process').exec
+  , rootDir  	= require('../config')['development'].rootDir
   ;
 
 var avatarDestination = 'public/img/avatars/';
@@ -80,9 +81,9 @@ exports.list = function(req, res, next) {
 exports.getAvatar = function(req, res, next) {
 	User.findOne({_id: req.param('id')}, function(err, user) {
 		if (err || user == null || user.avatar == null) {
-			res.sendfile(avatarDestination + 'blankAvatar.png');
+			res.sendFile(rootDir + avatarDestination + 'blankAvatar.png');
 		} else {
-			res.sendfile(avatarDestination + user.avatar);
+			res.sendFile(rootDir + avatarDestination + user.avatar);
 		}
 	})
 }
