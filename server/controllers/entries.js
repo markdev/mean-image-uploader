@@ -1,5 +1,4 @@
 var Entry 		= require('mongoose').model('Entry')
-  , os 			= require('os')
   , rootDir  	= require('../config').rootDir
   , exec 		= require('child_process').exec
   ;

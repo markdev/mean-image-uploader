@@ -4,8 +4,6 @@ var Contest 		= require('mongoose').model('Contest')
   , Result 			= require('mongoose').model('Result')
   , mongoose 		= require('mongoose')
   , fs 				= require('fs')
- // , os 				= require('os')
- // , lwip 			= require('lwip')
   , rootDir  		= require('../config').rootDir
   , exec 			= require('child_process').exec
   ;
@@ -33,17 +31,6 @@ exports.create = function(req, res, next) {
 				exec('convert ' + bannerDestination + contest.banner + ' -resize 50x50 ' + bannerDestination + contest.banner, function(err, stdout, stderr) {
 					console.log("AVATAR RESIZING WITH IMAGEMAGICK");
 				})
-				/*
-				lwip.open(bannerDestination + contest.banner, function(err, image) {
-					if (err) throw err;
-					// lanczos
-					image.resize(50, 50, function(err, rzdImg) {
-						rzdImg.writeFile(bannerDestination + contest.banner, function(err) {
-							if (err) throw err;
-						});
-					});
-				});
-				*/
 			});
 			res.send({success: true, contest: contest});
 		}
@@ -258,35 +245,12 @@ exports.addEntry = function(req, res, next) {
 		exec('convert ' + entryDestination + entryName + ' -resize 400x400 ' + entryDestination + entryName, function(err, stdout, stderr) {
 			console.log("ENTRY RESIZING WITH IMAGEMAGICK");
 		})
-		/*
-		lwip.open(entryDestination + entryName, function(err, image) {
-			if (err) throw err;
-			// lanczos
-			image.resize(400, 400, function(err, rzdImg) {
-				rzdImg.writeFile(entryDestination + entryName, function(err) {
-					if (err) throw err;
-				});
-			});
-		});
-		*/
 	});
 
 	fs.createReadStream(entryDestination + entryName).pipe(fs.createWriteStream(entryThumbDestination + entryName));
 	exec('convert ' + entryThumbDestination + entryName + ' -resize 50x50 ' + entryThumbDestination + entryName, function(err, stdout, stderr) {
 		console.log("ENTRY RESIZING WITH IMAGEMAGICK");
 	})
-	/*
-	lwip.open(entryThumbDestination + entryName, function(err, image) {
-		if (err) throw err;
-		//lanczos
-		image.resize(50, 50, function(err, rzdImg) {
-			rzdImg.writeFile(entryThumbDestination + entryName, function(err) {
-				if (err) throw err;
-			})
-		});
-	})
-	*/
-
 	var entryData = {};
 	entryData._owner = req.user._id;
 	entryData.contest = req.body.contest;
