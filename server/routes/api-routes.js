@@ -59,7 +59,7 @@ module.exports = function(app) {
 	app.post('/api/contest/judge'		, api.contests.addJudge);
 	app.post('/api/contest/entry'		, api.contests.addEntry);
 	app.get('/api/contest/banner/:id?' 	, api.contests.getBanner);
-	app.post('/api/contest/banner' 		, api.contests.uploadBanner);
+//	app.post('/api/contest/banner' 		, api.contests.uploadBanner);
 	app.get('/api/contest/judgeState/:contest/:user', api.contests.getJudgeState);
 	app.get('/api/contest/competeState/:contest/:user', api.contests.getCompeteState);
 

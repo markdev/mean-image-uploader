@@ -4,8 +4,8 @@ var Contest 		= require('mongoose').model('Contest')
   , Result 			= require('mongoose').model('Result')
   , mongoose 		= require('mongoose')
   , fs 				= require('fs')
-  , os 				= require('os')
-  , lwip 			= require('lwip')
+ // , os 				= require('os')
+ // , lwip 			= require('lwip')
   , rootDir  		= require('../config').rootDir
   , exec 			= require('child_process').exec
   ;
@@ -255,6 +255,10 @@ exports.addEntry = function(req, res, next) {
 
 	fs.rename('images/tmp/' + entryName, entryDestination + entryName, function (err) {
 		console.log("Image has been moved");
+		exec('convert ' + entryDestination + entryName + ' -resize 400x400 ' + entryDestination + entryName, function(err, stdout, stderr) {
+			console.log("ENTRY RESIZING WITH IMAGEMAGICK");
+		})
+		/*
 		lwip.open(entryDestination + entryName, function(err, image) {
 			if (err) throw err;
 			// lanczos
@@ -264,9 +268,14 @@ exports.addEntry = function(req, res, next) {
 				});
 			});
 		});
+		*/
 	});
 
 	fs.createReadStream(entryDestination + entryName).pipe(fs.createWriteStream(entryThumbDestination + entryName));
+	exec('convert ' + entryThumbDestination + entryName + ' -resize 50x50 ' + entryThumbDestination + entryName, function(err, stdout, stderr) {
+		console.log("ENTRY RESIZING WITH IMAGEMAGICK");
+	})
+	/*
 	lwip.open(entryThumbDestination + entryName, function(err, image) {
 		if (err) throw err;
 		//lanczos
@@ -276,6 +285,7 @@ exports.addEntry = function(req, res, next) {
 			})
 		});
 	})
+	*/
 
 	var entryData = {};
 	entryData._owner = req.user._id;
@@ -315,6 +325,8 @@ exports.getBanner = function(req, res, next) {
 	})
 }
 
+//I dont think this is being called anymore
+/*
 exports.uploadBanner = function(req, res, next) {
 	console.log("called: users.uploadBanner");
 	Contest.findOne({_id: req.body.id}, function(err, contest) {
@@ -328,15 +340,18 @@ exports.uploadBanner = function(req, res, next) {
 			contest.banner = req.files.file.name;
 			fs.rename('images/tmp/' + contest.banner, bannerDestination + contest.banner, function (err) {
 				console.log("Image has been moved");
-				lwip.open(bannerDestination + contest.banner, function(err, image) {
-					if (err) throw err;
-					// lanczos
-					image.resize(50, 50, function(err, rzdImg) {
-						rzdImg.writeFile(bannerDestination + contest.banner, function(err) {
-							if (err) throw err;
-						});
-					});
-				});
+				exec('convert ' + bannerDestination + contest.banner + ' -resize 50x50 ' + bannerDestination + contest.banner, function(err, stdout, stderr) {
+					console.log("AVATAR RESIZING WITH IMAGEMAGICK");
+				})
+		//		lwip.open(bannerDestination + contest.banner, function(err, image) {
+		//			if (err) throw err;
+		//			// lanczos
+		//			image.resize(50, 50, function(err, rzdImg) {
+		//				rzdImg.writeFile(bannerDestination + contest.banner, function(err) {
+		//					if (err) throw err;
+		//				});
+		//			});
+		//		});
 			});
 			contest.save(function(err) {
 				if (err) {
@@ -348,6 +363,7 @@ exports.uploadBanner = function(req, res, next) {
 		} 
 	})
 }
+*/
 
 exports.getJudgeState = function(req, res, next) {
 	Contest.findOne({_id: req.param('contest')}, function(err, contest) {

@@ -108,7 +108,8 @@ angular
 				})
 			return deferred.promise;			
 		}
-
+/*
+		I don't think this is used anymore
 		ContestFactory.uploadBanner = function(id) {
 			console.log("uploading banner");
 			var deferred = $q.defer();
@@ -119,6 +120,7 @@ angular
 				})
 			return deferred.promise;			
 		}
+		*/
 
 		ContestFactory.getCompeteStateByUser = function(contestId, userId) {
 			console.log("getting compete state by user");

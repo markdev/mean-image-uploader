@@ -1,6 +1,5 @@
 var User 		= require('mongoose').model('User')
   , fs 			= require('fs')
-  , os 			= require('os')
   , util 		= require('util')
   , nodemailer 	= require('nodemailer')
   , passport 	= require('passport')
