@@ -215,13 +215,6 @@ angular
 				, templateUrl: '/views/settings/contact'
 			})
 
-			//////////////
-			.state('loginPage', {
-				url: '/login'
-				, templateUrl: '/views/login'
-			})
-
-
 	// end state config
 	})
 

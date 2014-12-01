@@ -68,11 +68,10 @@ angular
 		};
 	}])
 
-	.controller('ContestSearchCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
+	.controller('ContestSearchCtrl', ['$scope', 'ContestFactory', function($scope, ContestFactory) {
 		console.log('ContestSearchCtrl loaded...');
 		$scope.contests = [];
 		$scope.find = function() {
-			console.log("FIND");
 			ContestFactory.getContestByString($scope.searchStr)
 				.then(function(contests) {
 					console.log(contests);
@@ -81,21 +80,14 @@ angular
 		}
 	}])
 
-	.controller('ContestListCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
+	.controller('ContestListCtrl', ['$scope', 'ContestFactory', function($scope, ContestFactory) {
 		console.log('ContestListCtrl loaded...');
 		$scope.contests = [];
 		var getContests = function() {
 			ContestFactory.getContestsByOwner()
 				.then(function(contests) {
 					if (contests.success) {
-						//console.log(contests);
 						$scope.contests = contests.contests;
-						//for (contest in contests.contests) {
-						//	contest.imageUrl = "/api/contest/banner/" + contest._id + "?" + new Date().getTime();
-							//$scope.$apply(function() {
-						//		$scope.contests.push(contest);
-							//});
-						//}
 					} else {
 						console.log("fail");
 					}		
@@ -113,7 +105,7 @@ angular
 		}
 	}])
 
-	.controller('ContestJudgeCtrl', ['$scope', '$rootScope', '$stateParams', '$state', '$location', 'ContestFactory', 'EntryFactory', function($scope, $rootScope, $stateParams, $state, $location, ContestFactory, EntryFactory){
+	.controller('ContestJudgeCtrl', ['$scope', '$stateParams', 'EntryFactory', function($scope, $stateParams, EntryFactory){
 		console.log('ContestJudgeCtrl loaded...');
 		$scope.entries = [];
 		$scope.entryScoreMap = []; //boy this is sloppy
@@ -156,7 +148,7 @@ angular
 		}
 	}])
 
-	.controller('ContestJudgeListCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $stateParams, $state, $location, ContestFactory){
+	.controller('ContestJudgeListCtrl', ['$scope', 'ContestFactory', function($scope, ContestFactory){
 		console.log('ContestJudgeListCtrl loaded...');
 		$scope.contests = [];
 		var getContests = function() {
@@ -174,7 +166,7 @@ angular
 		getContests();
 	}])
 
-	.controller('ContestCompeteListCtrl', ['$scope', '$stateParams', '$state', '$location', 'ContestFactory', 'EntryFactory', function($scope, $stateParams, $state, $location, ContestFactory, EntryFactory){
+	.controller('ContestCompeteListCtrl', ['$scope', 'ContestFactory', 'EntryFactory', function($scope, ContestFactory, EntryFactory) {
 		console.log('ContestCompeteListCtrl loaded...');
 		$scope.contests = [];
 		$scope.contestsSubmittable = [];
@@ -198,6 +190,7 @@ angular
 			})
 	}])
 
+	// Shit show, refactor later
 	.controller('ContestEditCtrl', ['$scope', '$timeout', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $timeout, $upload, $stateParams, $state, $location, ContestFactory){
 		console.log('ContestEditCtrl loaded...');
 		$scope.id = $stateParams.id;
@@ -247,7 +240,7 @@ angular
 		}
 	}])
 
-	.controller('ContestJoinCtrl', ['$scope', '$rootScope', '$timeout', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, $rootScope, $timeout, $upload, $stateParams, $state, $location, ContestFactory){
+	.controller('ContestJoinCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'ContestFactory', function($scope, $rootScope, $stateParams, $state, ContestFactory){
 		console.log('ContestJoinCtrl loaded...');
 		// possible states for competeState and judgeState:
 		// 'already'
