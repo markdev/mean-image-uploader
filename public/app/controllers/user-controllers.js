@@ -3,15 +3,20 @@ console.log("loaded: user controllers");
 angular
 	.module('yote')
 
-	.controller('UserLogoutCtrl', ['$scope', '$state', 'UserFactory', function($scope, $state, UserFactory) {
+	.controller('UserLogoutCtrl', ['$scope', '$state', '$rootScope', 'UserFactory', function($scope, $state, $rootScope, UserFactory) {
 		$scope.logout = function() {
 			UserFactory.logout()
 				.then(function(data) {
-					//console.log(data);
 					$state.go('login')
 				})
 
 		}
+		$scope.avatarSrc = "/api/user/avatar/" + $rootScope.currentUser._id + '?' + new Date().getTime();
+		// this gets broadcast from the avatar controller
+		// TODO: this is hacky, clean it up
+		$scope.$on('updateAvatar', function() {
+			$scope.avatarSrc = "/api/user/avatar/" + $rootScope.currentUser._id + '?' + new Date().getTime();
+		});
 	}])
 
 	.controller('UserSignupCtrl', ['$scope', '$state', '$rootScope', 'UserFactory', function($scope, $state, $rootScope, UserFactory){
@@ -74,7 +79,7 @@ angular
 		}
 	}])
 
-	.controller('UserAvatarUploadCtrl', ['$scope', 'fileReader', '$upload', '$state', function($scope, fileReader, $upload, $state) {  
+	.controller('UserAvatarUploadCtrl', ['$scope', '$rootScope', 'fileReader', '$upload', '$state', function($scope, $rootScope, fileReader, $upload, $state) {  
 		$scope.file = null;
 		$scope.getFile = function () {
 			$scope.progress = 0;
@@ -103,6 +108,7 @@ angular
 				console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
 			}).success(function(data, status, headers, config) {
     			console.log(data);
+    			$rootScope.$broadcast('updateAvatar');
     			$state.go('settings.home');
   			});
 		};

@@ -62,6 +62,9 @@ header.main {
       vertical-align: middle;
       color: #fff;
       font-size: .75em; }
+      header.main nav div.welcomeUser img.avatarThumb {
+        width: 4em;
+        height: 4em; }
     header.main nav a.search {
       display: block;
       float: right;

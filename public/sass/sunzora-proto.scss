@@ -83,6 +83,10 @@ header.main {
 			vertical-align: middle;
 			color: #fff;
 			font-size: .75em;
+			img.avatarThumb {
+				width: 4em;
+				height: 4em; 
+			} 
 		}
 		a.search {
 			display: block;
