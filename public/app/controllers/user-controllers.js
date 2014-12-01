@@ -3,13 +3,8 @@ console.log("loaded: user controllers");
 angular
 	.module('yote')
 
-	.controller('SunzoraCtrl', ['$scope', '$stateParams', '$state', '$location', 'SunzoraFactory', function($scope, $stateParams, $state, $location, SunzoraFactory){
-		console.log('SunzoraCtrl loaded...');
-	}])
-
-	.controller('UserLogoutCtrl', ['$scope', '$stateParams', '$state', '$location', 'SunzoraFactory', 'UserFactory', function($scope, $stateParams, $state, $location, SunzoraFactory, UserFactory){
+	.controller('UserLogoutCtrl', ['$scope', '$state', 'UserFactory', function($scope, $state, UserFactory) {
 		$scope.logout = function() {
-			//console.log("logging out");
 			UserFactory.logout()
 				.then(function(data) {
 					//console.log(data);
@@ -19,7 +14,7 @@ angular
 		}
 	}])
 
-	.controller('UserSignupCtrl', ['$scope', '$stateParams', '$state',  '$rootScope', '$location', 'SunzoraFactory', 'UserFactory', function($scope, $stateParams, $state, $rootScope, $location, SunzoraFactory, UserFactory){
+	.controller('UserSignupCtrl', ['$scope', '$state', '$rootScope', 'UserFactory', function($scope, $state, $rootScope, UserFactory){
 		$scope.email = 'mark.karavan@gmail.com';
 		$scope.password = 'mark';
 		$scope.password2 = 'mark';
@@ -28,12 +23,9 @@ angular
 			postData.email = $scope.email;
 			postData.password = $scope.password;
 			postData.password2 = $scope.password2;
-			//console.log(postData);
 			UserFactory.signup(postData)
 				.then(function(data) {
-					//console.log(data);
 					if (data.success) {
-						//console.log(data);
 						$rootScope.currentUser = data.user;
 						$state.go('root.home');
 					} else {
@@ -43,7 +35,7 @@ angular
 		}
 	}])
 
-	.controller('UserLoginCtrl', ['$scope', '$stateParams', '$state', '$rootScope', 'SunzoraFactory', 'UserFactory', function($scope, $stateParams, $state, $rootScope, SunzoraFactory, UserFactory) {
+	.controller('UserLoginCtrl', ['$scope', '$state', '$rootScope', 'UserFactory', function($scope, $state, $rootScope, UserFactory) {
 		$scope.email = "mark.karavan@gmail.com";
 		$scope.password = "mark";
 		$scope.loginAction = function() {
@@ -63,7 +55,7 @@ angular
 		}
 	}])
 
-	.controller('UserChangePasswordCtrl', ['$scope', '$stateParams', '$state', '$rootScope', 'UserFactory', function($scope, $stateParams, $state, $rootScope, UserFactory) {  
+	.controller('UserChangePasswordCtrl', ['$scope', '$state', 'UserFactory', function($scope, $state, UserFactory) {  
 		$scope.currentPassword = "";
 		$scope.newPassword = "";
 		$scope.confirmPassword = "";
@@ -81,21 +73,8 @@ angular
 				});
 		}
 	}])
-/*
-	.controller('UserAccountSettingsCtrl', ['$scope', '$stateParams', '$state', '$rootScope', 'UserFactory', function($scope, $stateParams, $state, $rootScope, UserFactory) {  
-		$scope.firstName = "";
-		$scope.lastName = "";
-		$scope.update = function(files) {
-			console.log(files);
-			var fd = new FormData();
-			//Take the first selected file
-			fd.append("file", files[0]);
-			console.log('updating user');
-		};
-	}])
-*/
 
-	.controller('UserAvatarUploadCtrl', ['$scope', 'fileReader', '$upload', '$stateParams', '$state', '$rootScope', 'UserFactory', function($scope, fileReader, $upload, $stateParams, $state, $rootScope, UserFactory) {  
+	.controller('UserAvatarUploadCtrl', ['$scope', 'fileReader', '$upload', '$state', function($scope, fileReader, $upload, $state) {  
 		$scope.file = null;
 		$scope.getFile = function () {
 			$scope.progress = 0;
@@ -130,13 +109,12 @@ angular
 
 	}])
 
-	.controller('UserResultsCtrl', ['$scope', 'fileReader', '$upload', '$stateParams', '$state', '$rootScope', 'UserFactory', 'ResultFactory', function($scope, fileReader, $upload, $stateParams, $state, $rootScope, UserFactory, ResultFactory) {  
+	.controller('UserResultsCtrl', ['$scope', 'ResultFactory', function($scope, ResultFactory) {  
 		console.log('UserResultsCtrl');
 		$scope.results = [];
 		ResultFactory.getResultsByUser()
 			.then(function(response) {
 				$scope.results = response.results;
 			})
-
 	}])
 
