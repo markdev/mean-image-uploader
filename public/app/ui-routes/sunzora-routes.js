@@ -190,11 +190,13 @@ angular
 			.state('settings.avatar', {
 				  url: '/account'
 				, templateUrl: '/views/settings/avatar'
+				, controller: 'UserAvatarUploadCtrl'
 			})
 
 			.state('settings.changePassword', {
 				  url: '/password'
 				, templateUrl: '/views/settings/changePassword'
+				, controller: 'UserChangePasswordCtrl'
 			})
 
 			.state('settings.viewResults', {
