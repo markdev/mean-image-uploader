@@ -45,7 +45,7 @@ angular
 			.state('signup', {
 				  url: '/signup'
 				, templateUrl: '/views/signupview'
-				, controller: 'UserLogoutCtrl'
+				, controller: 'UserSignupCtrl'
 			})
 
 			//////////////
@@ -61,8 +61,8 @@ angular
 			.state('search.home', {
 				  url: ''
 				, templateUrl: '/views/search/main'
+				, controller: 'ContestSearchCtrl'
 			})
-
 
 			//////////////
 			.state('create', {
@@ -164,6 +164,7 @@ angular
 			.state('compete.submit', {
 				  url: '/submit/:id'
 				, templateUrl: '/views/compete/submit'
+				, controller: 'EntrySubmitCtrl'
 			})
 
 			.state('compete.status', {

@@ -1,14 +1,14 @@
 h1 Search for contests
-div(ng-controller="ContestSearchCtrl")
-	input(type="text" id="searchBar" ng-keyup="find()" ng-model="searchStr")
-	button(ng-click="find()" id="searchButton") Find by title and tag
-	br
 
-	nav.bigLinks
-		ul(class="bigItemList" ng-repeat="contest in contests")
-			li
-				div.menuItem
-					a(ui-sref="contest.join({id: '{{contest._id}}' })")
-						img.thumbnail(ng-src="/api/contest/banner/{{contest._id}}") 
-					span {{ contest.title }}
+input(type="text" id="searchBar" ng-keyup="find()" ng-model="searchStr")
+button(ng-click="find()" id="searchButton") Find by title and tag
+br
+
+nav.bigLinks
+	ul(class="bigItemList" ng-repeat="contest in contests")
+		li
+			div.menuItem
+				a(ui-sref="contest.join({id: '{{contest._id}}' })")
+					img.thumbnail(ng-src="/api/contest/banner/{{contest._id}}") 
+				span {{ contest.title }}
 

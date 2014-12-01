@@ -1,20 +1,18 @@
 include includes/backButton
 
-
-div(ng-controller="EntrySubmitCtrl")
-	h1.title Submit your entry
-	table.formTable
-		tr
-			td
-				label Title
-			td
-				input(type="text" ng-model="title")
-		tr
-			td
-				label Entry
-			td
-				input(type="file" ng-file-select="onFileSelect($files)")
-				img.preview(ng-src="{{imageSrc}}")
-		tr
-			td(colspan="2")
-				button(ng-click="submit()") Submit Entry		
+h1.title Submit your entry
+table.formTable
+	tr
+		td
+			label Title
+		td
+			input(type="text" ng-model="title")
+	tr
+		td
+			label Entry
+		td
+			input(type="file" ng-file-select="onFileSelect($files)")
+			img.preview(ng-src="{{imageSrc}}")
+	tr
+		td(colspan="2")
+			button(ng-click="submit()") Submit Entry		
