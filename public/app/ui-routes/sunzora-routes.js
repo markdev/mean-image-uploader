@@ -38,7 +38,6 @@ angular
 
 			.state('logout', {
 				  url: '/logout'
-				//templateUrl: '/views/login'
 				, controller: 'UserLogoutCtrl'
 			})
 
@@ -92,7 +91,6 @@ angular
 				, controller: 'ContestEditCtrl'
 			})
 
-
 			//////////////
 			.state('contest', {
 				  abstract: true
@@ -137,6 +135,7 @@ angular
 			.state('judge.home', {
 				  url: ''
 				, templateUrl: '/views/judge/main'
+				, controller: 'ContestJudgeListCtrl'
 			})
 
 			.state('judge.contest', {
