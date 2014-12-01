@@ -24,9 +24,6 @@ angular
 // end file
 ;
 
-$rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
-    console.log("changing");
-});
 
 (function (module) {
     var fileReader = function ($q, $log) {

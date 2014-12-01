@@ -77,16 +77,19 @@ angular
 			.state('create.home', {
 				  url: ''
 				, templateUrl: '/views/create/list'
+				, controller: 'ContestListCtrl'
 			})
 
 			.state('create.new', {
 				  url: '/new'
 				, templateUrl: '/views/create/new'
+				, controller: 'ContestCreateNewCtrl'
 			})
 
 			.state('create.edit', {
 				  url: '/edit/:id'
 				, templateUrl: '/views/create/edit'
+				, controller: 'ContestEditCtrl'
 			})
 
 
