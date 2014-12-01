@@ -3,7 +3,7 @@ console.log("loaded: entry controllers");
 angular
 	.module('yote')
 
-	.controller('EntrySubmitCtrl', ['$scope', 'fileReader', '$rootScope', '$timeout', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', function($scope, fileReader, $rootScope, $timeout, $upload, $stateParams, $state, $location, ContestFactory){
+	.controller('EntrySubmitCtrl', ['$scope', 'fileReader', '$upload', '$stateParams', '$state', function($scope, fileReader, $upload, $stateParams, $state) {
 		console.log('EntrySubmitCtrl loaded...');
 		console.log($stateParams);
 		$scope.title = "My title";
@@ -43,10 +43,9 @@ angular
 		};
 	}])
 
-	.controller('EntryPlayByPlayCtrl', ['$scope', 'fileReader', '$rootScope', '$timeout', '$upload', '$stateParams', '$state', '$location', 'ContestFactory', 'EntryFactory', function($scope, fileReader, $rootScope, $timeout, $upload, $stateParams, $state, $location, ContestFactory, EntryFactory){
+	.controller('EntryPlayByPlayCtrl', ['$scope', '$stateParams', '$state', 'EntryFactory', function($scope, $stateParams, $state, EntryFactory) {
 		console.log('EntryPlayByPlayCtrl loaded...');
 		$scope.entries = [];
-		//$scope.activeEntry = $stateParams.id;
 		$scope.activeEntry = null;
 		EntryFactory.getEntryStandingsByEntry($stateParams.id)
 			.then(function(response) {
@@ -55,5 +54,4 @@ angular
 					if ($scope.entries[i]._id == $stateParams.id) $scope.activeEntry = $scope.entries[i];
 				}
 			})
-
 	}])
