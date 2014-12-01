@@ -13,11 +13,20 @@ angular
 	.run(function($rootScope) {
 		$rootScope.currentUser = window.currentUser;
 		console.log($rootScope.currentUser);
-		console.log("howdy!");
+        // this is a hacky way to do a redirect, but $state.go() doesn't work for some reason
+        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+            if (jQuery.isEmptyObject($rootScope.currentUser) && toState.name != 'login' && toState.name != 'signup') {
+                window.location.replace('/login');
+            }
+        })
 	})
 
 // end file
 ;
+
+$rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+    console.log("changing");
+});
 
 (function (module) {
     var fileReader = function ($q, $log) {
