@@ -15,6 +15,11 @@ table.formTable
 			img.preview(ng-src="{{imageSrc}}")
 	tr
 		td
+			label Type of contest:
+		td
+			select(ng-model="contestType" ng-options='type for type in contestTypes')
+	tr
+		td
 			label Tags:
 		td
 			input(type="text" ng-model="tags")

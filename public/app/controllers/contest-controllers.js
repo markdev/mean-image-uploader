@@ -20,6 +20,8 @@ angular
 		$scope.myHour = $scope.hours[0];
 		$scope.minutes = [ {name: "00"}, {name: "05"}, {name: "10"}, {name: "15"}, {name: "20"}, {name: "25"}, {name: "30"}, {name: "35"}, {name: "40"}, {name: "45"},{name: "50"},{name: "55"} ];
 		$scope.myMinute = $scope.minutes[0];
+		$scope.contestTypes = ["image", "text"];
+		$scope.contestType = $scope.contestTypes[0];
 		$scope.getFile = function () {
 			$scope.progress = 0;
 			fileReader.readAsDataUrl($scope.file, $scope)
@@ -53,7 +55,7 @@ angular
     			postData.tags.push($.trim(this).toLowerCase());
 			});
 			postData.rules = $scope.rules;
-
+			postData.contestType = $scope.contestType;
 			$scope.upload = $upload.upload({
 				method: 'POST',
 				url: '/api/contest/',
@@ -199,12 +201,14 @@ angular
 				$scope.path = path + '/api/contest/banner/' + $scope.contest._id;
 			}, 1000);
 		};
-		var path = 'http://127.0.0.1:3000'; // TODO change this obv
+		var path = 'http://127.0.0.1:2345'; // TODO change this obv
 		ContestFactory.getContestById($scope.id)
 			.then(function(response) {
 				console.log(response);
 				$scope.contest = response.contest;
-				$scope.contest.tags = response.contest.tags.join(", ");
+				//removes beginning and ending square brackets and double quotes.
+				var tagString = response.contest.tags.join(", ").substring(1);
+				$scope.contest.tags = tagString.substring(0, tagString.length - 1).replace(/['"]+/g, '');
 				imageUpdate();
 			})
 		$scope.onFileSelect = function($files) {
