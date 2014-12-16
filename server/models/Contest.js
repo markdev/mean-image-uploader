@@ -13,6 +13,7 @@ var contestSchema = mongoose.Schema({
 	, rules: 					{ type: String }
 	, tags: 					{ type: [ String ] }
 	, deadline: 				{ type: Date }
+	, contestType:  			{ type: String, enum: ["text", "image"], default: "text" }
 	, submissionAvailability: 	{ type: String, enum: ["owner", "public"], default: "owner" }
 	, submissionLimit: 			{ type: String, enum: ["one", "many"], default: "many" }
 	, judging: 					{ type: String, enum: ["public"], default: "public" }
