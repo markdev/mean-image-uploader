@@ -3,9 +3,14 @@ console.log("loaded: entry controllers");
 angular
 	.module('yote')
 
-	.controller('EntrySubmitCtrl', ['$scope', 'fileReader', '$upload', '$stateParams', '$state', function($scope, fileReader, $upload, $stateParams, $state) {
+	.controller('EntrySubmitCtrl', ['$scope', 'fileReader', '$upload', '$stateParams', '$state', 'ContestFactory', 'EntryFactory', function($scope, fileReader, $upload, $stateParams, $state, ContestFactory, EntryFactory) {
 		console.log('EntrySubmitCtrl loaded...');
 		console.log($stateParams);
+		$scope.contest = { contestType : "text" };
+		ContestFactory.getContestById($stateParams.id)
+			.then(function(response) {
+				$scope.contest = response.contest;
+			})
 		$scope.title = "My title";
 		$scope.file = null;
 		console.log(fileReader)
@@ -25,22 +30,36 @@ angular
 				console.log($scope.file);
 			}
 		};
-		$scope.submit = function() {
-			$scope.upload = $upload.upload({
-				method: 'POST',
-				url: '/api/contest/entry',
-				data: { id: $stateParams.id, 
-						title: $scope.title, 
-						contest: $stateParams.id
-					},
-				file: $scope.file
-			}).progress(function(evt) {
-				console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-			}).success(function(data, status, headers, config) {
-    			console.log(data);
-    			$state.go('compete.home');
-  			});
-		};
+		if ($scope.contest.contestType == "image") {
+			$scope.submit = function() {
+				$scope.upload = $upload.upload({
+					method: 'POST',
+					url: '/api/contest/entry',
+					data: { id: $stateParams.id, 
+							title: $scope.title, 
+							contest: $stateParams.id
+						},
+					file: $scope.file
+				}).progress(function(evt) {
+					console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+				}).success(function(data, status, headers, config) {
+	    			console.log(data);
+	    			$state.go('compete.home');
+	  			});
+			};
+		} else {
+			$scope.submit = function() {
+				var postData = {
+					contest: $scope.contest._id,
+					content: $scope.entryText
+				};
+				EntryFactory.addTextEntry(postData)
+					.then(function(response) {
+						//$state.go('compete.home');
+						console.log("check yoself");
+					})
+			};
+		}
 	}])
 
 	.controller('EntryPlayByPlayCtrl', ['$scope', '$stateParams', '$state', 'EntryFactory', function($scope, $stateParams, $state, EntryFactory) {

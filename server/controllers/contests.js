@@ -277,6 +277,36 @@ exports.addEntry = function(req, res, next) {
 	});
 }
 
+exports.addTextEntry = function(req, res, next) {
+	console.log("called: contests.addTextEntry");
+	console.log("BANG BANG BANG BANG BANG BANG BANG BANG BANG BANG BANG BANG");
+	var entryData = {};
+	entryData._owner = req.user._id;
+	entryData.contest = req.body.contest;
+	entryData.content = req.body.content;
+	console.log(entryData);
+	console.log(req.body);
+	Entry.create(entryData, function(err, entry) {
+		if (err) {
+			res.send({success: false, error: err});
+		} else {
+			var eId = entry.id;
+			Contest.findByIdAndUpdate(
+				req.body.contest,
+				{ $push: { "entries": eId }},
+				{ safe: true, upsert: true},
+				function(err, contest) {
+					if (err) {
+						res.send({success: false, message: "Error inserting data"});
+					} else {
+						res.send({success: true, contest: contest});
+					}					
+				}
+			);
+		}
+	});
+}
+
 
 exports.getBanner = function(req, res, next) {
 	Contest.findOne({_id: req.param('id')}, function(err, contest) {

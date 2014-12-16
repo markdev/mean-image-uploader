@@ -2,17 +2,22 @@ include includes/backButton
 
 h1.title Submit your entry
 table.formTable
-	tr
+	//-tr
 		td
 			label Title
 		td
 			input(type="text" ng-model="title")
-	tr
+	tr(ng-show='contest.contestType == "image"')
 		td
 			label Entry
 		td
 			input(type="file" ng-file-select="onFileSelect($files)")
 			img.preview(ng-src="{{imageSrc}}")
+	tr(ng-show='contest.contestType == "text"')
+		td
+			label Entry Text:
+		td
+			textarea(ng-model="entryText")
 	tr
 		td(colspan="2")
 			button(ng-click="submit()") Submit Entry		

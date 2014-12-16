@@ -66,6 +66,18 @@ angular
 			return deferred.promise;
 		}
 
+		EntryFactory.addTextEntry = function(postData) {
+			console.log("Adding a Text Entry");
+			var deferred = $q.defer();
+			$http.post("/api/contest/textentry", postData)
+				.success(function(response) {
+					console.log("SUCCESS");
+					console.log(response);
+					deferred.resolve(response)
+				})
+			return deferred.promise;
+		}
+
 		return EntryFactory;
 	}])
 	;
