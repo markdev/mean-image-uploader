@@ -2,7 +2,7 @@ include includes/backButton
 
 h1.title Submit your entry
 table.formTable
-	//-tr
+	tr(ng-show='contest.contestType == "image"')
 		td
 			label Title
 		td

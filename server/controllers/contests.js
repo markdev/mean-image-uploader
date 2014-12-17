@@ -256,6 +256,7 @@ exports.addEntry = function(req, res, next) {
 	entryData.contest = req.body.contest;
 	entryData.title = req.body.title;
 	entryData.content = entryName;
+	entryData.contestType = "image";
 	Entry.create(entryData, function(err, entry) {
 		if (err) {
 			res.send({success: false, error: err});
@@ -284,8 +285,7 @@ exports.addTextEntry = function(req, res, next) {
 	entryData._owner = req.user._id;
 	entryData.contest = req.body.contest;
 	entryData.content = req.body.content;
-	console.log(entryData);
-	console.log(req.body);
+	entryData.contestType = "text";
 	Entry.create(entryData, function(err, entry) {
 		if (err) {
 			res.send({success: false, error: err});

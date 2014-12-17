@@ -107,8 +107,12 @@ angular
 		}
 	}])
 
-	.controller('ContestJudgeCtrl', ['$scope', '$stateParams', 'EntryFactory', function($scope, $stateParams, EntryFactory){
+	.controller('ContestJudgeCtrl', ['$scope', '$stateParams', 'EntryFactory', 'ContestFactory', function($scope, $stateParams, EntryFactory, ContestFactory){
 		console.log('ContestJudgeCtrl loaded...');
+		ContestFactory.getContestById($stateParams.id)
+			.then(function(response) {
+				$scope.contest = response.contest;
+			})
 		$scope.entries = [];
 		$scope.entryScoreMap = []; //boy this is sloppy
 		$scope.existingEntries = [];

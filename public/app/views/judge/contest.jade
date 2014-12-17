@@ -2,14 +2,17 @@ a(ui-sref="judge.home") Back to contests I'm judging
 hr
 
 h1 Judging contest: {{ contest.title }}
+h1 Type: {{ contest.contestType }}
 div#judgeLayout
 	div#carousel(scroller)
 		div#innerWrapper
 			table
-				tr
+				tr(ng-show='contest.contestType == "text"')
 					td.entryCell(ng-repeat="entry in entries")
-						entry-frame(entry="entry" call-focus="callFocus(entry._id)")
-
+						entry-text-frame(entry="entry" call-focus="callFocus(entry._id)")
+				tr(ng-show='contest.contestType == "image"')
+					td.entryCell(ng-repeat="entry in entries")
+						entry-image-frame(entry="entry" call-focus="callFocus(entry._id)")
 	table#buttons
 		tr
 			td(ng-repeat="score in scores")

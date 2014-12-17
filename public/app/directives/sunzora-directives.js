@@ -44,7 +44,29 @@ angular
 		};
 	})
 
-	.directive('entryFrame', function($compile, $rootScope) {
+	.directive('entryTextFrame', function($compile, $rootScope) {
+		return {
+			restrict: 'E',
+			scope: {
+				entry: '=',
+				callFocus: '&'
+			},
+			replace: true,
+			template: '<div><div class="imageFrame"><p>{{entry.content}}</p></div></div>',
+			link: function(scope, element, attrs) {
+				element.bind("click", function() {
+					console.log(element.position().left);
+				})
+				scope.$on('scrolling', function (event, result) {
+					console.log("scrolling from directive");
+				});
+			},
+			controller: function($scope) {
+			}
+		}
+	})
+
+	.directive('entryImageFrame', function($compile, $rootScope) {
 		return {
 			restrict: 'E',
 			scope: {

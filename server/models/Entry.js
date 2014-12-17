@@ -9,6 +9,7 @@ var entrySchema = mongoose.Schema({
 	, contest: 			{ type: ObjectId, ref: 'Contest', required: true }
 	, created: 			{ type: Date, default: Date.now }
 	, title: 			{ type: String, default: null }
+	, contestType:  	{ type: String, enum: ["text", "image"], default: "text" }
 	, content: 			{ type: String, default: null }
 	, ratings: 			[ {
 		  _owner: 		{ type: ObjectId, ref: 'User', required: true }

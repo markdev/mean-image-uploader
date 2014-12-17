@@ -30,8 +30,8 @@ angular
 				console.log($scope.file);
 			}
 		};
-		if ($scope.contest.contestType == "image") {
-			$scope.submit = function() {
+		$scope.submit = function() {
+			if ($scope.contest.contestType == "image") {
 				$scope.upload = $upload.upload({
 					method: 'POST',
 					url: '/api/contest/entry',
@@ -46,20 +46,18 @@ angular
 	    			console.log(data);
 	    			$state.go('compete.home');
 	  			});
-			};
-		} else {
-			$scope.submit = function() {
+			} else {
+				console.log("textin' it up textin' it up textin' it up  textin' it up textin' it up textin' it up textin' it up");
 				var postData = {
 					contest: $scope.contest._id,
 					content: $scope.entryText
 				};
 				EntryFactory.addTextEntry(postData)
 					.then(function(response) {
-						//$state.go('compete.home');
-						console.log("check yoself");
-					})
-			};
-		}
+						$state.go('compete.home');
+					})			
+			}
+		};
 	}])
 
 	.controller('EntryPlayByPlayCtrl', ['$scope', '$stateParams', '$state', 'EntryFactory', function($scope, $stateParams, $state, EntryFactory) {
