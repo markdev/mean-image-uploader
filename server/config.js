@@ -23,4 +23,14 @@ if (os.hostname() == 'Marks-MacBook-Pro-11.local') {
 		rootDir: '/var/www/sunzora-proto/',
     	port: process.env.PORT || 2345
 	}	
+} else if (os.hostname() == 'Thomass-MacBook-Pro.local') {
+	module.exports = {
+		db: 'mongodb://127.0.0.1/sunzora',
+		redis: {
+			host: '127.0.0.1',
+			port: '6379'
+		},
+		rootDir: '/Users/thomaslebeda/sunzora-proto/',
+		port: process.env.PORT || 2345
+	}
 }
